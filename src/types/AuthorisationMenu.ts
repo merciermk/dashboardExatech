@@ -183,15 +183,14 @@ const functionsForAuth = {
   /**
    * fonction de filtre des droits. Parcours les éléments du menu, renvois un array avec les elements authorisés et les acréditations
     */
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   theFilterFunction (menuElements: any) {
     const menuFilter: any[] = []
     for (const menu of menuElements) {
       if (menu.auth.indexOf(true) !== -1) {
         menuFilter.push(menu)
       }
-      // const value = store.getters['auth/can'](menu.auth)
       for (const ua of menu.auth) {
-        // console.log({ drtoit: ua })
         if (store.getters['auth/can'](ua)) {
           menuFilter.push(menu)
         }

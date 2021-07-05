@@ -7,6 +7,7 @@
     <side-bar-left></side-bar-left>
 
     <!-- Page content -->
+    <router-view></router-view>
 
   </div>
 </template>

@@ -11,6 +11,11 @@ const routes: Array<RouteConfig> = [
     component: Dashboard
   },
   {
+    path: '/dashboard',
+    name: 'Dashboard',
+    component: Dashboard
+  },
+  {
     path: '/about',
     name: 'About',
     // route level code-splitting
