@@ -1,7 +1,8 @@
 <template>
   <div class="dashboard test">
     <div v-for="eachCard, index in filteredDashboard" :key="index" class="sousEl">
-      <div class="dataScreen">
+      <div class="dashboardGraph" v-if="eachCard.percentageToShow">
+        <dashboardGraph  :graphPercentage="eachCard.percentageToShow"></dashboardGraph>
       </div>
       <div class="linkEl">
         <hr class="hrLink">
@@ -11,7 +12,6 @@
       </div>
     </div>
   </div>
-
 </template>
 
 <script lang="ts">
@@ -19,10 +19,12 @@
 import { Vue, Component } from 'vue-property-decorator'
 import { functionsForAuth } from '@/types/AuthorisationMenu'
 import { unfilteredDashboardElements } from '@/types/DashboardEl/dashboardEl'
-// functionsForAuth.theFilterFunction
+import DashboardGraph from '@/components/DashboardGraph.vue'
 
 @Component({
-
+  components: {
+    DashboardGraph
+  }
 })
 
 export default class Dashboard extends Vue {
@@ -41,7 +43,9 @@ $dashboard-margin-left: 5rem;
   border: 2px solid black;
 }
 .dashboard{
+  font-size: 14px;
   width: 92%;
+  min-height: calc(100vh - 50px - 50px);
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
@@ -52,6 +56,7 @@ $dashboard-margin-left: 5rem;
 }
 
 .sousEl{
+  transition: all 0.2s;
   display: flex;
   flex-direction: column;
   border-radius: 25px;
@@ -59,7 +64,7 @@ $dashboard-margin-left: 5rem;
   min-width: 350px;
   max-width: auto;
   height: 350px;
-  margin: 25px
+  margin: 10px 20px 20px 20px
 }
 
 .dataScreen{
@@ -73,6 +78,8 @@ $dashboard-margin-left: 5rem;
 }
 
 .linkEl{
+  margin-bottom: 20px;
+  margin-top: auto;
   text-align: right;
   padding-right: 25px
 }
