@@ -1,20 +1,25 @@
 <template>
-  <div class="dashboard">
-    <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
-  </div>
+
+     <div class="big-card">
+      <font-awesome-icon icon="hand-holding-usd" class="big-card-icon" />
+      <small-card :smallCardValues="smallCardValues">
+      </small-card>
+    </div>
 </template>
 
 <script lang="ts">
 
 import { Vue, Component } from 'vue-property-decorator'
-import DashboardDossiersAcademiques from '@/components/dashboardComp/DashboardDossiersAcademiques.vue'
+import SmallCard from '@/components/dashboardComp/SmallCard.vue'
+import SmallCardPercentage from '@/components/dashboardComp/SmallCardPercentage.vue'
 @Component({
   components: {
-    DashboardDossiersAcademiques
+    SmallCard,
+    SmallCardPercentage
   }
 })
 
-export default class Dashboard extends Vue {
+export default class DashboardDossierAcademiques extends Vue {
   smallCardValues = {
     titre: 'gestion des dossiers académiques'.toUpperCase(),
     cardIcon: 'hand-holding-usd',
@@ -66,35 +71,6 @@ export default class Dashboard extends Vue {
        }
      ]
    }
-
-   smallCardValues3 = {
-     titre: 'Lorem'.toUpperCase(),
-     cardIcon: 'hand-holding-usd',
-     link: '/coucou',
-     informations: [
-       {
-         textSingular: 'Intervenant manquant'.toUpperCase(),
-         textPlural: 'intervenants manquants'.toUpperCase(),
-         numberToShow: 2,
-         color: 'pink'
-       }
-     ]
-   }
-
-    smallCardPercentageValues = {
-      titre: 'Card With %'.toUpperCase(),
-      cardIcon: 'hand-holding-usd',
-      link: '/coucou',
-      percentageToShow: 27,
-      informations: [
-        {
-          textSingular: 'percentageTest'.toUpperCase(),
-          textPlural: 'Contrats'.toUpperCase(),
-          numberToShow: 1,
-          color: 'blue'
-        }
-      ]
-    }
 }
 </script>
 
@@ -113,16 +89,6 @@ $dashboard-margin-right: 20px;
   position: absolute;
   font-size: 200px;
   color: rgba(179, 175, 175, 0.13);
-}
-.dashboard{
-  position: absolute;
-  width: 95%;
-  font-size: 14px;
-  min-height: calc(100vh - 50px - 50px);
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  margin:$dashboard-margin-top  $dashboard-margin-right $dashboard-margin-bottom $dashboard-margin-left;
 }
 
 .big-card{
