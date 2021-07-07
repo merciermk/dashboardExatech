@@ -1,15 +1,20 @@
 <template>
-  <div class="dashboard test">
-    <div v-for="eachCard, index in filteredDashboard" :key="index" class="sousEl">
-      <div class="dashboardGraph" v-if="eachCard.percentageToShow">
-        <dashboardGraph  :graphPercentage="eachCard.percentageToShow"></dashboardGraph>
-      </div>
-      <div class="linkEl">
-        <hr class="hrLink">
-        <router-link :to="eachCard.path[0]">
-          {{ eachCard.name}}
-        </router-link>
-      </div>
+  <div class="dashboard">
+     <div class="big-card">
+      <font-awesome-icon icon="hand-holding-usd" class="big-card-icon" />
+      <small-card :smallCardValues="smallCardValues3">
+      </small-card>
+      <small-card :smallCardValues="smallCardValues2">
+      </small-card>
+      <small-card :smallCardValues="smallCardValues">
+      </small-card>
+    </div>
+     <div class="big-card">
+      <font-awesome-icon icon="hand-holding-usd" class="big-card-icon" />
+      <small-card :smallCardValues="smallCardValues">
+      </small-card>
+      <small-card :smallCardValues="smallCardValues2">
+      </small-card>
     </div>
   </div>
 </template>
@@ -17,19 +22,79 @@
 <script lang="ts">
 
 import { Vue, Component } from 'vue-property-decorator'
-import { functionsForAuth } from '@/types/AuthorisationMenu'
-import { unfilteredDashboardElements } from '@/types/DashboardEl/dashboardEl'
-import DashboardGraph from '@/components/DashboardGraph.vue'
-
+import SmallCard from '@/components/dashboardComp/SmallCard.vue'
 @Component({
   components: {
-    DashboardGraph
+    SmallCard
   }
 })
 
 export default class Dashboard extends Vue {
-  elementsUnfiltered = unfilteredDashboardElements
-  filteredDashboard = functionsForAuth.theFilterFunction(this.elementsUnfiltered)
+  smallCardValues = {
+    titre: 'gestion des dossiers académiques'.toUpperCase(),
+    cardIcon: 'hand-holding-usd',
+    link: '/coucou',
+    informations: [
+      {
+        textSingular: 'Intervenant manquant'.toUpperCase(),
+        textPlural: 'intervenants manquants'.toUpperCase(),
+        numberToShow: 17,
+        color: 'blue'
+      },
+      {
+        textSingular: 'Intervenant manquant'.toUpperCase(),
+        textPlural: 'intervenants manquants'.toUpperCase(),
+        numberToShow: 2,
+        color: 'rgba(127, 105, 224, 0.534)'
+      },
+      {
+        textSingular: 'Intervenant manquant'.toUpperCase(),
+        textPlural: 'intervenants manquants'.toUpperCase(),
+        numberToShow: 2,
+        color: 'red'
+      }
+    ]
+  }
+
+   smallCardValues2 = {
+     titre: 'Lorem'.toUpperCase(),
+     cardIcon: 'hand-holding-usd',
+     link: '/coucou',
+     informations: [
+       {
+         textSingular: 'ipsums'.toUpperCase(),
+         textPlural: 'ipsum'.toUpperCase(),
+         numberToShow: 17,
+         color: 'orange'
+       },
+       {
+         textSingular: 'Intervenant manquant'.toUpperCase(),
+         textPlural: 'intervenants manquants'.toUpperCase(),
+         numberToShow: 2,
+         color: 'pink'
+       },
+       {
+         textSingular: 'Intervenant manquant'.toUpperCase(),
+         textPlural: 'intervenants manquants'.toUpperCase(),
+         numberToShow: 2,
+         color: 'orange'
+       }
+     ]
+   }
+
+   smallCardValues3 = {
+     titre: 'Lorem'.toUpperCase(),
+     cardIcon: 'hand-holding-usd',
+     link: '/coucou',
+     informations: [
+       {
+         textSingular: 'Intervenant manquant'.toUpperCase(),
+         textPlural: 'intervenants manquants'.toUpperCase(),
+         numberToShow: 2,
+         color: 'pink'
+       }
+     ]
+   }
 }
 </script>
 
@@ -38,50 +103,41 @@ export default class Dashboard extends Vue {
 /* Variables */
 $dashboard-margin-top: 5rem;
 $dashboard-margin-left: 5rem;
+$dashboard-margin-bottom: 20px;
+$dashboard-margin-right: 20px;
 
-.test{
-  border: 2px solid black;
+.big-card-icon{
+  z-index: 1;
+  left: 10px;
+  top: 20px;
+  position: absolute;
+  font-size: 200px;
+  color: rgba(179, 175, 175, 0.13);
 }
 .dashboard{
+  position: absolute;
+  width: 95%;
   font-size: 14px;
-  width: 92%;
   min-height: calc(100vh - 50px - 50px);
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  align-content: center;
-  justify-content: center;
-  position: absolute;
-  margin:$dashboard-margin-top  $dashboard-margin-left 0 $dashboard-margin-left;
+  margin:$dashboard-margin-top  $dashboard-margin-right $dashboard-margin-bottom $dashboard-margin-left;
 }
 
-.sousEl{
-  transition: all 0.2s;
+.big-card{
+  border-radius: 10px;
+  position: relative;
+  padding-left: 10%;
+  margin: 0 0px 20px auto;
   display: flex;
-  flex-direction: column;
-  border-radius: 25px;
-  box-shadow: 2px 2px 2px 2px rgba(128, 128, 128, 0.247);
-  min-width: 350px;
-  max-width: auto;
-  height: 350px;
-  margin: 10px 20px 20px 20px
-}
-
-.dataScreen{
-  height: 80%;
-}
-
-.hrLink{
-  margin-left: auto;
-  margin-right: auto;
-  width: 80%;
-}
-
-.linkEl{
-  margin-bottom: 20px;
-  margin-top: auto;
-  text-align: right;
-  padding-right: 25px
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -5px 5px 15px rgba(173, 173, 173, 0.411);
+  width: 100%;
+  min-height: 350px;
 }
 
 </style>
