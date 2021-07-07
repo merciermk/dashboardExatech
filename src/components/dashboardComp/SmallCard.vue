@@ -61,7 +61,8 @@ export default class SmallCard extends Vue {
 <style lang="scss">
 $small-card-color: rgba(156, 156, 158, 0.534);
 $small-card-icon-size: 30px;
-$small-card-width: 420px;
+$small-card-width: 400px;
+$small-card-height: 230px;
 
 .small-card a,
 .small-card a:hover,
@@ -82,7 +83,7 @@ $small-card-width: 420px;
   border-radius: 10px;
   margin: 10px;
   width: $small-card-width;
-  height: 250px;
+  height: $small-card-height;
 }
 
 .small-card-header{
@@ -91,7 +92,7 @@ $small-card-width: 420px;
   flex-direction: row;
   justify-content: flex-start;
   align-items: center;
-  min-height: 40%;
+  min-height: 35%;
 }
 
 .small-card-icon-one{
@@ -134,8 +135,11 @@ $small-card-width: 420px;
 }
 
 .small-card-button-text{
-  height: 40px;
-  width: 140px;
-  text-align: center;
+   display: flex;
+    height: 40px;
+    width: 140px;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
 }
 </style>

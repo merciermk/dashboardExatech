@@ -9,13 +9,6 @@
       <small-card :smallCardValues="smallCardValues">
       </small-card>
     </div>
-     <div class="big-card">
-      <font-awesome-icon icon="hand-holding-usd" class="big-card-icon" />
-      <small-card :smallCardValues="smallCardValues">
-      </small-card>
-      <small-card :smallCardValues="smallCardValues2">
-      </small-card>
-    </div>
   </div>
 </template>
 
@@ -23,9 +16,11 @@
 
 import { Vue, Component } from 'vue-property-decorator'
 import SmallCard from '@/components/dashboardComp/SmallCard.vue'
+import SmallCardPercentage from '@/components/dashboardComp/SmallCardPercentage.vue'
 @Component({
   components: {
-    SmallCard
+    SmallCard,
+    SmallCardPercentage
   }
 })
 
@@ -36,9 +31,9 @@ export default class Dashboard extends Vue {
     link: '/coucou',
     informations: [
       {
-        textSingular: 'Intervenant manquant'.toUpperCase(),
-        textPlural: 'intervenants manquants'.toUpperCase(),
-        numberToShow: 17,
+        textSingular: 'Contrat'.toUpperCase(),
+        textPlural: 'Contrats'.toUpperCase(),
+        numberToShow: 1,
         color: 'blue'
       },
       {
@@ -95,6 +90,21 @@ export default class Dashboard extends Vue {
        }
      ]
    }
+
+    smallCardPercentageValues = {
+      titre: 'Card With %'.toUpperCase(),
+      cardIcon: 'hand-holding-usd',
+      link: '/coucou',
+      percentageToShow: 27,
+      informations: [
+        {
+          textSingular: 'percentageTest'.toUpperCase(),
+          textPlural: 'Contrats'.toUpperCase(),
+          numberToShow: 1,
+          color: 'blue'
+        }
+      ]
+    }
 }
 </script>
 
@@ -128,7 +138,7 @@ $dashboard-margin-right: 20px;
 .big-card{
   border-radius: 10px;
   position: relative;
-  padding-left: 10%;
+  padding-left: 5%;
   margin: 0 0px 20px auto;
   display: flex;
   flex-wrap: wrap;

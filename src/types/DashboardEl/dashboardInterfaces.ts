@@ -5,7 +5,7 @@ interface Dashboard {
   readonly auth?: string[] | boolean[]; // Array de droits
   readonly path?: string[]
   readonly typeOfCard?: unknown
-  readonly percentageToShow?: number
+  readonly PercentageToShow?: number
 }
 
 export { Dashboard }

@@ -17,7 +17,7 @@ const unfilteredDashboardElements: Dashboard[] = [
     auth: [RH_SPS_MANAGE],
     path: ['/dossiers_administratifs'],
     typeOfCard: '',
-    percentageToShow: 50
+    PercentageToShow: 50
   },
   {
     name: 'Sélection des intervenants',
@@ -25,20 +25,20 @@ const unfilteredDashboardElements: Dashboard[] = [
     auth: [RH_SPS_MANAGE],
     path: ['/selections'],
     typeOfCard: '',
-    percentageToShow: 15
+    PercentageToShow: 15
   },
   {
     name: 'Dossiers administratifs',
     id: 'dashboardDossiersAdministratifs',
     auth: [RH_ADM_MANAGE],
     path: ['/dossiers_administratifs'],
-    percentageToShow: 99
+    PercentageToShow: 99
   },
   {
     name: 'Types de contrat', // a verifier si c'est le bon
     auth: [RH_ADM_MANAGE],
     path: ['/contrats_types'],
-    percentageToShow: 22
+    PercentageToShow: 22
   },
   {
     name: 'DOSSIERS ACADÉMIQUES',
