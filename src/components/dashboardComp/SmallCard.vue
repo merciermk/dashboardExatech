@@ -25,7 +25,7 @@
               :style="'background-color:' + info.color"
             ></div>
           <div
-            class=""
+            class="small-card-bottom-text-container"
             :style="'color:' + info.color"
           >
             <p class="small-card-button-text" v-if="info.numberToShow <= 1">
@@ -101,33 +101,6 @@ interface SmallCard1 {
   ]
 
 }
-interface SmallCardPercentageInterface {
-  titre: string,
-  cardIcon: string,
-  link: string,
-  percentageToShow?: number
-  informations: [
-     info1 : {
-    textSingular: string
-    textPlural: string
-    numberToShow : number | string
-    color: string
-  },
-  info2? : {
-    textSingular: string
-    textPlural: string
-    numberToShow : number
-    color: string
-  },
-  info3?: {
-    textSingular: string
-    textPlural: string
-    numberToShow : number
-    color: string
-  }
-  ]
-
-}
 
 @Component({
   components: {}
@@ -140,7 +113,7 @@ export default class SmallCard extends Vue {
 
 <style lang="scss">
 $small-card-color: rgba(156, 156, 158, 0.534);
-$small-card-icon-size: 30px;
+$small-card-icon-size: 50px;
 $small-card-width: 450px;
 $small-card-height: 300px;
 $small-card-number-size: 30px;
@@ -158,7 +131,7 @@ $small-card-number-size: 30px;
 }
 
 .small-card {
-  z-index: 2;
+  z-index: 150;
   background-color: white;
   box-shadow: -5px 5px 15px rgba(173, 173, 173, 0.411);
   border-radius: 10px;
@@ -169,25 +142,25 @@ $small-card-number-size: 30px;
 }
 
 .small-card-header {
-  display: flex;
-  flex-wrap: nowrap;
-  flex-direction: row;
-  justify-content: flex-start;
-  align-items: center;
+
   min-height: 33%;
   max-height: 33%;
 }
 
 .small-card-icon-one {
+  color: #EEF0F4;
+  position: absolute;
   margin: 15px;
   font-size: $small-card-icon-size;
 }
 
 .small-card-title {
-  color: grey;
+  position: relative;
+  color: #909090;
   text-align: center;
     font-size: 18px;
   font-style: bold;
+  padding-top: 40px;
 }
 
 .small-card-bottom {
@@ -293,7 +266,4 @@ $small-card-number-size: 30px;
   height: 200px;
 }
 
-.small-card-title{
-
-}
 </style>
