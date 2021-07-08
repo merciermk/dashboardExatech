@@ -1,8 +1,11 @@
 <template>
   <div class="dashboard">
     <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
+
     <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
+
     <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
+
   </div>
 </template>
 
@@ -46,21 +49,6 @@ $dashboard-margin-right: 20px;
   flex-wrap: wrap;
   flex-direction: row;
   margin:$dashboard-margin-top  $dashboard-margin-right $dashboard-margin-bottom $dashboard-margin-left;
-}
-
-.big-card{
-  border-radius: 10px;
-  position: relative;
-  padding-left: 5%;
-  margin: 0 0px 20px auto;
-  display: flex;
-  flex-wrap: wrap;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  box-shadow: -5px 5px 15px rgba(173, 173, 173, 0.411);
-  width: 100%;
-  min-height: 350px;
 }
 
 </style>

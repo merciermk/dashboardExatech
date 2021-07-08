@@ -4,6 +4,7 @@
     <small-card :smallCardValues="gestionDesDossiersAcademiques"></small-card>
     <small-card :smallCardValues="selectionDesIntervenants"></small-card>
     <small-card :smallCardValues="selectionDesIntervenants2"></small-card>
+    <hr class="big-card-separator">
   </div>
 </template>
 
@@ -118,15 +119,17 @@ $dashboard-margin-right: 20px;
   border-radius: 10px;
   position: relative;
   padding-left: 5%;
-  margin: 0 0px 20px auto;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
   align-items: center;
-  box-shadow: -5px 5px 15px rgba(173, 173, 173, 0.411);
   width: 100%;
   min-height: 350px;
+}
+
+.big-card-separator{
+  width: 100%
 }
 
 </style>

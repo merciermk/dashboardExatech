@@ -141,8 +141,8 @@ export default class SmallCard extends Vue {
 <style lang="scss">
 $small-card-color: rgba(156, 156, 158, 0.534);
 $small-card-icon-size: 30px;
-$small-card-width: 400px;
-$small-card-height: 230px;
+$small-card-width: 450px;
+$small-card-height: 300px;
 $small-card-number-size: 30px;
 
 .small-card a,
@@ -194,6 +194,7 @@ $small-card-number-size: 30px;
 .small-card-bottom {
   display: flex;
   flex-direction: row;
+  justify-content: center;
   overflow: hidden;
 
 }
@@ -205,6 +206,7 @@ $small-card-number-size: 30px;
 }
 
 .information {
+  margin-top: 40px;
   min-width: 130px;
   max-width: 130px;
   display: flex;
@@ -254,7 +256,6 @@ $small-card-number-size: 30px;
 }
 
 .small-card-percentage-container{
-  margin-top: -20px;
     width: 100%;
   height: 15px;
     display: flex;
@@ -264,7 +265,7 @@ $small-card-number-size: 30px;
 
 .small-card-percentage {
   width: 80%;
-  height: 5px;
+  height: 25px;
   h4{
     text-align: center;
   }
@@ -280,9 +281,12 @@ $small-card-number-size: 30px;
   -moz-animation-fill-mode: both;
 }
 .small-card-bottom-percentage{
+  margin-bottom: 0;
+  margin-top: 0;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
+  height: 100%;
 }
 </style>
