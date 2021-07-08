@@ -1,6 +1,8 @@
 <template>
   <div class="dashboard">
     <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
+    <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
+    <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
   </div>
 </template>
 
@@ -15,86 +17,7 @@ import DashboardDossiersAcademiques from '@/components/dashboardComp/DashboardDo
 })
 
 export default class Dashboard extends Vue {
-  smallCardValues = {
-    titre: 'gestion des dossiers académiques'.toUpperCase(),
-    cardIcon: 'hand-holding-usd',
-    link: '/coucou',
-    informations: [
-      {
-        textSingular: 'Contrat'.toUpperCase(),
-        textPlural: 'Contrats'.toUpperCase(),
-        numberToShow: 1,
-        color: 'blue'
-      },
-      {
-        textSingular: 'Intervenant manquant'.toUpperCase(),
-        textPlural: 'intervenants manquants'.toUpperCase(),
-        numberToShow: 2,
-        color: 'rgba(127, 105, 224, 0.534)'
-      },
-      {
-        textSingular: 'Intervenant manquant'.toUpperCase(),
-        textPlural: 'intervenants manquants'.toUpperCase(),
-        numberToShow: 2,
-        color: 'red'
-      }
-    ]
-  }
 
-   smallCardValues2 = {
-     titre: 'Lorem'.toUpperCase(),
-     cardIcon: 'hand-holding-usd',
-     link: '/coucou',
-     informations: [
-       {
-         textSingular: 'ipsums'.toUpperCase(),
-         textPlural: 'ipsum'.toUpperCase(),
-         numberToShow: 17,
-         color: 'orange'
-       },
-       {
-         textSingular: 'Intervenant manquant'.toUpperCase(),
-         textPlural: 'intervenants manquants'.toUpperCase(),
-         numberToShow: 2,
-         color: 'pink'
-       },
-       {
-         textSingular: 'Intervenant manquant'.toUpperCase(),
-         textPlural: 'intervenants manquants'.toUpperCase(),
-         numberToShow: 2,
-         color: 'orange'
-       }
-     ]
-   }
-
-   smallCardValues3 = {
-     titre: 'Lorem'.toUpperCase(),
-     cardIcon: 'hand-holding-usd',
-     link: '/coucou',
-     informations: [
-       {
-         textSingular: 'Intervenant manquant'.toUpperCase(),
-         textPlural: 'intervenants manquants'.toUpperCase(),
-         numberToShow: 2,
-         color: 'pink'
-       }
-     ]
-   }
-
-    smallCardPercentageValues = {
-      titre: 'Card With %'.toUpperCase(),
-      cardIcon: 'hand-holding-usd',
-      link: '/coucou',
-      percentageToShow: 27,
-      informations: [
-        {
-          textSingular: 'percentageTest'.toUpperCase(),
-          textPlural: 'Contrats'.toUpperCase(),
-          numberToShow: 1,
-          color: 'blue'
-        }
-      ]
-    }
 }
 </script>
 

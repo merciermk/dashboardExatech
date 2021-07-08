@@ -1,88 +1,89 @@
 <template>
-
-     <div class="big-card">
-      <font-awesome-icon icon="hand-holding-usd" class="big-card-icon" />
-      <small-card :smallCardValues="smallCardValues">
-      </small-card>
-    </div>
+  <div class="big-card">
+    <font-awesome-icon icon="hand-holding-usd" class="big-card-icon" />
+    <small-card :smallCardValues="gestionDesDossiersAcademiques"> </small-card>
+    <small-card :smallCardValues="selectionDesIntervenants"> </small-card>
+    <small-card :smallCardValues="selectionDesIntervenants"> </small-card>
+  </div>
 </template>
 
 <script lang="ts">
 
 import { Vue, Component } from 'vue-property-decorator'
 import SmallCard from '@/components/dashboardComp/SmallCard.vue'
-import SmallCardPercentage from '@/components/dashboardComp/SmallCardPercentage.vue'
+
 @Component({
   components: {
-    SmallCard,
-    SmallCardPercentage
+    SmallCard
   }
 })
 
 export default class DashboardDossierAcademiques extends Vue {
-  smallCardValues = {
+  gestionDesDossiersAcademiques = {
     titre: 'gestion des dossiers académiques'.toUpperCase(),
     cardIcon: 'hand-holding-usd',
-    link: '/coucou',
+    link: '/dossiers_academiques',
+    typeOfCard: 'regular',
     informations: [
       {
-        textSingular: 'Contrat'.toUpperCase(),
-        textPlural: 'Contrats'.toUpperCase(),
+        textSingular: 'Dossier publié'.toUpperCase(),
+        textPlural: 'Dossiers publiés'.toUpperCase(),
         numberToShow: 1,
         color: 'blue'
       },
       {
-        textSingular: 'Intervenant manquant'.toUpperCase(),
-        textPlural: 'intervenants manquants'.toUpperCase(),
+        textSingular: 'dossier déposé'.toUpperCase(),
+        textPlural: 'dossiers déposés'.toUpperCase(),
         numberToShow: 2,
         color: 'rgba(127, 105, 224, 0.534)'
       },
       {
-        textSingular: 'Intervenant manquant'.toUpperCase(),
-        textPlural: 'intervenants manquants'.toUpperCase(),
+        textSingular: 'dossier validé'.toUpperCase(),
+        textPlural: 'dossiers validés'.toUpperCase(),
         numberToShow: 2,
         color: 'red'
       }
     ]
   }
 
-   smallCardValues2 = {
-     titre: 'Lorem'.toUpperCase(),
-     cardIcon: 'hand-holding-usd',
-     link: '/coucou',
-     informations: [
-       {
-         textSingular: 'ipsums'.toUpperCase(),
-         textPlural: 'ipsum'.toUpperCase(),
-         numberToShow: 17,
-         color: 'orange'
-       },
-       {
-         textSingular: 'Intervenant manquant'.toUpperCase(),
-         textPlural: 'intervenants manquants'.toUpperCase(),
-         numberToShow: 2,
-         color: 'pink'
-       },
-       {
-         textSingular: 'Intervenant manquant'.toUpperCase(),
-         textPlural: 'intervenants manquants'.toUpperCase(),
-         numberToShow: 2,
-         color: 'orange'
-       }
-     ]
-   }
+  selectionDesIntervenants = {
+    titre: 'sélection des intervenants',
+    cardIcon: 'hand-holding-usd',
+    link: '',
+    typeOfCard: 'percentage',
+    percentageToShow: 14,
+    informations: [
+      {
+        textSingular: 'Matière compléte',
+        textPlural: 'Matières complétes',
+        numberToShow: 5 + '/' + 6,
+        color: 'blue'
+      },
+      {
+        textSingular: 'Intervenant Manquant',
+        textPlural: 'intervenants manquants',
+        numberToShow: 12,
+        color: 'grey'
+      },
+      {
+        textSingular: 'Procés-verbal signé',
+        textPlural: 'Procés-verbaux signés',
+        numberToShow: 2 + '/' + 14,
+        color: 'grey'
+      }
+    ]
+  }
 }
 </script>
 
 <style lang="scss">
-
 /* Variables */
 $dashboard-margin-top: 5rem;
 $dashboard-margin-left: 5rem;
 $dashboard-margin-bottom: 20px;
 $dashboard-margin-right: 20px;
 
-.big-card-icon{
+.big-card-icon {
   z-index: 1;
   left: 10px;
   top: 20px;
@@ -91,7 +92,7 @@ $dashboard-margin-right: 20px;
   color: rgba(179, 175, 175, 0.13);
 }
 
-.big-card{
+.big-card {
   border-radius: 10px;
   position: relative;
   padding-left: 5%;
