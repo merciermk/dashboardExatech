@@ -6,9 +6,9 @@
           :icon="smallCardValues.cardIcon"
           class="small-card-icon-one"
         />
-        <h4 class="small-card-title">
+        <h3 class="small-card-title">
           {{ smallCardValues.titre.toUpperCase() }}
-        </h4>
+        </h3>
       </div>
       <div class="small-card-middle">
         <!-- Logique regular card -->
@@ -158,7 +158,7 @@ $small-card-number-size: 30px;
 }
 
 .small-card {
-  font-size: 12px;
+  font-size: 14px;
   z-index: 2;
   background-color: white;
   box-shadow: -5px 5px 15px rgba(173, 173, 173, 0.411);
@@ -214,11 +214,14 @@ $small-card-number-size: 30px;
 }
 
 .small-card-button-number {
+  height: 45px;
   font-size: $small-card-number-size;
   text-align: center;
 }
 
 .small-card-button-text {
+  margin-bottom: 0px;
+  height: 45px;
   text-align: center;
   width: 100%;
 
@@ -287,6 +290,11 @@ $small-card-number-size: 30px;
   flex-wrap: wrap;
   flex-direction: row;
   justify-content: center;
-  height: 100%;
+  height: 200px;
+}
+
+.small-card-title{
+  font-size: 18px;
+  font-style: bold;
 }
 </style>

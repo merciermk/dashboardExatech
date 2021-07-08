@@ -25,7 +25,14 @@ export default class Dashboard extends Vue {
 </script>
 
 <style lang="scss">
+@font-face {
+  font-family: 'Product Sans';
+  src: local('/fonts/ProductSans-Regular.ttf') format('truetype');
+}
 
+.dashboard{
+  font-family: 'Product Sans';
+}
 /* Variables */
 $dashboard-margin-top: 5rem;
 $dashboard-margin-left: 5rem;
