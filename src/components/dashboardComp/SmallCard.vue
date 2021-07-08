@@ -155,6 +155,7 @@ $small-card-number-size: 30px;
 }
 
 .small-card-title {
+  display: block;
   position: relative;
   color: #909090;
   text-align: center;
