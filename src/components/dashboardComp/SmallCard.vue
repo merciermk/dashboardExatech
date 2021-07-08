@@ -45,9 +45,9 @@
         <div
           class="small-card-percentage"
         >
-        <h4>{{smallCardValues.percentageT}}</h4>
+        <h4>{{smallCardValues.percentageToShow}} %</h4>
           <div class="meter">
-            <span style="width:50%;"><span class="progress"></span></span>
+            <span :style="percentage"><span class="progress"></span></span>
           </div>
         </div>
       </div>
@@ -134,12 +134,7 @@ interface SmallCardPercentageInterface {
 })
 export default class SmallCard extends Vue {
   @Prop() smallCardValues!: SmallCard1
-  progressBarLoaded = 'width:50%'
-  created () {
-    if (this.smallCardValues.percentageToShow) {
-      this.progressBarLoaded = 'width:' + this.smallCardValues.percentageToShow + '%'
-    }
-  }
+  percentage = 'width:' + this.smallCardValues.percentageToShow + '%'
 }
 </script>
 
@@ -259,6 +254,7 @@ $small-card-number-size: 30px;
 }
 
 .small-card-percentage-container{
+  margin-top: -20px;
     width: 100%;
   height: 15px;
     display: flex;
@@ -269,6 +265,9 @@ $small-card-number-size: 30px;
 .small-card-percentage {
   width: 80%;
   height: 5px;
+  h4{
+    text-align: center;
+  }
 }
 
 .progress {
@@ -284,6 +283,6 @@ $small-card-number-size: 30px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  overflow: hidden;
+  justify-content: center;
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div class="big-card">
     <font-awesome-icon icon="hand-holding-usd" class="big-card-icon" />
-    <small-card :smallCardValues="gestionDesDossiersAcademiques"> </small-card>
-    <small-card :smallCardValues="selectionDesIntervenants"> </small-card>
-    <small-card :smallCardValues="selectionDesIntervenants"> </small-card>
+    <small-card :smallCardValues="gestionDesDossiersAcademiques"></small-card>
+    <small-card :smallCardValues="selectionDesIntervenants"></small-card>
+    <small-card :smallCardValues="selectionDesIntervenants2"></small-card>
   </div>
 </template>
 
@@ -73,6 +73,28 @@ export default class DashboardDossierAcademiques extends Vue {
       }
     ]
   }
+
+    selectionDesIntervenants2 = {
+      titre: 'sélection des intervenants',
+      cardIcon: 'hand-holding-usd',
+      link: '',
+      typeOfCard: 'percentage',
+      percentageToShow: 58,
+      informations: [
+        {
+          textSingular: 'Matière compléte',
+          textPlural: 'Matières complétes',
+          numberToShow: 5 + '/' + 6,
+          color: 'blue'
+        },
+        {
+          textSingular: 'Intervenant Manquant',
+          textPlural: 'intervenants manquants',
+          numberToShow: 12,
+          color: 'grey'
+        }
+      ]
+    }
 }
 </script>
 
