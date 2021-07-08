@@ -168,10 +168,12 @@ $small-card-number-size: 30px;
   flex-direction: row;
   justify-content: center;
   overflow: hidden;
-
+   height: 200px
 }
 
 .small-card-bottom-decoration {
+  position: relative;
+  margin-top: -10px;
   width: 30px;
   height: 10px;
   margin: 0 auto 5px auto;
