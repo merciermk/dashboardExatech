@@ -142,7 +142,6 @@ $small-card-number-size: 30px;
 }
 
 .small-card-header {
-
   min-height: 33%;
   max-height: 33%;
 }
