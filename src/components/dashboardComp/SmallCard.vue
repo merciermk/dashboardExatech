@@ -214,14 +214,14 @@ $small-card-number-size: 30px;
 }
 
 .small-card-button-number {
-  height: 45px;
+  min-height: 45px;
   font-size: $small-card-number-size;
   text-align: center;
 }
 
 .small-card-button-text {
   margin-bottom: 0px;
-  height: 45px;
+  min-height: 45px;
   text-align: center;
   width: 100%;
 
