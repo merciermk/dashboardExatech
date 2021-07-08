@@ -158,7 +158,6 @@ $small-card-number-size: 30px;
 }
 
 .small-card {
-  font-size: 14px;
   z-index: 2;
   background-color: white;
   box-shadow: -5px 5px 15px rgba(173, 173, 173, 0.411);
@@ -186,9 +185,9 @@ $small-card-number-size: 30px;
 
 .small-card-title {
   color: grey;
-  font-size: 16px;
-  flex: 1;
   text-align: center;
+    font-size: 18px;
+  font-style: bold;
 }
 
 .small-card-bottom {
@@ -224,6 +223,7 @@ $small-card-number-size: 30px;
   min-height: 45px;
   text-align: center;
   width: 100%;
+  font-size: 12px;
 
 }
 
@@ -294,7 +294,6 @@ $small-card-number-size: 30px;
 }
 
 .small-card-title{
-  font-size: 18px;
-  font-style: bold;
+
 }
 </style>
