@@ -210,6 +210,7 @@ const functionsForAuth = {
         element.sousMenu = this.theFilterFunction(element.sousMenu)
       }
     }
+    console.log(menuFiltered)
     return menuFiltered
   }
 }

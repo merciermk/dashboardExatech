@@ -1,9 +1,36 @@
 <template>
   <div class="big-card">
     <font-awesome-icon icon="hand-holding-usd" class="big-card-icon" />
-    <small-card :smallCardValues="gestionDesDossiersAcademiques"></small-card>
-    <small-card :smallCardValues="selectionDesIntervenants"></small-card>
-    <small-card :smallCardValues="selectionDesIntervenants2"></small-card>
+    <small-card
+    cardType="regular"
+    titre="regular"
+    :numberShow=number
+    textShowSingular="Dossier Validé"
+    textShowPlural="Dossiers Validés"
+    link="hello"
+    bottomText="25% des taches faites"
+     ></small-card>
+
+         <small-card
+    cardType="progressbar"
+    titre="ProgressBar"
+    :numberShow=number
+    textShowSingular="Dossier Validé"
+    textShowPlural="Dossiers Validés"
+    link="hello"
+    :progressBar= parseInt(numberForProgressBar)
+     ></small-card>
+
+            <small-card
+    cardType="progressbar"
+    titre="ProgressBar"
+    fractionNumber1= 142
+    fractionNumber2= 752
+    textShowSingular="Dossier Validé"
+    textShowPlural="Dossiers Validés"
+    link="hello"
+    :progressBar= parseInt(numberForProgressBar)
+     ></small-card>
     <hr class="big-card-separator">
   </div>
 </template>
@@ -20,82 +47,8 @@ import SmallCard from '@/components/dashboardComp/SmallCard.vue'
 })
 
 export default class DashboardDossierAcademiques extends Vue {
-  gestionDesDossiersAcademiques = {
-    titre: 'gestion des dossiers académiques'.toUpperCase(),
-    cardIcon: 'hand-holding-usd',
-    link: '/dossiers_academiques',
-    typeOfCard: 'regular',
-    informations: [
-      {
-        textSingular: 'Dossier publié'.toUpperCase(),
-        textPlural: 'Dossiers publiés'.toUpperCase(),
-        numberToShow: 1,
-        color: 'blue'
-      },
-      {
-        textSingular: 'dossier déposé'.toUpperCase(),
-        textPlural: 'dossiers déposés'.toUpperCase(),
-        numberToShow: 2,
-        color: 'rgba(127, 105, 224, 0.534)'
-      },
-      {
-        textSingular: 'dossier validé'.toUpperCase(),
-        textPlural: 'dossiers validés'.toUpperCase(),
-        numberToShow: 2,
-        color: 'red'
-      }
-    ]
-  }
-
-  selectionDesIntervenants = {
-    titre: 'sélection des intervenants',
-    cardIcon: 'hand-holding-usd',
-    link: '',
-    typeOfCard: 'percentage',
-    percentageToShow: 14,
-    informations: [
-      {
-        textSingular: 'Matière compléte',
-        textPlural: 'Matières complétes',
-        numberToShow: 5 + '/' + 6,
-        color: 'blue'
-      },
-      {
-        textSingular: 'Intervenant Manquant',
-        textPlural: 'intervenants manquants',
-        numberToShow: 12,
-        color: 'grey'
-      },
-      {
-        textSingular: 'Procés-verbal signé',
-        textPlural: 'Procés-verbaux signés',
-        numberToShow: 2 + '/' + 14,
-        color: 'grey'
-      }
-    ]
-  }
-
-    selectionDesIntervenants2 = {
-      titre: 'sélection des intervenants',
-      cardIcon: 'hand-holding-usd',
-      link: '',
-      typeOfCard: 'percentage',
-      percentageToShow: 58,
-      informations: [
-        {
-          textSingular: 'Matière compléte',
-          textPlural: 'Matières complétes',
-          numberToShow: 5 + '/' + 6,
-          color: 'blue'
-        },
-        {
-          textSingular: 'Intervenant Manquant',
-          textPlural: 'intervenants manquants',
-          numberToShow: 12,
-          color: 'grey'
-        }
-      ]
-    }
+  number = 1
+  numberForProgressBar = '50%'
 }
 </script>
 
@@ -108,7 +61,7 @@ $dashboard-margin-right: 20px;
 
 .big-card-icon {
   z-index: 1;
-  left: 10px;
+  right: 10px;
   top: 20px;
   position: absolute;
   font-size: 200px;
@@ -122,14 +75,10 @@ $dashboard-margin-right: 20px;
   display: flex;
   flex-wrap: wrap;
   flex-direction: row;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   width: 100%;
   min-height: 350px;
-}
-
-.big-card-separator{
-  width: 100%
 }
 
 </style>

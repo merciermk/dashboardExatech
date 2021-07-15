@@ -1,11 +1,6 @@
 <template>
   <div class="dashboard">
     <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
-
-    <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
-
-    <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
-
   </div>
 </template>
 
@@ -39,14 +34,6 @@ $dashboard-margin-left: 5rem;
 $dashboard-margin-bottom: 20px;
 $dashboard-margin-right: 20px;
 
-.big-card-icon{
-  z-index: 1;
-  left: 10px;
-  top: 20px;
-  position: absolute;
-  font-size: 200px;
-  color: rgba(179, 175, 175, 0.13);
-}
 .dashboard{
   position: absolute;
   width: 95%;
