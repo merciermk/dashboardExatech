@@ -21,7 +21,7 @@
     :progressBar= parseInt(numberForProgressBar)
      ></small-card>
 
-            <small-card
+    <small-card
     cardType="progressbar"
     titre="ProgressBar"
     fractionNumber1= 142
@@ -30,6 +30,23 @@
     textShowPlural="Dossiers Validés"
     link="hello"
     :progressBar= parseInt(numberForProgressBar)
+     ></small-card>
+
+    <small-card
+    cardType="threeinformations"
+    titre="ProgressBar"
+    textShowSingular="Dossier Validé"
+    textShowPlural="Dossiers Validés"
+    link="hello"
+    :progressBar= parseInt(numberForProgressBar)
+     ></small-card>
+
+     <small-card
+    cardType="threeinformations"
+    titre="ProgressBar"
+    textShowSingular="Dossier Validé"
+    textShowPlural="Dossiers Validés"
+    link="hello"
      ></small-card>
     <hr class="big-card-separator">
   </div>

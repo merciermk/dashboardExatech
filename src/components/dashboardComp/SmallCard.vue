@@ -6,7 +6,8 @@
       class="small-card-regular"
       v-if="
         cardType.toUpperCase() === 'REGULAR' ||
-          cardType.toUpperCase() === 'PROGRESSBAR'
+        cardType.toUpperCase() === 'PROGRESSBAR' ||
+        cardType.toUpperCase() === 'THREEINFORMATIONS'
       "
     >
     <!-- Titre -->
@@ -14,14 +15,28 @@
         <p class="card-title-text">{{ titre.toUpperCase() }}</p>
         <hr class="card-title-line" />
       </div>
-      <!-- Milieu de carte -->
-      <div class="card-middle">
+      <!-- Milieu de carte  -->
+      <!-- Milieu carte pour regular / progressBar -->
+      <div class="card-middle" v-if="fractionNumber1 || numberShow">
         <p class="card-middle-number">{{ numberShow }}</p>
         <p class="card-middle-number" v-if="fractionNumber1 && !numberShow">{{ fractionNumber1 }}/{{ fractionNumber2 }}</p>
         <p class="card-middle-text" v-if="numberShow === 1 || fractionNumber1 === 1">
           {{ textShowSingular }}
         </p>
         <p class="card-middle-text" v-else>{{ textShowPlural }}</p>
+      </div>
+      <!-- Milieu carte pour threeinformations -->
+      <div class="card-middle card-middle-three-informations" v-if="cardType.toUpperCase() === 'THREEINFORMATIONS'">
+        <div class="three-informations">
+          <p class="card-middle-three-informations-text"> <span>{{ threeinformationsNumber1 }}</span> {{threeinformationsText1 }}</p>
+        </div>
+        <div class="three-informations">
+          <p class="card-middle-three-informations-text"> <span>{{ threeinformationsNumber2 }}</span> {{threeinformationsText2 }}</p>
+        </div>
+        <div class="three-informations">
+          <p class="card-middle-three-informations-text"> <span>{{ threeinformationsNumber3 }}</span> {{threeinformationsText3 }}</p>
+
+        </div>
       </div>
       <!-- Bas de la carte -->
       <!-- REGULAR -->
@@ -60,15 +75,26 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 export default class SmallCard extends Vue {
   /* Communes a toutes les cartes */
   @Prop() readonly cardType!: string; // type de carte
-  @Prop(String) readonly titre!: string;
-  @Prop() readonly textShowSingular!: string;
+  @Prop() readonly titre!: string;
+  @Prop() readonly textShowSingular!: string | undefined;
   @Prop() readonly textShowPlural!: string | undefined;
   @Prop() readonly link!: string;
 
   /* ****************** */
   /* Milieu de la carte */
   /* ****************** */
-  @Prop(Number) readonly numberShow!: number | undefined
+  /* ThreeInformationsCard */
+  @Prop() readonly threeinformationsNumber1!: number | undefined
+  @Prop() readonly threeinformationsText1!: string | undefined
+
+  @Prop() readonly threeinformationsNumber2!: number | undefined
+  @Prop() readonly threeinformationsText2!: string | undefined
+
+  @Prop() readonly threeinformationsNumber3!: number | undefined
+  @Prop() readonly threeinformationsText3!: string | undefined
+
+  /* Affichage un seul chiffre */
+  @Prop() readonly numberShow!: number | undefined
   /* Fraction type */
   @Prop() readonly fractionNumber1! : number | undefined
   @Prop() readonly fractionNumber2! : number | undefined
@@ -144,6 +170,14 @@ $small-card-text-color: #FFFFFF;
 .card-middle-number {
   margin: 0;
   font-size: $middle-number-size;
+}
+/* milieu carte de type threeInformation */
+.three-informations{
+  display: flex;
+}
+.card-middle-three-informations{
+  display: flex;
+  flex-direction: column;
 }
 
 /* pied de la carte */
