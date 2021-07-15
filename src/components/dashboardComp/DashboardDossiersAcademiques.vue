@@ -32,21 +32,16 @@
     :progressBar= parseInt(numberForProgressBar)
      ></small-card>
 
-    <small-card
-    cardType="threeinformations"
-    titre="ProgressBar"
-    textShowSingular="Dossier Validé"
-    textShowPlural="Dossiers Validés"
-    link="hello"
-    :progressBar= parseInt(numberForProgressBar)
-     ></small-card>
-
      <small-card
     cardType="threeinformations"
-    titre="ProgressBar"
-    textShowSingular="Dossier Validé"
-    textShowPlural="Dossiers Validés"
+    titre="ThreeInformationsCard"
     link="hello"
+    threeinformationsNumber1="25"
+    threeinformationsText1="Ceci est un chiffre"
+        threeinformationsNumber2="25"
+    threeinformationsText2="Ceci est un chiffre"
+        threeinformationsNumber3="25"
+    threeinformationsText3="Ceci est un chiffre"
      ></small-card>
     <hr class="big-card-separator">
   </div>
