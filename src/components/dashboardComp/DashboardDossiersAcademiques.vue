@@ -33,6 +33,7 @@
     ></small-card>
 
     <small-card
+    class="small-card"
       cardType="threeinformations"
       titre="Three Info Card"
       link="hello"
@@ -85,8 +86,8 @@ $dashboard-margin-right: 20px;
 }
 
 .big-card {
-  border-radius: 10px;
   position: relative;
+  border-radius: 10px;
   padding-left: 5%;
   display: flex;
   flex-wrap: wrap;
@@ -95,5 +96,9 @@ $dashboard-margin-right: 20px;
   align-items: center;
   width: 100%;
   min-height: 350px;
+}
+.small-card{
+  position: relative;
+  z-index: 9999;
 }
 </style>

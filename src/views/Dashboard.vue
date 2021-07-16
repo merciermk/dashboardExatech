@@ -1,6 +1,8 @@
 <template>
   <div class="dashboard">
     <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
+    <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
+    <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
   </div>
 </template>
 
