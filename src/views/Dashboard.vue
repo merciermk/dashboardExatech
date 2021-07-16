@@ -1,8 +1,9 @@
 <template>
   <div class="dashboard">
-    <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
-    <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
-    <DashboardDossiersAcademiques></DashboardDossiersAcademiques>
+    <DashboardDossiersAcademiques class="dashboard-element"></DashboardDossiersAcademiques>
+    <DashboardDossiersAcademiques class="dashboard-element"></DashboardDossiersAcademiques>
+    <DashboardDossiersAcademiques class="dashboard-element"></DashboardDossiersAcademiques>
+    <DashboardDossiersAcademiques class="dashboard-element"></DashboardDossiersAcademiques>
   </div>
 </template>
 
@@ -32,7 +33,7 @@ export default class Dashboard extends Vue {
 }
 /* Variables */
 $dashboard-margin-top: 5rem;
-$dashboard-margin-left: 5rem;
+$dashboard-margin-left: 4rem;
 $dashboard-margin-bottom: 20px;
 $dashboard-margin-right: 20px;
 
@@ -45,6 +46,10 @@ $dashboard-margin-right: 20px;
   flex-wrap: wrap;
   flex-direction: row;
   margin:$dashboard-margin-top  $dashboard-margin-right $dashboard-margin-bottom $dashboard-margin-left;
+}
+
+.dashboard-element:nth-child(even){
+  background-color: rgba(163, 163, 163, 0.116);
 }
 
 </style>

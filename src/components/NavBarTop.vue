@@ -58,7 +58,7 @@ $secondary: red;
 }
 .navbar{
   max-height: 4rem !important;
-  z-index: 1040 !important;
+  z-index: 10400 !important;
 }
 .sidebar a:hover:not(.active), .router-link-exact-active {
   background-color: $secondary !important;

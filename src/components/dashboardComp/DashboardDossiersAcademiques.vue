@@ -95,7 +95,7 @@ $dashboard-margin-right: 20px;
   justify-content: flex-start;
   align-items: center;
   width: 100%;
-  min-height: 350px;
+  min-height: 300px;
 }
 .small-card{
   position: relative;
