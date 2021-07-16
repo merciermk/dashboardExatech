@@ -177,7 +177,7 @@ $small-card-text-color: #FFFFFF;
 /* milieu carte de type threeInformation */
 .three-informations{
   display: flex;
-  justify-content: center;
+  justify-content: left;
   align-items: center;
   height: 40px;
   &:first-child{
@@ -194,7 +194,12 @@ $small-card-text-color: #FFFFFF;
   margin: 0 5px 0 0
 }
 .small-card-middle-threeinformations-text{
-  margin: 10px auto auto auto
+  padding-top: 30px;
+  padding-left: 25px;
+
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
 }
 
 /* pied de la carte */
@@ -208,6 +213,7 @@ $small-card-text-color: #FFFFFF;
   max-height: 44px;
   overflow: hidden;
   p {
+    color: $progress-bar-color;
     margin: auto;
     padding-top: 5px;
   }

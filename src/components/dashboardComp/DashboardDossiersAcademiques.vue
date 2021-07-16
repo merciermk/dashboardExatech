@@ -37,13 +37,16 @@
       titre="Three Info Card"
       link="hello"
       threeinformationsNumber1="25"
+
       threeinformationsText1Singular="Ceci est un chiffre"
       threeinformationsText1Plural="Ceci est un chiffre"
+
       threeinformationsNumber2="25"
-       threeinformationsText2Singular="Ceci est un chiffre"
+      threeinformationsText2Singular="chiffre 1"
       threeinformationsText2Plural="Ceci est un chiffre"
+
       threeinformationsNumber3="25"
-       threeinformationsText3Singular="Ceci est un chiffre"
+      threeinformationsText3Singular="Ceci est un chiffre"
       threeinformationsText3Plural="Ceci est un chiffre"
     ></small-card>
     <hr class="big-card-separator" />
