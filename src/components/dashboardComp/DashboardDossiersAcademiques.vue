@@ -1,9 +1,10 @@
 <template>
   <div class="big-card">
-    <font-awesome-icon icon="hand-holding-usd" class="big-card-icon" />
+    <font-awesome-icon :icon="cardIcon" class="big-card-icon" />
+
     <small-card
       cardType="regular"
-      titre="regular"
+      titre="regular regular regular regular"
       :numberShow="number"
       textShowSingular="Dossier Validé"
       textShowPlural="Dossiers Validés"
@@ -32,6 +33,17 @@
       :progressBar="parseInt(numberForProgressBar)"
     ></small-card>
 
+<small-card
+      cardType="progressbar"
+      titre="ProgressBar"
+      fractionNumber1="1420"
+      fractionNumber2="7520"
+      textShowSingular="Dossier Validé"
+      textShowPlural="Dossiers Validés"
+      link="hello"
+      :progressBar="parseInt(numberForProgressBar)"
+    ></small-card>
+
     <small-card
     class="small-card"
       cardType="threeinformations"
@@ -42,11 +54,11 @@
       threeinformationsText1Singular="Ceci est un chiffre"
       threeinformationsText1Plural="Ceci est un chiffre"
 
-      threeinformationsNumber2="25"
+      threeinformationsNumber2="255"
       threeinformationsText2Singular="chiffre 1"
       threeinformationsText2Plural="Ceci est un chiffre"
 
-      threeinformationsNumber3="25"
+      threeinformationsNumber3="155"
       threeinformationsText3Singular="Ceci est un chiffre"
       threeinformationsText3Plural="Ceci est un chiffre"
     ></small-card>
@@ -66,6 +78,7 @@ import SmallCard from '@/components/dashboardComp/SmallCard.vue'
 export default class DashboardDossierAcademiques extends Vue {
   number = 1;
   numberForProgressBar = '50%';
+  cardIcon = 'hand-holding-usd'
 }
 </script>
 

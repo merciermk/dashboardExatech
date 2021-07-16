@@ -122,13 +122,15 @@ export default class SmallCard extends Vue {
   font-style: 'Product Sans';
 }
 
-$card-width: 200px;
-$card-height: 200px;
-$middle-number-size: 50px;
+$card-width: 250px;
+$card-height: 250px;
+$middle-number-size: 42px;
+$font-size: 14px;
 $small-card-background-color: #5F6b6d;
 $progress-bar-color: #6bbeb7;
 $progress-bar-color-background: #F6f7fa;
 $small-card-text-color: #FFFFFF;
+$small-card-hr-color: #585F60;
 
 .small-card {
   background-color: $small-card-background-color;
@@ -149,25 +151,27 @@ $small-card-text-color: #FFFFFF;
 
 /* Titre carte */
 .card-title {
-  padding: 2px 10px 0px 10px;
+  padding: 10px 10px 0px 10px;
   height: 32px;
   max-height: 32px;
-  font-size: 14px;
+  font-size: $font-size;
   text-align: center;
 }
 .card-title-line {
-  margin: 0 0 0 0;
+  margin: 10px 0 0 0;
   padding: 0 0 0 0;
+  border-top: 3px solid $small-card-hr-color
 }
 .card-title-text {
-  margin: 0;
+  margin: auto;
 }
 
 /* Milieu de la carte */
 .card-middle {
+  padding-top: 35px;
   text-align: center;
-  min-height: 124px;
-  max-height: 124px;
+  min-height: 170px;
+  max-height: 170px;
   overflow: hidden;
 }
 .card-middle-number {
@@ -268,7 +272,7 @@ $small-card-text-color: #FFFFFF;
 }
 
 .bar-wrap {
-  width: 200px;
+  width: $card-width;
   height: 30px;
   background-color: $progress-bar-color-background
 
