@@ -2,53 +2,55 @@
   <div class="big-card">
     <font-awesome-icon icon="hand-holding-usd" class="big-card-icon" />
     <small-card
-    cardType="regular"
-    titre="regular"
-    :numberShow=number
-    textShowSingular="Dossier Validé"
-    textShowPlural="Dossiers Validés"
-    link="hello"
-    bottomText="25% des taches faites"
-     ></small-card>
-
-         <small-card
-    cardType="progressbar"
-    titre="ProgressBar"
-    :numberShow=number
-    textShowSingular="Dossier Validé"
-    textShowPlural="Dossiers Validés"
-    link="hello"
-    :progressBar= parseInt(numberForProgressBar)
-     ></small-card>
+      cardType="regular"
+      titre="regular"
+      :numberShow="number"
+      textShowSingular="Dossier Validé"
+      textShowPlural="Dossiers Validés"
+      link="hello"
+      bottomText="25% des taches faites"
+    ></small-card>
 
     <small-card
-    cardType="progressbar"
-    titre="ProgressBar"
-    fractionNumber1= 142
-    fractionNumber2= 752
-    textShowSingular="Dossier Validé"
-    textShowPlural="Dossiers Validés"
-    link="hello"
-    :progressBar= parseInt(numberForProgressBar)
-     ></small-card>
+      cardType="progressbar"
+      titre="ProgressBar"
+      :numberShow="number"
+      textShowSingular="Dossier Validé"
+      textShowPlural="Dossiers Validés"
+      link="hello"
+      :progressBar="parseInt(numberForProgressBar)"
+    ></small-card>
 
-     <small-card
-    cardType="threeinformations"
-    titre="ThreeInformationsCard"
-    link="hello"
-    threeinformationsNumber1="25"
-    threeinformationsText1="Ceci est un chiffre"
-        threeinformationsNumber2="25"
-    threeinformationsText2="Ceci est un chiffre"
-        threeinformationsNumber3="25"
-    threeinformationsText3="Ceci est un chiffre"
-     ></small-card>
-    <hr class="big-card-separator">
+    <small-card
+      cardType="progressbar"
+      titre="ProgressBar"
+      fractionNumber1="142"
+      fractionNumber2="752"
+      textShowSingular="Dossier Validé"
+      textShowPlural="Dossiers Validés"
+      link="hello"
+      :progressBar="parseInt(numberForProgressBar)"
+    ></small-card>
+
+    <small-card
+      cardType="threeinformations"
+      titre="Three Info Card"
+      link="hello"
+      threeinformationsNumber1="25"
+      threeinformationsText1Singular="Ceci est un chiffre"
+      threeinformationsText1Plural="Ceci est un chiffre"
+      threeinformationsNumber2="25"
+       threeinformationsText2Singular="Ceci est un chiffre"
+      threeinformationsText2Plural="Ceci est un chiffre"
+      threeinformationsNumber3="25"
+       threeinformationsText3Singular="Ceci est un chiffre"
+      threeinformationsText3Plural="Ceci est un chiffre"
+    ></small-card>
+    <hr class="big-card-separator" />
   </div>
 </template>
 
 <script lang="ts">
-
 import { Vue, Component } from 'vue-property-decorator'
 import SmallCard from '@/components/dashboardComp/SmallCard.vue'
 
@@ -57,10 +59,9 @@ import SmallCard from '@/components/dashboardComp/SmallCard.vue'
     SmallCard
   }
 })
-
 export default class DashboardDossierAcademiques extends Vue {
-  number = 1
-  numberForProgressBar = '50%'
+  number = 1;
+  numberForProgressBar = '50%';
 }
 </script>
 
@@ -92,5 +93,4 @@ $dashboard-margin-right: 20px;
   width: 100%;
   min-height: 350px;
 }
-
 </style>

@@ -28,13 +28,13 @@
       <!-- Milieu carte pour threeinformations -->
       <div class="card-middle card-middle-three-informations" v-if="cardType.toUpperCase() === 'THREEINFORMATIONS'">
         <div class="three-informations">
-          <p class="card-middle-three-informations-text"> <span>{{ threeinformationsNumber1 }}</span> {{threeinformationsText1 }}</p>
+          <p class="small-card-middle-threeinformations-text"> <span class="small-card-middle-threeinformations-number">{{ threeinformationsNumber1 }}</span> {{threeinformationsText1Singular }}</p>
         </div>
         <div class="three-informations">
-          <p class="card-middle-three-informations-text"> <span>{{ threeinformationsNumber2 }}</span> {{threeinformationsText2 }}</p>
+          <p class="small-card-middle-threeinformations-text"> <span class="small-card-middle-threeinformations-number">{{ threeinformationsNumber2 }}</span> {{threeinformationsText2Singular }}</p>
         </div>
         <div class="three-informations">
-          <p class="card-middle-three-informations-text"> <span>{{ threeinformationsNumber3 }}</span> {{threeinformationsText3 }}</p>
+          <p class="small-card-middle-threeinformations-text"> <span class="small-card-middle-threeinformations-number">{{ threeinformationsNumber3 }}</span> {{threeinformationsText3Singular }}</p>
 
         </div>
       </div>
@@ -85,13 +85,16 @@ export default class SmallCard extends Vue {
   /* ****************** */
   /* ThreeInformationsCard */
   @Prop() readonly threeinformationsNumber1!: number | undefined
-  @Prop() readonly threeinformationsText1!: string | undefined
+  @Prop() readonly threeinformationsText1Singular!: string | undefined
+  @Prop() readonly threeinformationsText1Plural!: string | undefined
 
   @Prop() readonly threeinformationsNumber2!: number | undefined
-  @Prop() readonly threeinformationsText2!: string | undefined
+  @Prop() readonly threeinformationsText2Singular!: string | undefined
+  @Prop() readonly threeinformationsText2Plural!: string | undefined
 
   @Prop() readonly threeinformationsNumber3!: number | undefined
-  @Prop() readonly threeinformationsText3!: string | undefined
+  @Prop() readonly threeinformationsText3Singular!: string | undefined
+  @Prop() readonly threeinformationsText3Plural!: string | undefined
 
   /* Affichage un seul chiffre */
   @Prop() readonly numberShow!: number | undefined
@@ -122,13 +125,13 @@ export default class SmallCard extends Vue {
 $card-width: 200px;
 $card-height: 200px;
 $middle-number-size: 50px;
-$small-card-backgroud-color: #5F6b6d;
+$small-card-background-color: #5F6b6d;
 $progress-bar-color: #6bbeb7;
 $progress-bar-color-background: #F6f7fa;
 $small-card-text-color: #FFFFFF;
 
 .small-card {
-  background-color: $small-card-backgroud-color;
+  background-color: $small-card-background-color;
   width: $card-width;
   min-height: $card-height;
   max-height: $card-height;
@@ -146,7 +149,7 @@ $small-card-text-color: #FFFFFF;
 
 /* Titre carte */
 .card-title {
-  padding: 2px 5px 0px 5px;
+  padding: 2px 10px 0px 10px;
   height: 32px;
   max-height: 32px;
   font-size: 14px;
@@ -174,10 +177,24 @@ $small-card-text-color: #FFFFFF;
 /* milieu carte de type threeInformation */
 .three-informations{
   display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 40px;
+  &:first-child{
+    color: $progress-bar-color
+  }
 }
 .card-middle-three-informations{
   display: flex;
   flex-direction: column;
+}
+.small-card-middle-threeinformations-number{
+  font-size: 25px;
+  color:  $small-card-text-color;
+  margin: 0 5px 0 0
+}
+.small-card-middle-threeinformations-text{
+  margin: 10px auto auto auto
 }
 
 /* pied de la carte */
