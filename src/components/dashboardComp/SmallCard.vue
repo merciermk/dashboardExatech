@@ -13,8 +13,8 @@
     <!-- Titre -->
       <div class="card-title">
         <p class="card-title-text">{{ titre.toUpperCase() }}</p>
-        <hr class="card-title-line" />
       </div>
+       <hr class="card-title-line" />
       <!-- Milieu de carte  -->
       <!-- Milieu carte pour regular / progressBar -->
       <div class="card-middle" v-if="fractionNumber1 || numberShow">
@@ -28,7 +28,8 @@
       <!-- Milieu carte pour threeinformations -->
       <div class="card-middle card-middle-three-informations" v-if="cardType.toUpperCase() === 'THREEINFORMATIONS'">
         <div class="three-informations">
-          <p class="small-card-middle-threeinformations-text"> <span class="small-card-middle-threeinformations-number">{{ threeinformationsNumber1 }}</span> {{threeinformationsText1Singular }}</p>
+          <p class="small-card-middle-threeinformations-text"> <span class="small-card-middle-threeinformations-number">
+          {{ threeinformationsNumber1 }}</span> {{threeinformationsText1Singular }}</p>
         </div>
         <div class="three-informations">
           <p class="small-card-middle-threeinformations-text"> <span class="small-card-middle-threeinformations-number">{{ threeinformationsNumber2 }}</span> {{threeinformationsText2Singular }}</p>
@@ -151,24 +152,36 @@ $small-card-hr-color: #585F60;
 
 /* Titre carte */
 .card-title {
-  padding: 10px 10px 0px 10px;
-  height: 32px;
-  max-height: 32px;
+  margin: 0 !important;
+  display:flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: row;
+  flex-wrap: wrap;
+  line-height: 1rem;
+  min-height: 35px;
+  max-height: 35px;
   font-size: $font-size;
   text-align: center;
 }
 .card-title-line {
-  margin: 10px 0 0 0;
-  padding: 0 0 0 0;
-  border-top: 3px solid $small-card-hr-color
+  width: 100%;
+  margin: 0;
+  min-height: 3px;
+  color: $small-card-hr-color
 }
 .card-title-text {
-  margin: auto;
+  text-align: center;
+  margin: 0;
+  padding: 0 5px 0 5px;
 }
 
 /* Milieu de la carte */
 .card-middle {
-  padding-top: 35px;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
   text-align: center;
   min-height: 170px;
   max-height: 170px;
@@ -181,8 +194,9 @@ $small-card-hr-color: #585F60;
 /* milieu carte de type threeInformation */
 .three-informations{
   display: flex;
-  justify-content: left;
-  align-items: center;
+  flex-direction: column;
+  justify-content: center;
+  align-items: left;
   height: 40px;
   &:first-child{
     color: $progress-bar-color
@@ -191,11 +205,15 @@ $small-card-hr-color: #585F60;
 .card-middle-three-informations{
   display: flex;
   flex-direction: column;
+  align-items: flex-start;
 }
 .small-card-middle-threeinformations-number{
+  text-align: right;
+  width: 80px;
   font-size: 25px;
   color:  $small-card-text-color;
-  margin: 0 5px 0 0
+  padding-right: 10px;
+  margin: 0 0 0 0
 }
 .small-card-middle-threeinformations-text{
   padding-top: 30px;
