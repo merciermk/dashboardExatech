@@ -243,6 +243,7 @@ $small-card-hr-color: #585F60;
 
 .card-bottom-hr {
   margin: 0;
+  background-color: $progress-bar-color;
 }
 
 /* progress bar */

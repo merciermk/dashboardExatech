@@ -1,19 +1,21 @@
 <template>
   <div class="dashboard">
-    <DashboardDossiersAcademiques class="dashboard-element"></DashboardDossiersAcademiques>
-    <DashboardDossiersAcademiques class="dashboard-element"></DashboardDossiersAcademiques>
-    <DashboardDossiersAcademiques class="dashboard-element"></DashboardDossiersAcademiques>
-    <DashboardDossiersAcademiques class="dashboard-element"></DashboardDossiersAcademiques>
+    <big-card
+    cardIcon="hand-holding-usd"
+     class="dashboard-element"></big-card>
+    <big-card class="dashboard-element"></big-card>
+    <big-card class="dashboard-element"></big-card>
+    <big-card class="dashboard-element"></big-card>
   </div>
 </template>
 
 <script lang="ts">
 
 import { Vue, Component } from 'vue-property-decorator'
-import DashboardDossiersAcademiques from '@/components/dashboardComp/DashboardDossiersAcademiques.vue'
+import BigCard from '@/components/dashboardComp/DashboardCard.vue'
 @Component({
   components: {
-    DashboardDossiersAcademiques
+    BigCard
   }
 })
 

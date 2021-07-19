@@ -44,7 +44,7 @@
 </template>
 
 <script lang="ts">
-import { Vue, Component } from 'vue-property-decorator'
+import { Vue, Component, Prop } from 'vue-property-decorator'
 import SmallCard from '@/components/dashboardComp/SmallCard.vue'
 
  interface threeInformationCard{
@@ -90,10 +90,8 @@ import SmallCard from '@/components/dashboardComp/SmallCard.vue'
     SmallCard
   }
 })
-export default class DashboardDossierAcademiques extends Vue {
-  number = 1;
-  numberForProgressBar = '10%';
-  cardIcon = 'hand-holding-usd'
+export default class BigCard extends Vue {
+  @Prop() cardIcon!: string
   allCards = [
     {
       cardType: 'threeInformations', // threeInformation
@@ -127,7 +125,7 @@ export default class DashboardDossierAcademiques extends Vue {
       numberShow: 15,
       textShowSingular: 'Dossier Validé',
       textShowPlural: 'Dossiers Validés',
-      link: 'hello'
+      link: '/hello'
     },
     {
       cardType: 'regular',
