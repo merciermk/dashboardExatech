@@ -186,7 +186,7 @@ $small-card-hr-color: #585F60;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  padding-top: 55px;
+  padding-top: 35px;
   min-height: 170px +  $small-card-title-height;
   max-height: 170px +  $small-card-title-height;
   overflow: hidden;
@@ -196,6 +196,7 @@ $small-card-hr-color: #585F60;
   font-size: $middle-number-size;
 }
 /* milieu carte de type threeInformation */
+
 .three-informations{
   width: 250px;
   display: flex;
@@ -204,6 +205,7 @@ $small-card-hr-color: #585F60;
   align-items: center;
   min-height: 40px;
   padding-left: 30px;
+  padding-top: 40px;
 
   &:first-child{
     color: $progress-bar-color

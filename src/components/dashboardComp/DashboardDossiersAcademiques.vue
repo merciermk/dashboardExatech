@@ -66,7 +66,7 @@ import SmallCard from '@/components/dashboardComp/SmallCard.vue'
  }
 
  interface progressBarCard{
-     cardType: string
+     cardType: string // progressBar
       title: string
       fractionNumber1: number
       fractionNumber2: number
@@ -76,7 +76,7 @@ import SmallCard from '@/components/dashboardComp/SmallCard.vue'
  }
 
  interface regularCard{
-   cardType: string
+   cardType: string //
       title: string
       numberShow: number
       textShowSingular: string
