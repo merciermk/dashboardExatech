@@ -215,6 +215,4 @@ const functionsForAuth = {
   }
 }
 
-// const filteredMenu = functionsForAuth.menuFiltered(functionsForAuth.menuElements)
-
 export { functionsForAuth }

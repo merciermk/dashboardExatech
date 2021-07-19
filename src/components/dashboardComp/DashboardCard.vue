@@ -1,17 +1,6 @@
 <template>
   <div class="big-card">
     <font-awesome-icon :icon="cardIcon" class="big-card-icon" />
-
-<!--     <small-card
-      cardType="regular"
-      title="regular regular regular regular"
-      :numberShow="number"
-      textShowSingular="Dossier Validé"
-      textShowPlural="Dossiers Validés"
-      link="hello"
-      bottomText="25% des taches faites"
-    ></small-card> -->
-
     <small-card
     v-for="(eachCard, index) in allCards" :key="index"
     class="small-card"
@@ -46,45 +35,7 @@
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import SmallCard from '@/components/dashboardComp/SmallCard.vue'
-
- interface threeInformationCard{
-      cardType: string // threeInformation
-      title: string
-      link: string
-
-      information1Number: number
-      information1TextSingular:string
-      information1TextPlural: string
-
-      information2Number: number
-      information2TextSingular: string
-      information2TextPlural: string
-
-      information3Number: number
-      information3TextSingular: string
-      information3TextPlural: string
- }
-
- interface progressBarCard{
-     cardType: string // progressBar
-      title: string
-      fractionNumber1: number
-      fractionNumber2: number
-      textShowSingular: string
-      textShowPlural: string
-      link: string
- }
-
- interface regularCard{
-   cardType: string //
-      title: string
-      numberShow: number
-      textShowSingular: string
-      textShowPlural: string
-      link: string
-      bottomText: string | undefined
- }
-
+import { threeInformationsCard, progressBarCard, regularCard } from '@/types/dashboard'
 @Component({
   components: {
     SmallCard
@@ -92,51 +43,7 @@ import SmallCard from '@/components/dashboardComp/SmallCard.vue'
 })
 export default class BigCard extends Vue {
   @Prop() cardIcon!: string
-  allCards = [
-    {
-      cardType: 'threeInformations', // threeInformation
-      title: 'title',
-      link: 'coucou',
-
-      information1Number: 1,
-      information1TextSingular: 'texte num 1',
-      information1TextPlural: 'texte pluriel',
-
-      information2Number: 856,
-      information2TextSingular: 'test de interface',
-      information2TextPlural: 'test de interface',
-
-      information3Number: 1542,
-      information3TextSingular: 'info',
-      information3TextPlural: 'infos'
-    },
-    {
-      cardType: 'PROGRESSBAR',
-      title: 'progressBar',
-      fractionNumber1: 2,
-      fractionNumber2: 5,
-      textShowSingular: 'coucou',
-      textShowPlural: 'coucous',
-      link: '/coucou'
-    },
-    {
-      cardType: 'regular',
-      title: 'regular',
-      numberShow: 15,
-      textShowSingular: 'Dossier Validé',
-      textShowPlural: 'Dossiers Validés',
-      link: '/hello'
-    },
-    {
-      cardType: 'regular',
-      title: 'regular with bottom text and long title',
-      numberShow: 15,
-      textShowSingular: 'Dossier Validé',
-      textShowPlural: 'Dossiers Validés',
-      link: 'hello',
-      bottomText: '25% des taches faites'
-    }
-  ]
+  @Prop() allCards! : threeInformationsCard | progressBarCard | regularCard
 }
 </script>
 
