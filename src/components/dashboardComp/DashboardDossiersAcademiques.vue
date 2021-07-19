@@ -2,73 +2,88 @@
   <div class="big-card">
     <font-awesome-icon :icon="cardIcon" class="big-card-icon" />
 
-    <small-card
+<!--     <small-card
       cardType="regular"
-      titre="regular regular regular regular"
+      title="regular regular regular regular"
       :numberShow="number"
       textShowSingular="Dossier Validé"
       textShowPlural="Dossiers Validés"
       link="hello"
       bottomText="25% des taches faites"
-    ></small-card>
+    ></small-card> -->
 
     <small-card
-      cardType="progressbar"
-      titre="ProgressBar"
-      :numberShow="number"
-      textShowSingular="Dossier Validé"
-      textShowPlural="Dossiers Validés"
-      link="hello"
-      :progressBar="parseInt(numberForProgressBar)"
-    ></small-card>
-
-    <small-card
-      cardType="progressbar"
-      titre="ProgressBar"
-      fractionNumber1="142"
-      fractionNumber2="752"
-      textShowSingular="Dossier Validé"
-      textShowPlural="Dossiers Validés"
-      link="hello"
-      :progressBar="parseInt(numberForProgressBar)"
-    ></small-card>
-
-<small-card
-      cardType="progressbar"
-      titre="ProgressBar"
-      fractionNumber1="1420"
-      fractionNumber2="7520"
-      textShowSingular="Dossier Validé"
-      textShowPlural="Dossiers Validés"
-      link="hello"
-      :progressBar="parseInt(numberForProgressBar)"
-    ></small-card>
-
-    <small-card
+    v-for="(eachCard, index) in allCards" :key="index"
     class="small-card"
-      cardType="threeinformations"
-      titre="Three Info Card"
-      link="hello"
-      threeinformationsNumber1="25"
+      :cardType="eachCard.cardType"
+      :title="eachCard.title"
+      :link="eachCard.link"
 
-      threeinformationsText1Singular="Ceci est un chiffre"
-      threeinformationsText1Plural="Ceci est un chiffre"
+      :numberShow="eachCard.numberShow"
+      :textShowSingular="eachCard.textShowSingular"
+      :textShowPlural="eachCard.textShowPlural"
+      :bottomText="eachCard.bottomText"
+      :fractionNumber1="parseInt(eachCard.fractionNumber1)"
+      :fractionNumber2="parseInt(eachCard.fractionNumber2)"
 
-      threeinformationsNumber2="255"
-      threeinformationsText2Singular="chiffre 1"
-      threeinformationsText2Plural="Ceci est un chiffre"
+      :progressBar="parseInt(eachCard.numberForProgressBar)"
 
-      threeinformationsNumber3="155"
-      threeinformationsText3Singular="Ceci est un chiffre"
-      threeinformationsText3Plural="Ceci est un chiffre"
+      :threeinformationsNumber1="parseInt(eachCard.information1Number)"
+      :threeinformationsText1Singular="eachCard.information1TextSingular"
+      :threeinformationsText1Plural="eachCard.information1TextPlural"
+
+      :threeinformationsNumber2="parseInt(eachCard.information2Number)"
+      :threeinformationsText2Singular="eachCard.information2TextSingular"
+      :threeinformationsText2Plural="eachCard.information2TextPlural"
+
+      :threeinformationsNumber3="parseInt(eachCard.information3Number)"
+      :threeinformationsText3Singular="eachCard.information3TextSingular"
+      :threeinformationsText3Plural="eachCard.information3TextPlural"
     ></small-card>
-    <hr class="big-card-separator" />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component } from 'vue-property-decorator'
 import SmallCard from '@/components/dashboardComp/SmallCard.vue'
+
+ interface threeInformationCard{
+      cardType: string // threeInformation
+      title: string
+      link: string
+
+      information1Number: number
+      information1TextSingular:string
+      information1TextPlural: string
+
+      information2Number: number
+      information2TextSingular: string
+      information2TextPlural: string
+
+      information3Number: number
+      information3TextSingular: string
+      information3TextPlural: string
+ }
+
+ interface progressBarCard{
+     cardType: string
+      title: string
+      fractionNumber1: number
+      fractionNumber2: number
+      textShowSingular: string
+      textShowPlural: string
+      link: string
+ }
+
+ interface regularCard{
+   cardType: string
+      title: string
+      numberShow: number
+      textShowSingular: string
+      textShowPlural: string
+      link: string
+      bottomText: string | undefined
+ }
 
 @Component({
   components: {
@@ -77,8 +92,53 @@ import SmallCard from '@/components/dashboardComp/SmallCard.vue'
 })
 export default class DashboardDossierAcademiques extends Vue {
   number = 1;
-  numberForProgressBar = '50%';
+  numberForProgressBar = '10%';
   cardIcon = 'hand-holding-usd'
+  allCards = [
+    {
+      cardType: 'threeInformations', // threeInformation
+      title: 'title',
+      link: 'coucou',
+
+      information1Number: 1,
+      information1TextSingular: 'texte num 1',
+      information1TextPlural: 'texte pluriel',
+
+      information2Number: 856,
+      information2TextSingular: 'test de interface',
+      information2TextPlural: 'test de interface',
+
+      information3Number: 1542,
+      information3TextSingular: 'info',
+      information3TextPlural: 'infos'
+    },
+    {
+      cardType: 'PROGRESSBAR',
+      title: 'progressBar',
+      fractionNumber1: 2,
+      fractionNumber2: 5,
+      textShowSingular: 'coucou',
+      textShowPlural: 'coucous',
+      link: '/coucou'
+    },
+    {
+      cardType: 'regular',
+      title: 'regular',
+      numberShow: 15,
+      textShowSingular: 'Dossier Validé',
+      textShowPlural: 'Dossiers Validés',
+      link: 'hello'
+    },
+    {
+      cardType: 'regular',
+      title: 'regular with bottom text and long title',
+      numberShow: 15,
+      textShowSingular: 'Dossier Validé',
+      textShowPlural: 'Dossiers Validés',
+      link: 'hello',
+      bottomText: '25% des taches faites'
+    }
+  ]
 }
 </script>
 

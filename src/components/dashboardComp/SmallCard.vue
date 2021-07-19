@@ -10,11 +10,11 @@
         cardType.toUpperCase() === 'THREEINFORMATIONS'
       "
     >
-    <!-- Titre -->
+    <!-- title -->
       <div class="card-title">
-        <p class="card-title-text">{{ titre.toUpperCase() }}</p>
-      </div>
+        <p class="card-title-text">{{ title.toUpperCase() }}</p>
        <hr class="card-title-line" />
+      </div>
       <!-- Milieu de carte  -->
       <!-- Milieu carte pour regular / progressBar -->
       <div class="card-middle" v-if="fractionNumber1 || numberShow">
@@ -28,14 +28,17 @@
       <!-- Milieu carte pour threeinformations -->
       <div class="card-middle card-middle-three-informations" v-if="cardType.toUpperCase() === 'THREEINFORMATIONS'">
         <div class="three-informations">
-          <p class="small-card-middle-threeinformations-text"> <span class="small-card-middle-threeinformations-number">
-          {{ threeinformationsNumber1 }}</span> {{threeinformationsText1Singular }}</p>
+          <p class="small-card-middle-threeinformations-number">
+          {{ threeinformationsNumber1 }}</p>
+          <p class="small-card-middle-threeinformations-text"> {{threeinformationsText1Singular }}</p>
         </div>
         <div class="three-informations">
-          <p class="small-card-middle-threeinformations-text"> <span class="small-card-middle-threeinformations-number">{{ threeinformationsNumber2 }}</span> {{threeinformationsText2Singular }}</p>
+          <p class="small-card-middle-threeinformations-number">{{ threeinformationsNumber2 }}</p>
+          <p class="small-card-middle-threeinformations-text">  {{threeinformationsText2Singular }}</p>
         </div>
         <div class="three-informations">
-          <p class="small-card-middle-threeinformations-text"> <span class="small-card-middle-threeinformations-number">{{ threeinformationsNumber3 }}</span> {{threeinformationsText3Singular }}</p>
+          <p class="small-card-middle-threeinformations-number">{{ threeinformationsNumber3 }}</p>
+          <p class="small-card-middle-threeinformations-text"> {{threeinformationsText3Singular }}</p>
 
         </div>
       </div>
@@ -52,13 +55,12 @@
         <!-- Progress bar -->
       </div>
       <!-- bottom avec progress-bar -->
-      <div class="card-bottom-progress-bar">
+      <div class="card-bottom-progress-bar" v-if="cardType.toUpperCase() === 'PROGRESSBAR'">
         <div
           class="card-bottom-progress-bar"
-          v-if="cardType.toUpperCase() === 'PROGRESSBAR'"
         >
          <div class="bar-wrap">
-           <span class="bar-fill"  :style="'width:' + progressBar + '%;'"></span>
+           <span class="bar-fill"  :style="'width:' + percentageCalculation (fractionNumber1, fractionNumber2) + '%;'"></span>
         </div>
         </div>
       </div>
@@ -76,7 +78,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 export default class SmallCard extends Vue {
   /* Communes a toutes les cartes */
   @Prop() readonly cardType!: string; // type de carte
-  @Prop() readonly titre!: string;
+  @Prop() readonly title!: string;
   @Prop() readonly textShowSingular!: string | undefined;
   @Prop() readonly textShowPlural!: string | undefined;
   @Prop() readonly link!: string;
@@ -111,6 +113,10 @@ export default class SmallCard extends Vue {
 
   /* Progress Bar type de carte : progressBar */
   @Prop() readonly progressBar!: number | undefined
+
+  percentageCalculation (number1: number, number2: number): number {
+    return number1 * 100 / number2
+  }
 }
 </script>
 
@@ -132,6 +138,7 @@ $progress-bar-color: #6bbeb7;
 $progress-bar-color-background: #F6f7fa;
 $small-card-text-color: #FFFFFF;
 $small-card-hr-color: #585F60;
+ $small-card-title-height: 36px;
 
 .small-card {
   background-color: $small-card-background-color;
@@ -150,19 +157,15 @@ $small-card-hr-color: #585F60;
   text-decoration: none;
 }
 
-/* Titre carte */
+/* title carte */
 .card-title {
+  position: absolute;
+  width: 100%;
   margin: 0 !important;
-  display:flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: row;
-  flex-wrap: wrap;
   line-height: 1rem;
-  min-height: 35px;
-  max-height: 35px;
+  min-height: $small-card-title-height;
+
   font-size: $font-size;
-  text-align: center;
 }
 .card-title-line {
   width: 100%;
@@ -173,18 +176,20 @@ $small-card-hr-color: #585F60;
 .card-title-text {
   text-align: center;
   margin: 0;
-  padding: 0 5px 0 5px;
+  padding: 10px 5px 5px 5px;
 }
 
 /* Milieu de la carte */
 .card-middle {
+  align-self: center;
+  justify-self: center;
+  position: relative;
   display: flex;
-  justify-content: center;
   flex-direction: column;
+  padding: 30%;
   align-items: center;
-  text-align: center;
-  min-height: 170px;
-  max-height: 170px;
+  min-height: 170px +  $small-card-title-height;
+  max-height: 170px +  $small-card-title-height;
   overflow: hidden;
 }
 .card-middle-number {
@@ -193,44 +198,38 @@ $small-card-hr-color: #585F60;
 }
 /* milieu carte de type threeInformation */
 .three-informations{
+  width: 250px;
   display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: left;
-  height: 40px;
+  flex-direction: row;
+  justify-content: left;
+  align-items: center;
+  min-height: 40px;
+  padding-left: 30px;
+
   &:first-child{
     color: $progress-bar-color
   }
 }
-.card-middle-three-informations{
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start;
-}
+
 .small-card-middle-threeinformations-number{
-  text-align: right;
-  width: 80px;
+  width: 30%;
   font-size: 25px;
   color:  $small-card-text-color;
+  text-align: right;
   padding-right: 10px;
-  margin: 0 0 0 0
 }
 .small-card-middle-threeinformations-text{
-  padding-top: 30px;
-  padding-left: 25px;
-
-  display: flex;
-  flex-wrap: nowrap;
-  align-items: center;
+  padding-left: 10px;
 }
 
 /* pied de la carte */
 .card-bottom {
+  position:absolute;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
-
+  width: 100%;
   min-height: 44px;
   max-height: 44px;
   overflow: hidden;
