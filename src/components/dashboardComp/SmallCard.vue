@@ -181,13 +181,12 @@ $small-card-hr-color: #585F60;
 
 /* Milieu de la carte */
 .card-middle {
-  align-self: center;
-  justify-self: center;
   position: relative;
   display: flex;
   flex-direction: column;
-  padding: 30%;
   align-items: center;
+  justify-content: center;
+  padding-top: 55px;
   min-height: 170px +  $small-card-title-height;
   max-height: 170px +  $small-card-title-height;
   overflow: hidden;
