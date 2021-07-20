@@ -120,6 +120,7 @@ const dossiersAcadémiques = {
 
 const functionsForDashboard = {
   dashboardElements: [
+    dossiersAcadémiques,
     dossiersAcadémiques
   ],
 
