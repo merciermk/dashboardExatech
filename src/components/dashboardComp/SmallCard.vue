@@ -137,7 +137,7 @@ $small-card-background-color: #5F6b6d;
 $progress-bar-color: #6bbeb7;
 $progress-bar-color-background: #F6f7fa;
 $small-card-text-color: #FFFFFF;
-$small-card-hr-color: #585F60;
+$small-card-hr-color: #293F41;
  $small-card-title-height: 36px;
 
 .small-card {
@@ -171,7 +171,8 @@ $small-card-hr-color: #585F60;
   width: 100%;
   margin: 0;
   min-height: 3px;
-  color: $small-card-hr-color
+  color: $small-card-hr-color;
+  background-color: $small-card-hr-color;
 }
 .card-title-text {
   text-align: center;
