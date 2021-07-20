@@ -1,49 +1,72 @@
 <template>
   <div class="big-card">
     <font-awesome-icon :icon="cardIcon" class="big-card-icon" />
-    <small-card
-    v-for="(eachCard, index) in allCards" :key="index"
-    class="small-card"
-      :cardType="eachCard.cardType"
-      :title="eachCard.title"
-      :link="eachCard.link"
-
-      :numberShow="eachCard.numberShow"
-      :textShowSingular="eachCard.textShowSingular"
-      :textShowPlural="eachCard.textShowPlural"
-      :bottomText="eachCard.bottomText"
-      :fractionNumber1="parseInt(eachCard.fractionNumber1)"
-      :fractionNumber2="parseInt(eachCard.fractionNumber2)"
-
-      :progressBar="parseInt(eachCard.numberForProgressBar)"
-
-      :threeinformationsNumber1="parseInt(eachCard.information1Number)"
-      :threeinformationsText1Singular="eachCard.information1TextSingular"
-      :threeinformationsText1Plural="eachCard.information1TextPlural"
-
-      :threeinformationsNumber2="parseInt(eachCard.information2Number)"
-      :threeinformationsText2Singular="eachCard.information2TextSingular"
-      :threeinformationsText2Plural="eachCard.information2TextPlural"
-
-      :threeinformationsNumber3="parseInt(eachCard.information3Number)"
-      :threeinformationsText3Singular="eachCard.information3TextSingular"
-      :threeinformationsText3Plural="eachCard.information3TextPlural"
-    ></small-card>
+    <div v-for="(eachCard, index) in allCards" :key="index">
+      <small-card-done v-if="eachCard.cardType.toUpperCase() === 'PROGRESSBAR' && eachCard.fractionNumber1 === eachCard.fractionNumber2 ||
+      eachCard.cardType.toUpperCase() === 'REGULAR' && eachCard.numberShow === 0"
+        class="small-card"
+        :cardType="eachCard.cardType"
+        :title="eachCard.title"
+        :link="eachCard.link"
+        :textShowSingular="eachCard.textShowSingular"
+        :textShowPlural="eachCard.textShowPlural"
+        :progressBar="parseInt(eachCard.numberForProgressBar)"
+        :threeinformationsNumber1="parseInt(eachCard.information1Number)"
+        :threeinformationsText1Singular="eachCard.information1TextSingular"
+        :threeinformationsText1Plural="eachCard.information1TextPlural"
+        :threeinformationsNumber2="parseInt(eachCard.information2Number)"
+        :threeinformationsText2Singular="eachCard.information2TextSingular"
+        :threeinformationsText2Plural="eachCard.information2TextPlural"
+        :threeinformationsNumber3="parseInt(eachCard.information3Number)"
+        :threeinformationsText3Singular="eachCard.information3TextSingular"
+        :threeinformationsText3Plural="eachCard.information3TextPlural"
+      >
+      </small-card-done>
+      <small-card
+        v-else
+        class="small-card"
+        :cardType="eachCard.cardType"
+        :title="eachCard.title"
+        :link="eachCard.link"
+        :numberShow="eachCard.numberShow"
+        :textShowSingular="eachCard.textShowSingular"
+        :textShowPlural="eachCard.textShowPlural"
+        :bottomText="eachCard.bottomText"
+        :fractionNumber1="parseInt(eachCard.fractionNumber1)"
+        :fractionNumber2="parseInt(eachCard.fractionNumber2)"
+        :progressBar="parseInt(eachCard.numberForProgressBar)"
+        :threeinformationsNumber1="parseInt(eachCard.information1Number)"
+        :threeinformationsText1Singular="eachCard.information1TextSingular"
+        :threeinformationsText1Plural="eachCard.information1TextPlural"
+        :threeinformationsNumber2="parseInt(eachCard.information2Number)"
+        :threeinformationsText2Singular="eachCard.information2TextSingular"
+        :threeinformationsText2Plural="eachCard.information2TextPlural"
+        :threeinformationsNumber3="parseInt(eachCard.information3Number)"
+        :threeinformationsText3Singular="eachCard.information3TextSingular"
+        :threeinformationsText3Plural="eachCard.information3TextPlural"
+      ></small-card>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator'
 import SmallCard from '@/components/dashboardComp/SmallCard.vue'
-import { threeInformationsCard, progressBarCard, regularCard } from '@/types/dashboard'
+import SmallCardDone from '@/components/dashboardComp/SmallCardDone.vue'
+import {
+  threeInformationsCard,
+  progressBarCard,
+  regularCard
+} from '@/types/dashboard'
 @Component({
   components: {
-    SmallCard
+    SmallCard,
+    SmallCardDone
   }
 })
 export default class BigCard extends Vue {
-  @Prop() cardIcon!: string
-  @Prop() allCards! : threeInformationsCard | progressBarCard | regularCard
+  @Prop() cardIcon!: string;
+  @Prop() allCards!: threeInformationsCard | progressBarCard | regularCard;
 }
 </script>
 
@@ -75,7 +98,7 @@ $dashboard-margin-right: 20px;
   width: 100%;
   min-height: 300px;
 }
-.small-card{
+.small-card {
   position: relative;
   z-index: 9999;
 }

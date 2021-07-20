@@ -23,10 +23,6 @@ import { functionsForDashboard } from '@/types/dashboard'
 })
 export default class Dashboard extends Vue {
   dashboardElements = functionsForDashboard.dashboardFiltered(functionsForDashboard.dashboardElements)
-  mounted (): void {
-    console.log('mounted')
-    console.log(this.dashboardElements)
-  }
 }
 </script>
 

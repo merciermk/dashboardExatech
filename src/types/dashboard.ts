@@ -96,6 +96,24 @@ const dossiersAcadémiques = {
       textShowSingular: 'Matière complète',
       textShowPlural: 'Matières complètes',
       link: '/affectations'
+    },
+    {
+      cardType: 'threeinformations', // threeInformations
+      auth: ['adm.ini-manage'],
+      title: 'three informations',
+      link: '/coucou',
+
+      information1Number: 150,
+      information1TextSingular: 'Coucou',
+      information1TextPlural: 'coucous',
+
+      information2Number: 258,
+      information2TextSingular: 'Hello les gens',
+      information2TextPlural: 'hello les gens',
+
+      information3Number: 2222,
+      information3TextSingular: 'Information 3',
+      information3TextPlural: 'informations 33'
     }
   ]
 }
