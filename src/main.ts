@@ -10,10 +10,10 @@ import 'bootstrap'
 import Vuex from 'vuex'
 
 import { library } from '@fortawesome/fontawesome-svg-core'
-import { faFile, faPollH, faGraduationCap, faIdBadge, faUserCheck, faUsersCog, faFolderOpen, faPen, faFolder, faFileContract, faSubway, faHandHoldingUsd, faCog, faCalendarDay, faChalkboardTeacher, faTags, faBuilding, faBell, faUserShield, faUserFriends, faHome, faTimes, faAlignJustify } from '@fortawesome/free-solid-svg-icons'
+import { faFile, faPollH, faGraduationCap, faIdBadge, faUserCheck, faUsersCog, faFolderOpen, faPen, faFolder, faFileContract, faSubway, faHandHoldingUsd, faCog, faCalendarDay, faChalkboardTeacher, faTags, faBuilding, faBell, faUserShield, faUserFriends, faHome, faTimes, faAlignJustify, faCheck } from '@fortawesome/free-solid-svg-icons'
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome'
 
-library.add(faFile, faPollH, faGraduationCap, faIdBadge, faUserCheck, faUsersCog, faFolderOpen, faPen, faFile, faFolderOpen, faFolder, faFileContract, faSubway, faHandHoldingUsd, faCog, faCalendarDay, faChalkboardTeacher, faTags, faBuilding, faBell, faUserShield, faUserFriends, faHome, faTimes, faAlignJustify)
+library.add(faFile, faPollH, faGraduationCap, faIdBadge, faUserCheck, faUsersCog, faFolderOpen, faPen, faFile, faFolderOpen, faFolder, faFileContract, faSubway, faHandHoldingUsd, faCog, faCalendarDay, faChalkboardTeacher, faTags, faBuilding, faBell, faUserShield, faUserFriends, faHome, faTimes, faAlignJustify, faCheck)
 Vue.component('font-awesome-icon', FontAwesomeIcon)
 
 Vue.use(BootstrapVue)

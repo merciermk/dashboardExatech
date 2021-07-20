@@ -1,70 +1,109 @@
 <template>
-  <div class="small-card">
-    <!-- Regular and progress bar -->
-    <router-link
-      :to="link"
-      class="small-card-regular"
+  <div>
+    <!-- Regular progress bar -->
+    <div class="small-card" v-if="
+          cardType.toUpperCase() === 'REGULAR' ||
+          cardType.toUpperCase() === 'PROGRESSBAR' ||
+          cardType.toUpperCase() === 'THREEINFORMATIONS'
+        ">
+      <router-link
+        :to="link"
+        class="small-card-regular"
+      >
+      <!-- title -->
+        <div class="card-title">
+          <p class="card-title-text">{{ title.toUpperCase() }}</p>
+         <hr class="card-title-line" />
+        </div>
+        <!-- Milieu de carte  -->
+        <!-- Milieu carte pour regular / progressBar -->
+        <div class="card-middle" v-if="fractionNumber1 || numberShow">
+          <p class="card-middle-number">{{ numberShow }}</p>
+          <p class="card-middle-number" v-if="fractionNumber1 && !numberShow">{{ fractionNumber1 }}/{{ fractionNumber2 }}</p>
+          <p class="card-middle-text" v-if="numberShow === 1 || fractionNumber1 === 1">
+            {{ textShowSingular }}
+          </p>
+          <p class="card-middle-text" v-else>{{ textShowPlural }}</p>
+        </div>
+        <!-- Milieu carte pour threeinformations -->
+        <div class="card-middle" v-if="cardType.toUpperCase() === 'THREEINFORMATIONS'">
+          <div class="three-informations">
+            <p class="small-card-middle-threeinformations-number">
+            {{ threeinformationsNumber1 }}</p>
+                   <p v-if="threeinformationsNumber1 <= 1" class="small-card-middle-threeinformations-text">  {{ threeinformationsText1Singular }}</p>
+             <p v-else class="small-card-middle-threeinformations-text">  {{ threeinformationsText1Plural }}</p>
+          </div>
+          <div class="three-informations">
+            <p class="small-card-middle-threeinformations-number">{{ threeinformationsNumber2 }}</p>
+            <p v-if="threeinformationsNumber2 <= 1" class="small-card-middle-threeinformations-text">  {{ threeinformationsText2Singular }}</p>
+             <p v-else class="small-card-middle-threeinformations-text">  {{ threeinformationsText2Plural }}</p>
+          </div>
+          <div v-if="threeinformationsNumber3" class="three-informations">
+            <p class="small-card-middle-threeinformations-number">{{ threeinformationsNumber3 }}</p>
+                   <p v-if="threeinformationsNumber3 <= 1" class="small-card-middle-threeinformations-text">  {{ threeinformationsText3Singular }}</p>
+             <p v-else class="small-card-middle-threeinformations-text">  {{ threeinformationsText3Plural }}</p>
+          </div>
+        </div>
+        <!-- Bas de la carte -->
+        <!-- REGULAR -->
+        <div class="card-bottom" v-if="bottomText && cardType.toUpperCase() === 'REGULAR'">
+          <!-- carte avec texte en bottom -->
+          <div
+            class="card-bottom-text"
+          >
+            <hr class="card-bottom-hr" />
+            <p>{{ bottomText }}</p>
+          </div>
+          <!-- Progress bar -->
+        </div>
+        <!-- bottom avec progress-bar -->
+        <div class="card-bottom-progress-bar" v-if="cardType.toUpperCase() === 'PROGRESSBAR'">
+          <div
+            class="card-bottom-progress-bar"
+          >
+           <div class="bar-wrap">
+             <span class="bar-fill"  :style="'width:' + percentageCalculation (fractionNumber1, fractionNumber2) + '%;'"></span>
+          </div>
+          </div>
+        </div>
+      </router-link>
+    </div>
+
+    <!-- Duo card -->
+     <div class="small-card-dual-card"
       v-if="
-        cardType.toUpperCase() === 'REGULAR' ||
-        cardType.toUpperCase() === 'PROGRESSBAR' ||
-        cardType.toUpperCase() === 'THREEINFORMATIONS'
+        cardType.toUpperCase() === 'DUO'
       "
     >
-    <!-- title -->
+    <router-link to="" class="duo-card duo-card-one">
       <div class="card-title">
-        <p class="card-title-text">{{ title.toUpperCase() }}</p>
-       <hr class="card-title-line" />
+      <p class="card-title-text">{{ title.toUpperCase() }}</p>
+      <hr class="card-title-line" />
       </div>
-      <!-- Milieu de carte  -->
-      <!-- Milieu carte pour regular / progressBar -->
-      <div class="card-middle" v-if="fractionNumber1 || numberShow">
-        <p class="card-middle-number">{{ numberShow }}</p>
-        <p class="card-middle-number" v-if="fractionNumber1 && !numberShow">{{ fractionNumber1 }}/{{ fractionNumber2 }}</p>
-        <p class="card-middle-text" v-if="numberShow === 1 || fractionNumber1 === 1">
-          {{ textShowSingular }}
-        </p>
-        <p class="card-middle-text" v-else>{{ textShowPlural }}</p>
-      </div>
-      <!-- Milieu carte pour threeinformations -->
-      <div class="card-middle card-middle-three-informations" v-if="cardType.toUpperCase() === 'THREEINFORMATIONS'">
-        <div class="three-informations">
-          <p class="small-card-middle-threeinformations-number">
-          {{ threeinformationsNumber1 }}</p>
-          <p class="small-card-middle-threeinformations-text"> {{threeinformationsText1Singular }}</p>
-        </div>
-        <div class="three-informations">
-          <p class="small-card-middle-threeinformations-number">{{ threeinformationsNumber2 }}</p>
-          <p class="small-card-middle-threeinformations-text">  {{threeinformationsText2Singular }}</p>
-        </div>
-        <div class="three-informations">
-          <p class="small-card-middle-threeinformations-number">{{ threeinformationsNumber3 }}</p>
-          <p class="small-card-middle-threeinformations-text"> {{threeinformationsText3Singular }}</p>
 
+       <div class="duo-card-middle" >
+          <p class="duo-card-middle-number">152</p>
+          <p class="duo-card-middle-text" v-if="numberShow === 1 || fractionNumber1 === 1">
+            testSingular
+          </p>
+          <p class="duo-card-middle-text" v-else>testSingular</p>
         </div>
-      </div>
-      <!-- Bas de la carte -->
-      <!-- REGULAR -->
-      <div class="card-bottom" v-if="bottomText && cardType.toUpperCase() === 'REGULAR'">
-        <!-- carte avec texte en bottom -->
-        <div
-          class="card-bottom-text"
-        >
-          <hr class="card-bottom-hr" />
-          <p>{{ bottomText }}</p>
-        </div>
-        <!-- Progress bar -->
-      </div>
-      <!-- bottom avec progress-bar -->
-      <div class="card-bottom-progress-bar" v-if="cardType.toUpperCase() === 'PROGRESSBAR'">
-        <div
-          class="card-bottom-progress-bar"
-        >
-         <div class="bar-wrap">
-           <span class="bar-fill"  :style="'width:' + percentageCalculation (fractionNumber1, fractionNumber2) + '%;'"></span>
-        </div>
-        </div>
-      </div>
     </router-link>
+    <!-- title -->
+      <router-link to="" class="duo-card duo-card-two">
+        <div class="card-title">
+          <p class="card-title-text">{{ title.toUpperCase() }}</p>
+         <hr class="card-title-line" />
+        </div>
+        <div class="duo-card-middle" >
+          <p class="duo-card-middle-number">152</p>
+          <p class="duo-card-middle-text" v-if="numberShow === 1 || fractionNumber1 === 1">
+            testSingular
+          </p>
+          <p class="duo-card-middle-text" v-else>testSingular</p>
+        </div>
+      </router-link>
+    </div>
 
   </div>
 </template>
@@ -152,15 +191,25 @@ $small-card-hr-color: #293F41;
 }
 .small-card a,
 .small-card a:visited,
-.small-card a:hover {
+.small-card,
+.small-card-dual-card a,
+.small-card-dual-card a:visited,
+.small-card-dual-card {
   color: $small-card-text-color;
   text-decoration: none;
 }
 
+.small-card:hover,
+.duo-card-one:hover,
+.duo-card-two:hover {
+  box-shadow: 10px 10px 15px rgba(128, 128, 128, 0.445);
+}
+
 /* title carte */
 .card-title {
+  padding-top: 1px;
   position: absolute;
-  width: 100%;
+  width: $card-width;
   margin: 0 !important;
   line-height: 1rem;
   min-height: $small-card-title-height;
@@ -168,10 +217,12 @@ $small-card-hr-color: #293F41;
   font-size: $font-size;
 }
 .card-title-line {
-  width: 100%;
-  margin: 0;
-  min-height: 3px;
-  color: $small-card-hr-color;
+  position: absolute;
+  top: $small-card-title-height;
+  left: 10px;
+  width: 230px !important;
+  min-height: 1px;
+  margin: auto !important;
   background-color: $small-card-hr-color;
 }
 .card-title-text {
@@ -199,14 +250,13 @@ $small-card-hr-color: #293F41;
 /* milieu carte de type threeInformation */
 
 .three-informations{
-  width: 250px;
+  width: $card-width;
   display: flex;
   flex-direction: row;
-  justify-content: left;
+  justify-content: center;
   align-items: center;
-  min-height: 40px;
-  padding-left: 30px;
   padding-top: 40px;
+  height: 20px;
 
   &:first-child{
     color: $progress-bar-color
@@ -221,7 +271,7 @@ $small-card-hr-color: #293F41;
   padding-right: 10px;
 }
 .small-card-middle-threeinformations-text{
-  padding-left: 10px;
+  width: 70%;
 }
 
 /* pied de la carte */
@@ -230,8 +280,8 @@ $small-card-hr-color: #293F41;
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: space-between;
-  width: 100%;
+  justify-content: center;
+  width: $card-width;
   min-height: 44px;
   max-height: 44px;
   overflow: hidden;
@@ -250,10 +300,8 @@ $small-card-hr-color: #293F41;
 /* progress bar */
 /* Pied de carte progressBar */
 .card-bottom-progress-bar {
-  display: flex;
-  align-items: flex-end;
-  min-height: 44px;
-  max-height: 44px;
+  padding-top: 12px;
+  min-height: 100%;
   overflow: hidden;
 }
 
@@ -293,9 +341,8 @@ $small-card-hr-color: #293F41;
 
 .bar-wrap {
   width: $card-width;
-  height: 30px;
+  height: 20px;
   background-color: $progress-bar-color-background
-
 }
 
 .bar-fill {
@@ -303,7 +350,40 @@ $small-card-hr-color: #293F41;
   background-color: $progress-bar-color;
   display: block;
   height: 100%;
+}
 
+/* Duo card */
+.small-card-dual-card{
+  width: $card-width;
+  min-height: $card-height;
+  max-height: $card-height;
+  margin: 10px 10px 10px 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: space-between;
+}
+.duo-card{
+  border-radius: 10px;
+  height: 120px;
+}
+
+.duo-card-one{
+  background-color: $small-card-background-color;
+  box-shadow: 0px 0px 15px rgba(128, 128, 128, 0.445);
+}
+.duo-card-two{
+  background-color:$small-card-background-color;
+  box-shadow: 0px 0px 15px rgba(128, 128, 128, 0.445);
+}
+
+.duo-card-middle{
+  width: $card-width;
+  height: 120px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: center;
 }
 
 </style>

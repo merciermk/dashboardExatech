@@ -4,7 +4,7 @@
     <div v-for="(eachCard, index) in allCards" :key="index">
       <small-card-done v-if="eachCard.cardType.toUpperCase() === 'PROGRESSBAR' && eachCard.fractionNumber1 === eachCard.fractionNumber2 ||
       eachCard.cardType.toUpperCase() === 'REGULAR' && eachCard.numberShow === 0"
-        class="small-card"
+        class="small-card-dashboard"
         :cardType="eachCard.cardType"
         :title="eachCard.title"
         :link="eachCard.link"
@@ -24,7 +24,7 @@
       </small-card-done>
       <small-card
         v-else
-        class="small-card"
+        class="small-card-dashboard"
         :cardType="eachCard.cardType"
         :title="eachCard.title"
         :link="eachCard.link"
@@ -98,7 +98,7 @@ $dashboard-margin-right: 20px;
   width: 100%;
   min-height: 300px;
 }
-.small-card {
+.small-card-dashboard {
   position: relative;
   z-index: 9999;
 }

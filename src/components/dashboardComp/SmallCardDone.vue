@@ -1,5 +1,5 @@
 <template>
-  <div class="small-card">
+  <div class="small-card-done">
     <!-- Regular and progress bar -->
     <router-link
       :to="link"
@@ -11,19 +11,28 @@
       "
     >
     <!-- title -->
-      <div class="card-title">
-        <p class="card-title-text">{{ title.toUpperCase() }}</p>
-       <hr class="card-title-line" />
+      <div class="card-title-done">
+        <p class="card-title-text-done">{{ title.toUpperCase() }}</p>
+       <hr class="card-title-line-done" />
       </div>
       <!-- Milieu de carte  -->
-        <p>DONE</p>
+      <div class="card-middle-done">
+        <font-awesome-icon icon="check" class="card-middle-done-icon" />
+        <div class="test" v-if="false">
+        <p class="card-middle-number">5/5</p>
+        <p class="card-middle-done-text">DONE</p>
+        </div>
+        <div class="test" v-else>
+           <p class="card-middle-done-text">Tous les intervenants séléctionnés</p>
+        </div>
+      </div>
       <!-- bottom avec progress-bar -->
-      <div class="card-bottom-progress-bar" v-if="cardType.toUpperCase() === 'PROGRESSBAR'">
+      <div class="card-bottom-progress-bar-done" v-if="cardType.toUpperCase() === 'PROGRESSBAR'">
         <div
-          class="card-bottom-progress-bar"
+          class="card-bottom-progress-bar-done"
         >
          <div class="bar-wrap">
-           <span class="bar-fill"  :style="'width:' + percentageCalculation (fractionNumber1, fractionNumber2) + '%;'"></span>
+           <span class="bar-fill"  :style="'width: 100%;'"></span>
         </div>
         </div>
       </div>
@@ -45,33 +54,6 @@ export default class SmallCard extends Vue {
   @Prop() readonly textShowSingular!: string | undefined;
   @Prop() readonly textShowPlural!: string | undefined;
   @Prop() readonly link!: string;
-
-  /* ****************** */
-  /* Milieu de la carte */
-  /* ****************** */
-  /* ThreeInformationsCard */
-  @Prop() readonly threeinformationsNumber1!: number | undefined
-  @Prop() readonly threeinformationsText1Singular!: string | undefined
-  @Prop() readonly threeinformationsText1Plural!: string | undefined
-
-  @Prop() readonly threeinformationsNumber2!: number | undefined
-  @Prop() readonly threeinformationsText2Singular!: string | undefined
-  @Prop() readonly threeinformationsText2Plural!: string | undefined
-
-  @Prop() readonly threeinformationsNumber3!: number | undefined
-  @Prop() readonly threeinformationsText3Singular!: string | undefined
-  @Prop() readonly threeinformationsText3Plural!: string | undefined
-
-  /* Affichage un seul chiffre */
-  @Prop() readonly numberShow!: number | undefined
-  /* Fraction type */
-  @Prop() readonly fractionNumber1! : number | undefined
-  @Prop() readonly fractionNumber2! : number | undefined
-
-  /* ************ */
-  /* Bottom carte */
-  /* ************ */
-  /* regular card */
   @Prop() readonly bottomText!: string | undefined;
 
   /* Progress Bar type de carte : progressBar */
@@ -88,23 +70,33 @@ export default class SmallCard extends Vue {
     font-family: 'Product Sans';
     src:url("../../fonts/ProductSans-Regular.ttf");
 }
-.small-card{
+.small-card-done{
   font-style: 'Product Sans';
 }
 
+$small-card-title-height: 36px;
 $card-width: 250px;
 $card-height: 250px;
 $middle-number-size: 42px;
 $font-size: 14px;
-$small-card-background-color: #5F6b6d;
+$small-card-done-background-color: #ffffff;
 $progress-bar-color: #6bbeb7;
 $progress-bar-color-background: #F6f7fa;
-$small-card-text-color: #FFFFFF;
-$small-card-hr-color: #585F60;
- $small-card-title-height: 36px;
+$small-card-done-text-color: #909090;
+$small-card-done-hr-color: #585F60;
+ $small-card-done-title-height: 36px;
+ $small-card-hr-color: #293F41;
+ $middle-done-icon-size: 42px;
 
-.small-card {
-  background-color: $small-card-background-color;
+ .test{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   flex-direction: column;
+ }
+
+.small-card-done {
+  background-color: $small-card-done-background-color;
   width: $card-width;
   min-height: $card-height;
   max-height: $card-height;
@@ -113,81 +105,66 @@ $small-card-hr-color: #585F60;
   border-radius: 15px;
   overflow: hidden;
 }
-.small-card a,
-.small-card a:visited,
-.small-card a:hover {
-  color: $small-card-text-color;
+.small-card-done a,
+.small-card-done a:visited,
+.small-card-done a:hover {
+  color: $small-card-done-text-color;
   text-decoration: none;
 }
 
 /* title carte */
-.card-title {
+.card-title-done {
   position: absolute;
   width: 100%;
   margin: 0 !important;
   line-height: 1rem;
-  min-height: $small-card-title-height;
+  min-height: $small-card-done-title-height;
 
   font-size: $font-size;
 }
-.card-title-line {
-  width: 100%;
-  margin: 0;
-  min-height: 3px;
-  color: $small-card-hr-color
+.card-title-line-done {
+ position: absolute;
+  top: $small-card-title-height;
+  left: 10px;
+  width: 230px !important;
+  min-height: 1px;
+  margin: auto !important;
+  background-color: $small-card-hr-color;
 }
-.card-title-text {
+.card-title-text-done {
   text-align: center;
   margin: 0;
   padding: 10px 5px 5px 5px;
 }
 
 /* Milieu de la carte */
-.card-middle {
+.card-middle-done {
   position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   padding-top: 35px;
-  min-height: 170px +  $small-card-title-height;
-  max-height: 170px +  $small-card-title-height;
+  min-height: 170px +  $small-card-done-title-height;
+  max-height: 170px +  $small-card-done-title-height;
   overflow: hidden;
 }
-.card-middle-number {
-  margin: 0;
-  font-size: $middle-number-size;
+.card-middle-done-icon{
+   margin: 0;
+  font-size: $middle-done-icon-size;
 }
+
+.card-middle-done-text{
+  text-align: center;
+  max-width: 70%;
+  margin: 0;
+  padding: 10px 5px 5px 5px;
+}
+
 /* milieu carte de type threeInformation */
 
-.three-informations{
-  width: 250px;
-  display: flex;
-  flex-direction: row;
-  justify-content: left;
-  align-items: center;
-  min-height: 40px;
-  padding-left: 30px;
-  padding-top: 40px;
-
-  &:first-child{
-    color: $progress-bar-color
-  }
-}
-
-.small-card-middle-threeinformations-number{
-  width: 30%;
-  font-size: 25px;
-  color:  $small-card-text-color;
-  text-align: right;
-  padding-right: 10px;
-}
-.small-card-middle-threeinformations-text{
-  padding-left: 10px;
-}
-
 /* pied de la carte */
-.card-bottom {
+.card-bottom-done {
   position:absolute;
   display: flex;
   flex-direction: column;
@@ -204,14 +181,14 @@ $small-card-hr-color: #585F60;
   }
 }
 
-.card-bottom-hr {
+.card-done-bottom-hr {
   margin: 0;
   background-color: $progress-bar-color;
 }
 
 /* progress bar */
 /* Pied de carte progressBar */
-.card-bottom-progress-bar {
+.card-done-bottom-progress-bar {
   display: flex;
   align-items: flex-end;
   min-height: 44px;
@@ -247,7 +224,7 @@ $small-card-hr-color: #585F60;
    0% { width: 0; }
 }
 
-// Graph stuff
+/* // Graph stuff
 
 .bar-graph {
   list-style: none;
@@ -255,7 +232,7 @@ $small-card-hr-color: #585F60;
 
 .bar-wrap {
   width: $card-width;
-  height: 30px;
+  height: 20px;
   background-color: $progress-bar-color-background
 
 }
@@ -266,6 +243,6 @@ $small-card-hr-color: #585F60;
   display: block;
   height: 100%;
 
-}
+} */
 
 </style>

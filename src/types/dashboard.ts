@@ -17,55 +17,70 @@ const ADM_PAR_MANAGE = Ability.ADM_PAR_MANAGE
 // eslint-disable-next-line
 const RH_SIGNATURE = Ability.RH_SIGNATURE
 
-interface threeInformationsCard{
+interface DashboardDoneInformations {
+  type: string,
+  doneTextSingular: string,
+  doneTextPlural: string,
+}
+
+interface threeInformationsCard {
   cardType: string // threeInformations
   auth: string[]
   title: string
   link: string
 
   information1Number: number
-  information1TextSingular:string
+  information1TextSingular: string
   information1TextPlural: string
 
   information2Number: number
   information2TextSingular: string
   information2TextPlural: string
 
-  information3Number: number
-  information3TextSingular: string
-  information3TextPlural: string
+  information3Number?: number
+  information3TextSingular?: string
+  information3TextPlural?: string
+  done: DashboardDoneInformations
 }
 
-interface progressBarCard{
- cardType: string // progressBar
- auth: string[]
+interface progressBarCard {
+  cardType: string // progressBar
+  auth: string[]
   title: string
   fractionNumber1: number
   fractionNumber2: number
   textShowSingular: string
   textShowPlural: string
   link: string
+  done: DashboardDoneInformations
 }
 
-interface regularCard{
-cardType: string // regular
-auth: string[]
+interface regularCard {
+  cardType: string // regular
+  auth: string[]
 
   title: string
   numberShow: number
   textShowSingular: string
   textShowPlural: string
   link: string
-  bottomText: string | undefined
+  bottomText?: string | undefined
+  done: DashboardDoneInformations
 }
 
-interface bigCardForDashboard{
+interface recrutementAcademiques {
   cardIcon: string,
   auth: string[],
-  allCards: threeInformationsCard[] | progressBarCard[] | regularCard[] | threeInformationsCard | progressBarCard | regularCard
+  allCards: [regularCard, threeInformationsCard, progressBarCard]
 }
 
-const dossiersAcadémiques = {
+interface dossiersAdministratif {
+  cardIcon: string,
+  auth: string[],
+  allCards: [threeInformationsCard, threeInformationsCard, regularCard, regularCard]
+}
+
+const recrutementAcadémiques: recrutementAcademiques = {
   cardIcon: 'graduation-cap',
   auth: [RH_SPS_MANAGE],
   allCards: [
@@ -73,59 +88,181 @@ const dossiersAcadémiques = {
       cardType: 'regular',
       auth: [RH_SPS_MANAGE],
       title: 'dossiers académiques',
-      numberShow: 69,
+      numberShow: 1,
       textShowSingular: 'Dossier Validé',
       textShowPlural: 'Dossiers Validés',
-      link: '/dossiers_academiques'
+      link: '/dossiers_academiques',
+      done: {
+        type: 'string',
+        doneTextPlural: 'donePlural',
+        doneTextSingular: 'doneSingular'
+      }
     },
     {
-      cardType: 'regular',
+      cardType: 'threeinformations',
+      title: 'Sélection des intervenants',
       auth: [RH_SPS_MANAGE],
-      title: 'sélection des intervenants',
-      numberShow: 69,
+      information1Number: 888,
+      information1TextSingular: 'Intervenant manquant',
+      information1TextPlural: 'Intervenants manquants',
+
+      information2Number: 25,
+      information2TextSingular: 'Procès verbal à signer',
+      information2TextPlural: 'Procès-verbaux à signer',
+      link: 'hello',
+      done: {
+        type: 'string',
+        doneTextPlural: 'donePlural',
+        doneTextSingular: 'doneSingular'
+      }
+    },
+    {
+      cardType: 'progressbar',
+      auth: [RH_SPS_MANAGE],
+      title: 'Affectation des intervenants',
+      fractionNumber1: 2,
+      fractionNumber2: 15,
       textShowSingular: 'Intervenant manquant',
       textShowPlural: 'Intervenants manquants',
-      link: '/selections'
+      link: '/dossiers_academiques',
+      done: {
+        type: 'string',
+        doneTextPlural: 'donePlural',
+        doneTextSingular: 'doneSingular'
+      }
+    }
+  ]
+}
+
+const dossiersAdministratifs: dossiersAdministratif = {
+  cardIcon: 'folder-open',
+  auth: [RH_SPS_MANAGE],
+  allCards: [
+    {
+      cardType: 'threeinformations',
+      title: 'dossiers académiques',
+      auth: [RH_SPS_MANAGE],
+      information1Number: 888,
+      information1TextSingular: 'Dossier à vérifier',
+      information1TextPlural: 'Dossiers à vérifier',
+
+      information2Number: 25,
+      information2TextSingular: 'en attente de remplissage',
+      information2TextPlural: 'en attente de remplissage',
+
+      information3Number: 25,
+      information3TextSingular: 'Dossiers totaux',
+      information3TextPlural: 'Dossier total',
+      link: 'hello',
+      done: {
+        type: 'string',
+        doneTextPlural: 'donePlural',
+        doneTextSingular: 'doneSingular'
+      }
     },
     {
-      cardType: 'PROGRESSBAR',
-      auth: ['adm.ini-manage'],
-      title: 'AFFECTATION DES intervenants',
-      fractionNumber1: 2,
-      fractionNumber2: 5,
-      textShowSingular: 'Matière complète',
-      textShowPlural: 'Matières complètes',
-      link: '/affectations'
+      cardType: 'threeinformations',
+      title: 'Contrats',
+      auth: [RH_SPS_MANAGE],
+      information1Number: 888,
+      information1TextSingular: 'Contrat créé',
+      information1TextPlural: 'Contrats créés',
+
+      information2Number: 25,
+      information2TextSingular: 'Information à valider',
+      information2TextPlural: 'Informations à valider',
+      link: 'hello',
+      done: {
+        type: 'string',
+        doneTextPlural: 'donePlural',
+        doneTextSingular: 'doneSingular'
+      }
     },
     {
-      cardType: 'threeinformations', // threeInformations
-      auth: ['adm.ini-manage'],
-      title: 'three informations',
-      link: '/coucou',
+      cardType: 'regular', // regular
+      auth: [RH_SPS_MANAGE],
+      title: 'demandes de remboursement',
+      numberShow: 0,
+      textShowSingular: 'Demande de remboursement',
+      textShowPlural: 'Demandes de remboursements',
+      link: 'coucou',
+      done: {
+        type: 'coucou',
+        doneTextSingular: 'coucou',
+        doneTextPlural: 'coucou'
+      }
+    },
+    {
+      cardType: 'regular', // regular
+      auth: [RH_SPS_MANAGE],
+      title: 'Ordres de mission',
+      numberShow: 666,
+      textShowSingular: 'Ordre de mission à traiter',
+      textShowPlural: 'Ordres de mission à traiter',
+      link: 'coucou',
+      done: {
+        type: 'coucou',
+        doneTextSingular: 'coucou',
+        doneTextPlural: 'coucou'
+      }
+    }
+  ]
+}
 
-      information1Number: 150,
-      information1TextSingular: 'Coucou',
-      information1TextPlural: 'coucous',
+const signatureDeLaDirection = {
+  cardIcon: 'pen',
+  auth: [RH_SPS_MANAGE],
+  allCards: [
+    {
+      cardType: 'regular', // regular
+      auth: [RH_SPS_MANAGE],
+      title: 'SIGNATURE DES DOCUMENTS',
+      numberShow: 666,
+      textShowSingular: 'Document à signer',
+      textShowPlural: 'Documents à signer',
+      link: 'coucou',
+      bottomText: 'xx' + 'Documents au total',
+      done: {
+        type: 'coucou',
+        doneTextSingular: 'coucou',
+        doneTextPlural: 'coucou'
+      }
+    }
+  ]
+}
 
-      information2Number: 258,
-      information2TextSingular: 'Hello les gens',
-      information2TextPlural: 'hello les gens',
-
-      information3Number: 2222,
-      information3TextSingular: 'Information 3',
-      information3TextPlural: 'informations 33'
+const test = {
+  cardIcon: 'pen',
+  auth: [RH_SPS_MANAGE],
+  allCards: [
+    {
+      cardType: 'duo', // regular
+      auth: [RH_SPS_MANAGE],
+      title: 'duo',
+      numberShow: 666,
+      textShowSingular: 'Document à signer',
+      textShowPlural: 'Documents à signer',
+      link: 'coucou',
+      bottomText: 'xx' + 'Documents au total',
+      done: {
+        type: 'coucou',
+        doneTextSingular: 'coucou',
+        doneTextPlural: 'coucou'
+      }
     }
   ]
 }
 
 const functionsForDashboard = {
   dashboardElements: [
-    dossiersAcadémiques,
-    dossiersAcadémiques
+    recrutementAcadémiques,
+    dossiersAdministratifs,
+    signatureDeLaDirection,
+    test
   ],
 
   // eslint-disable-next-line
-  dashboardFilterFunction (dashboardElements: bigCardForDashboard[] | threeInformationsCard[] | progressBarCard[] | regularCard[]):any {
+  dashboardFilterFunction(dashboardElements: any[] | threeInformationsCard[] | progressBarCard[] | regularCard[]): any {
     const dashboardElementsFilter = []
     for (const element of dashboardElements) {
       for (const ua of element.auth) {
@@ -141,7 +278,7 @@ const functionsForDashboard = {
    * Fonction utilisant userAuth et theFilterFunction. Controle le menu et les sous-menu, renvois le tableau final pret pour SideBarLeft. Utilise theFilterFunction
     */
   // eslint-disable-next-line
-  dashboardFiltered (dashboardElements: any[]): any {
+  dashboardFiltered(dashboardElements: any[]): any {
     const dashboardFiltered = this.dashboardFilterFunction(dashboardElements)
     console.log('filtered')
     console.log(dashboardFiltered)
@@ -155,4 +292,4 @@ const functionsForDashboard = {
   }
 }
 
-export { functionsForDashboard, regularCard, progressBarCard, threeInformationsCard, bigCardForDashboard }
+export { functionsForDashboard, regularCard, progressBarCard, threeInformationsCard }
