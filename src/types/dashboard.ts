@@ -68,6 +68,25 @@ interface regularCard {
   done: DashboardDoneInformations
 }
 
+interface duoCard{
+  cardType: string // regular
+  auth: string[]
+
+  titleFirstCard: string
+  numberShowFirstCard: number
+  textShowSingularFirstCard: string
+  textShowPluralFirstCard: string
+  linkFirstCard: string
+  doneFirstCard: DashboardDoneInformations
+
+  titleSecondCard: string
+  numberShowSecondCard: number
+  textShowSingularSecondCard: string
+  textShowPluralSecondCard: string
+  linkSecondCard: string
+  doneSecondCard: DashboardDoneInformations
+}
+
 interface recrutementAcademiques {
   cardIcon: string,
   auth: string[],
@@ -77,7 +96,7 @@ interface recrutementAcademiques {
 interface dossiersAdministratif {
   cardIcon: string,
   auth: string[],
-  allCards: [threeInformationsCard, threeInformationsCard, regularCard, regularCard]
+  allCards: [threeInformationsCard, threeInformationsCard, duoCard]
 }
 
 const recrutementAcadémiques: recrutementAcademiques = {
@@ -179,31 +198,33 @@ const dossiersAdministratifs: dossiersAdministratif = {
       }
     },
     {
-      cardType: 'regular', // regular
+      cardType: 'duocard',
       auth: [RH_SPS_MANAGE],
-      title: 'demandes de remboursement',
-      numberShow: 0,
-      textShowSingular: 'Demande de remboursement',
-      textShowPlural: 'Demandes de remboursements',
-      link: 'coucou',
-      done: {
-        type: 'coucou',
-        doneTextSingular: 'coucou',
-        doneTextPlural: 'coucou'
-      }
-    },
-    {
-      cardType: 'regular', // regular
-      auth: [RH_SPS_MANAGE],
-      title: 'Ordres de mission',
-      numberShow: 666,
-      textShowSingular: 'Ordre de mission à traiter',
-      textShowPlural: 'Ordres de mission à traiter',
-      link: 'coucou',
-      done: {
-        type: 'coucou',
-        doneTextSingular: 'coucou',
-        doneTextPlural: 'coucou'
+
+      titleFirstCard: 'Demandes de remboursement',
+      numberShowFirstCard: 666,
+      textShowSingularFirstCard: 'Remboursement à traiter',
+      textShowPluralFirstCard: 'Remboursements à traiter',
+      linkFirstCard: '/coucou',
+      doneFirstCard: {
+
+        type: 'doneRegular',
+        doneTextSingular: 'Pas de demandes à traiter',
+        doneTextPlural: 'Done'
+
+      },
+
+      titleSecondCard: 'Ordres de mission',
+      numberShowSecondCard: 1,
+      textShowSingularSecondCard: 'Ordre de mission à traiter',
+      textShowPluralSecondCard: 'Ordres de mission à traiter',
+      linkSecondCard: '/coucou',
+      doneSecondCard: {
+
+        type: 'doneRegular',
+        doneTextSingular: 'Pas de demandes à traiter',
+        doneTextPlural: 'Done'
+
       }
     }
   ]
@@ -231,34 +252,11 @@ const signatureDeLaDirection = {
   ]
 }
 
-const test = {
-  cardIcon: 'pen',
-  auth: [RH_SPS_MANAGE],
-  allCards: [
-    {
-      cardType: 'duo', // regular
-      auth: [RH_SPS_MANAGE],
-      title: 'duo',
-      numberShow: 666,
-      textShowSingular: 'Document à signer',
-      textShowPlural: 'Documents à signer',
-      link: 'coucou',
-      bottomText: 'xx' + 'Documents au total',
-      done: {
-        type: 'coucou',
-        doneTextSingular: 'coucou',
-        doneTextPlural: 'coucou'
-      }
-    }
-  ]
-}
-
 const functionsForDashboard = {
   dashboardElements: [
     recrutementAcadémiques,
     dossiersAdministratifs,
-    signatureDeLaDirection,
-    test
+    signatureDeLaDirection
   ],
 
   // eslint-disable-next-line

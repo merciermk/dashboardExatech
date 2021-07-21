@@ -11,15 +11,6 @@
         :textShowSingular="eachCard.textShowSingular"
         :textShowPlural="eachCard.textShowPlural"
         :progressBar="parseInt(eachCard.numberForProgressBar)"
-        :threeinformationsNumber1="parseInt(eachCard.information1Number)"
-        :threeinformationsText1Singular="eachCard.information1TextSingular"
-        :threeinformationsText1Plural="eachCard.information1TextPlural"
-        :threeinformationsNumber2="parseInt(eachCard.information2Number)"
-        :threeinformationsText2Singular="eachCard.information2TextSingular"
-        :threeinformationsText2Plural="eachCard.information2TextPlural"
-        :threeinformationsNumber3="parseInt(eachCard.information3Number)"
-        :threeinformationsText3Singular="eachCard.information3TextSingular"
-        :threeinformationsText3Plural="eachCard.information3TextPlural"
       >
       </small-card-done>
       <small-card
@@ -32,9 +23,11 @@
         :textShowSingular="eachCard.textShowSingular"
         :textShowPlural="eachCard.textShowPlural"
         :bottomText="eachCard.bottomText"
+
         :fractionNumber1="parseInt(eachCard.fractionNumber1)"
         :fractionNumber2="parseInt(eachCard.fractionNumber2)"
         :progressBar="parseInt(eachCard.numberForProgressBar)"
+
         :threeinformationsNumber1="parseInt(eachCard.information1Number)"
         :threeinformationsText1Singular="eachCard.information1TextSingular"
         :threeinformationsText1Plural="eachCard.information1TextPlural"
@@ -44,6 +37,16 @@
         :threeinformationsNumber3="parseInt(eachCard.information3Number)"
         :threeinformationsText3Singular="eachCard.information3TextSingular"
         :threeinformationsText3Plural="eachCard.information3TextPlural"
+
+        :titleFirstCard ="eachCard.titleFirstCard"
+:numberShowFirstCard ="eachCard.numberShowFirstCard"
+:textShowSingularFirstCard="eachCard.textShowSingularFirstCard"
+:textShowPluralFirstCard="eachCard.textShowPluralFirstCard"
+
+:titleSecondCard ="eachCard.titleSecondCard"
+:numberShowSecondCard ="eachCard.numberShowSecondCard"
+:textShowSingularSecondCard="eachCard.textShowSingularSecondCard"
+:textShowPluralSecondCard="eachCard.textShowPluralSecondCard"
       ></small-card>
     </div>
   </div>

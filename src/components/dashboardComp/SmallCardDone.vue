@@ -224,7 +224,7 @@ $small-card-done-hr-color: #585F60;
    0% { width: 0; }
 }
 
-/* // Graph stuff
+// Graph stuff
 
 .bar-graph {
   list-style: none;
@@ -243,6 +243,6 @@ $small-card-done-hr-color: #585F60;
   display: block;
   height: 100%;
 
-} */
+}
 
 </style>

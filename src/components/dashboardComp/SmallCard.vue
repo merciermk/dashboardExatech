@@ -72,35 +72,35 @@
     <!-- Duo card -->
      <div class="small-card-dual-card"
       v-if="
-        cardType.toUpperCase() === 'DUO'
+        cardType.toUpperCase() === 'DUOCARD'
       "
     >
     <router-link to="" class="duo-card duo-card-one">
       <div class="card-title">
-      <p class="card-title-text">{{ title.toUpperCase() }}</p>
+      <p class="card-title-text">{{ titleFirstCard.toUpperCase() }}</p>
       <hr class="card-title-line" />
       </div>
 
        <div class="duo-card-middle" >
-          <p class="duo-card-middle-number">152</p>
-          <p class="duo-card-middle-text" v-if="numberShow === 1 || fractionNumber1 === 1">
-            testSingular
+          <p class="duo-card-middle-number">{{ numberShowFirstCard }}</p>
+          <p class="duo-card-middle-text" v-if="numberShow <= 1 || fractionNumber1 <= 1">
+            {{ textShowSingularFirstCard}}
           </p>
-          <p class="duo-card-middle-text" v-else>testSingular</p>
+          <p class="duo-card-middle-text" v-else>{{ textShowPluralFirstCard }}</p>
         </div>
     </router-link>
     <!-- title -->
       <router-link to="" class="duo-card duo-card-two">
         <div class="card-title">
-          <p class="card-title-text">{{ title.toUpperCase() }}</p>
+          <p class="card-title-text">{{ titleSecondCard.toUpperCase() }}</p>
          <hr class="card-title-line" />
         </div>
         <div class="duo-card-middle" >
-          <p class="duo-card-middle-number">152</p>
-          <p class="duo-card-middle-text" v-if="numberShow === 1 || fractionNumber1 === 1">
-            testSingular
+          <p class="duo-card-middle-number">{{ numberShowSecondCard }}</p>
+          <p class="duo-card-middle-text" v-if="numberShowSecondCard <= 1">
+            {{ textShowSingularSecondCard }}
           </p>
-          <p class="duo-card-middle-text" v-else>testSingular</p>
+          <p class="duo-card-middle-text" v-else> {{ textShowPluralSecondCard }}</p>
         </div>
       </router-link>
     </div>
@@ -144,6 +144,16 @@ export default class SmallCard extends Vue {
   @Prop() readonly fractionNumber1! : number | undefined
   @Prop() readonly fractionNumber2! : number | undefined
 
+  /* DUO CARD */
+@Prop() readonly titleFirstCard! : string | undefined
+@Prop() readonly numberShowFirstCard! : number | undefined
+@Prop() readonly textShowSingularFirstCard!: string | undefined
+@Prop() readonly textShowPluralFirstCard!: string | undefined
+
+@Prop() readonly titleSecondCard! : string | undefined
+@Prop() readonly numberShowSecondCard! : number | undefined
+@Prop() readonly textShowSingularSecondCard!: string | undefined
+@Prop() readonly textShowPluralSecondCard!: string | undefined
   /* ************ */
   /* Bottom carte */
   /* ************ */
@@ -178,6 +188,7 @@ $progress-bar-color-background: #F6f7fa;
 $small-card-text-color: #FFFFFF;
 $small-card-hr-color: #293F41;
  $small-card-title-height: 36px;
+ $font-size-number-duo-threeinfos: 25px;
 
 .small-card {
   background-color: $small-card-background-color;
@@ -202,7 +213,7 @@ $small-card-hr-color: #293F41;
 .small-card:hover,
 .duo-card-one:hover,
 .duo-card-two:hover {
-  box-shadow: 10px 10px 15px rgba(128, 128, 128, 0.445);
+  box-shadow: 0px 0px 15px 3px rgba(128, 128, 128, 0.74);
 }
 
 /* title carte */
@@ -265,7 +276,7 @@ $small-card-hr-color: #293F41;
 
 .small-card-middle-threeinformations-number{
   width: 30%;
-  font-size: 25px;
+  font-size: $font-size-number-duo-threeinfos;
   color:  $small-card-text-color;
   text-align: right;
   padding-right: 10px;
@@ -384,6 +395,11 @@ $small-card-hr-color: #293F41;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
+}
+
+.duo-card-middle-number{
+  font-size: $font-size-number-duo-threeinfos;
+  margin: 0;
 }
 
 </style>
