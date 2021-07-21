@@ -3,6 +3,7 @@
     <font-awesome-icon :icon="cardIcon" class="big-card-icon" />
     <div v-for="(eachCard, index) in allCards" :key="index">
       <small-card-duo v-if="eachCard.cardType.toUpperCase() === 'DUOCARD'"
+       class="small-card-dashboard"
         :titleFirstCard="eachCard.titleFirstCard"
         :numberShowFirstCard="eachCard.numberShowFirstCard"
         :textShowSingularFirstCard="eachCard.textShowSingularFirstCard"
@@ -17,6 +18,7 @@
       </small-card-duo>
 
       <small-card-progress-bar v-if="eachCard.cardType.toUpperCase() === 'PROGRESSBAR'"
+       class="small-card-dashboard"
         :cardType="eachCard.cardType"
         :title="eachCard.title"
         :link="eachCard.link"
@@ -28,6 +30,7 @@
       > </small-card-progress-bar>
 
       <small-card-regular v-if="eachCard.cardType.toUpperCase() === 'REGULAR'"
+       class="small-card-dashboard"
         :title="eachCard.title"
         :link="eachCard.link"
         :numberShow="parseInt(eachCard.numberShow)"
