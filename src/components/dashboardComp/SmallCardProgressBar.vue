@@ -1,41 +1,47 @@
 <template>
-  <div class="small-card">
-    <!-- Regular and progress bar -->
-    <router-link
-      :to="link"
-      class="small-card-regular"
-      v-if="
-        cardType.toUpperCase() === 'PROGRESSBAR'
-      "
-    >
-    <!-- title -->
-      <div class="card-title">
-        <p class="card-title-text">{{ title.toUpperCase() }}</p>
-       <hr class="card-title-line" />
-      </div>
-      <!-- Milieu de carte  -->
-      <!-- Milieu carte pour regular / progressBar -->
-      <div class="card-middle" v-if="fractionNumber1">
-        <p class="card-middle-number" v-if="fractionNumber1">
-          {{ fractionNumber1 }}/{{ fractionNumber2 }}</p>
-        <p class="card-middle-text" v-if="fractionNumber1 === 1">
-          {{ textShowSingular }}
-        </p>
-        <p class="card-middle-text" v-else>{{ textShowPlural }}</p>
-      </div>
-      <!-- Bas de la carte -->
-      <!-- bottom avec progress-bar -->
-      <div class="card-bottom-progress-bar" v-if="cardType.toUpperCase() === 'PROGRESSBAR'">
-        <div
-          class="card-bottom-progress-bar"
+  <div>
+    <!-- Regular progress bar -->
+    <div class="small-card" v-if="
+          cardType.toUpperCase() === 'PROGRESSBAR'
+        "
+         :class="fractionNumber1 === fractionNumber2 ? 'doneMode' : ''"
         >
-         <div class="bar-wrap">
-           <span class="bar-fill"  :style="'width:' + percentageCalculation (fractionNumber1, fractionNumber2) + '%;'"></span>
+      <router-link
+        :to="link"
+        class="small-card-regular"
+      >
+      <!-- title -->
+        <div class="card-title">
+          <p class="card-title-text">{{ title.toUpperCase() }}</p>
+         <hr class="card-title-line" />
+        </div>
+        <!-- Milieu de carte  -->
+        <!-- Milieu carte pour regular / progressBar -->
+        <div class="card-middle" v-if="fractionNumber1 && fractionNumber1 != fractionNumber2">
+          <p class="card-middle-number" v-if="fractionNumber1">{{ fractionNumber1 }}/{{ fractionNumber2 }}</p>
+          <p class="card-middle-text" v-if="fractionNumber1 <= 1">
+            {{ textShowSingular }}
+          </p>
+          <p class="card-middle-text" v-else>{{ textShowPlural }}</p>
+        </div>
+        <div class="card-middle" v-if="fractionNumber1 === fractionNumber2">
+                 <font-awesome-icon icon="check" class="card-middle-done-icon" />
+        <div>
+           <p class="card-middle-done-text">{{ doneText }}</p>
         </div>
         </div>
-      </div>
-    </router-link>
-
+        <!-- bottom avec progress-bar -->
+        <div class="card-bottom-progress-bar" v-if="cardType.toUpperCase() === 'PROGRESSBAR'">
+          <div
+            class="card-bottom-progress-bar"
+          >
+           <div class="bar-wrap">
+             <span class="bar-fill"  :style="'width:' + percentageCalculation (fractionNumber1, fractionNumber2) + '%;'"></span>
+          </div>
+          </div>
+        </div>
+      </router-link>
+    </div>
   </div>
 </template>
 
@@ -45,24 +51,18 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 @Component({
   components: {}
 })
-export default class SmallCard extends Vue {
+export default class SmallCardThreeInformations extends Vue {
   /* Communes a toutes les cartes */
   @Prop() readonly cardType!: string; // type de carte
   @Prop() readonly title!: string;
-  @Prop() readonly textShowSingular!: string | undefined;
+  @Prop() readonly textShowSingular!: string;
   @Prop() readonly textShowPlural!: string | undefined;
   @Prop() readonly link!: string;
 
-  /* Fraction type */
-  @Prop() readonly fractionNumber1! : number | undefined
-  @Prop() readonly fractionNumber2! : number | undefined
+  @Prop() readonly fractionNumber1! : number
+  @Prop() readonly fractionNumber2! : number
 
-  /* ************ */
-  /* Bottom carte */
-  /* ************ */
-
-  /* Progress Bar type de carte : progressBar */
-  @Prop() readonly progressBar!: number | undefined
+  @Prop() readonly doneText!: string
 
   percentageCalculation (number1: number, number2: number): number {
     return number1 * 100 / number2
@@ -70,7 +70,7 @@ export default class SmallCard extends Vue {
 }
 </script>
 
-<style scoped lang="scss">
+<style lang="scss">
 @font-face {
     font-family: 'Product Sans';
     src:url("../../fonts/ProductSans-Regular.ttf");
@@ -87,8 +87,9 @@ $small-card-background-color: #5F6b6d;
 $progress-bar-color: #6bbeb7;
 $progress-bar-color-background: #F6f7fa;
 $small-card-text-color: #FFFFFF;
-$small-card-hr-color: #585F60;
+$small-card-hr-color: #293F41;
  $small-card-title-height: 36px;
+ $font-size-number-duo-threeinfos: 25px;
 
 .small-card {
   background-color: $small-card-background-color;
@@ -102,15 +103,22 @@ $small-card-hr-color: #585F60;
 }
 .small-card a,
 .small-card a:visited,
-.small-card a:hover {
+.small-card
+{
   color: $small-card-text-color;
   text-decoration: none;
 }
 
+.small-card:hover
+ {
+  box-shadow: 0px 0px 15px 3px rgba(128, 128, 128, 0.74);
+}
+
 /* title carte */
 .card-title {
+  padding-top: 1px;
   position: absolute;
-  width: 100%;
+  width: $card-width;
   margin: 0 !important;
   line-height: 1rem;
   min-height: $small-card-title-height;
@@ -118,10 +126,13 @@ $small-card-hr-color: #585F60;
   font-size: $font-size;
 }
 .card-title-line {
-  width: 100%;
-  margin: 0;
-  min-height: 3px;
-  color: $small-card-hr-color
+  position: absolute;
+  top: $small-card-title-height;
+  left: 10px;
+  width: 230px !important;
+  min-height: 1px;
+  margin: auto !important;
+  background-color: $small-card-hr-color;
 }
 .card-title-text {
   text-align: center;
@@ -145,37 +156,11 @@ $small-card-hr-color: #585F60;
   margin: 0;
   font-size: $middle-number-size;
 }
-
-/* pied de la carte */
-.card-bottom {
-  position:absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  min-height: 44px;
-  max-height: 44px;
-  overflow: hidden;
-  p {
-    color: $progress-bar-color;
-    margin: auto;
-    padding-top: 5px;
-  }
-}
-
-.card-bottom-hr {
-  margin: 0;
-  background-color: $progress-bar-color;
-}
-
 /* progress bar */
 /* Pied de carte progressBar */
 .card-bottom-progress-bar {
-  display: flex;
-  align-items: flex-end;
-  min-height: 44px;
-  max-height: 44px;
+  padding-top: 12px;
+  min-height: 100%;
   overflow: hidden;
 }
 
@@ -215,9 +200,8 @@ $small-card-hr-color: #585F60;
 
 .bar-wrap {
   width: $card-width;
-  height: 30px;
+  height: 20px;
   background-color: $progress-bar-color-background
-
 }
 
 .bar-fill {
@@ -225,7 +209,5 @@ $small-card-hr-color: #585F60;
   background-color: $progress-bar-color;
   display: block;
   height: 100%;
-
 }
-
 </style>

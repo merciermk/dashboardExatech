@@ -19,8 +19,9 @@ const RH_SIGNATURE = Ability.RH_SIGNATURE
 
 interface DashboardDoneInformations {
   type: string,
-  doneTextSingular: string,
+  doneText: string,
   doneTextPlural: string,
+  doneBottomText?: string, // utilisable si regularCard
 }
 
 interface threeInformationsCard {
@@ -107,14 +108,16 @@ const recrutementAcadémiques: recrutementAcademiques = {
       cardType: 'regular',
       auth: [RH_SPS_MANAGE],
       title: 'dossiers académiques',
-      numberShow: 1,
+      numberShow: 0,
       textShowSingular: 'Dossier Validé',
       textShowPlural: 'Dossiers Validés',
       link: '/dossiers_academiques',
+      bottomText: 'coucou',
       done: {
         type: 'string',
         doneTextPlural: 'donePlural',
-        doneTextSingular: 'doneSingular'
+        doneText: 'doneSingular',
+        doneBottomText: 'Coucou'
       }
     },
     {
@@ -132,14 +135,14 @@ const recrutementAcadémiques: recrutementAcademiques = {
       done: {
         type: 'string',
         doneTextPlural: 'donePlural',
-        doneTextSingular: 'doneSingular'
+        doneText: 'doneSingular'
       }
     },
     {
       cardType: 'progressbar',
       auth: [RH_SPS_MANAGE],
       title: 'Affectation des intervenants',
-      fractionNumber1: 2,
+      fractionNumber1: 15,
       fractionNumber2: 15,
       textShowSingular: 'Intervenant manquant',
       textShowPlural: 'Intervenants manquants',
@@ -147,7 +150,7 @@ const recrutementAcadémiques: recrutementAcademiques = {
       done: {
         type: 'string',
         doneTextPlural: 'donePlural',
-        doneTextSingular: 'doneSingular'
+        doneText: 'Toutes les affectations sont effectuées'
       }
     }
   ]
@@ -161,7 +164,7 @@ const dossiersAdministratifs: dossiersAdministratif = {
       cardType: 'threeinformations',
       title: 'dossiers académiques',
       auth: [RH_SPS_MANAGE],
-      information1Number: 888,
+      information1Number: 0,
       information1TextSingular: 'Dossier à vérifier',
       information1TextPlural: 'Dossiers à vérifier',
 
@@ -176,7 +179,7 @@ const dossiersAdministratifs: dossiersAdministratif = {
       done: {
         type: 'string',
         doneTextPlural: 'donePlural',
-        doneTextSingular: 'doneSingular'
+        doneText: 'doneSingular'
       }
     },
     {
@@ -194,7 +197,7 @@ const dossiersAdministratifs: dossiersAdministratif = {
       done: {
         type: 'string',
         doneTextPlural: 'donePlural',
-        doneTextSingular: 'doneSingular'
+        doneText: 'doneSingular'
       }
     },
     {
@@ -202,14 +205,14 @@ const dossiersAdministratifs: dossiersAdministratif = {
       auth: [RH_SPS_MANAGE],
 
       titleFirstCard: 'Demandes de remboursement',
-      numberShowFirstCard: 666,
+      numberShowFirstCard: 1,
       textShowSingularFirstCard: 'Remboursement à traiter',
       textShowPluralFirstCard: 'Remboursements à traiter',
       linkFirstCard: '/coucou',
       doneFirstCard: {
 
         type: 'doneRegular',
-        doneTextSingular: 'Pas de demandes à traiter',
+        doneText: 'Pas de demandes à traiter',
         doneTextPlural: 'Done'
 
       },
@@ -222,7 +225,7 @@ const dossiersAdministratifs: dossiersAdministratif = {
       doneSecondCard: {
 
         type: 'doneRegular',
-        doneTextSingular: 'Pas de demandes à traiter',
+        doneText: 'Pas de demandes à traiter',
         doneTextPlural: 'Done'
 
       }
@@ -238,15 +241,16 @@ const signatureDeLaDirection = {
       cardType: 'regular', // regular
       auth: [RH_SPS_MANAGE],
       title: 'SIGNATURE DES DOCUMENTS',
-      numberShow: 666,
+      numberShow: 0,
       textShowSingular: 'Document à signer',
       textShowPlural: 'Documents à signer',
       link: 'coucou',
       bottomText: 'xx' + 'Documents au total',
       done: {
         type: 'coucou',
-        doneTextSingular: 'coucou',
-        doneTextPlural: 'coucou'
+        doneText: 'Tous les documents sont signés',
+        doneTextPlural: '',
+        doneBottomText: 'information a afficher'
       }
     }
   ]
@@ -290,4 +294,4 @@ const functionsForDashboard = {
   }
 }
 
-export { functionsForDashboard, regularCard, progressBarCard, threeInformationsCard }
+export { functionsForDashboard, regularCard, progressBarCard, threeInformationsCard, duoCard }

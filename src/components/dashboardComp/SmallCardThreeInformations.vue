@@ -1,8 +1,6 @@
 <template>
     <!-- Regular progress bar -->
-    <div class="small-card"
-    :class="numberShow === 0 ? 'doneMode' : ''"
-    >
+    <div class="small-card" v-if="cardType.toUpperCase() === 'THREEINFORMATIONS'">
       <router-link
         :to="link"
         class="small-card-regular"
@@ -13,34 +11,27 @@
          <hr class="card-title-line" />
         </div>
         <!-- Milieu de carte  -->
-        <div class="card-middle" v-if="numberShow">
-          <p class="card-middle-number">{{ numberShow }}</p>
-          <p class="card-middle-text" v-if="numberShow <= 1">
-            {{ textShowSingular }}
-          </p>
-          <p class="card-middle-text" v-else>{{ textShowPlural }}</p>
-        </div>
-
-        <!-- Activation de la carte doneCard -->
-        <div class="card-middle" v-else>
-           <font-awesome-icon icon="check" class="card-middle-done-icon" />
-        <div>
-           <p class="card-middle-done-text">{{ doneText }}</p>
-        </div>
-        </div>
-        <!-- Bas de la carte -->
-        <div class="card-bottom" v-if="bottomText">
-          <!-- carte avec texte en bottom -->
-          <div
-            class="card-bottom-text"
-          >
-            <hr class="card-bottom-hr" />
-            <p v-if="bottomText && numberShow">{{ bottomText }}</p>
-            <p v-if="doneBottomText && numberShow === 0">{{ doneBottomText }}</p>
+        <!-- Milieu carte pour threeinformations -->
+        <div class="card-middle" v-if="cardType.toUpperCase() === 'THREEINFORMATIONS'">
+          <div class="three-informations">
+            <p class="small-card-middle-threeinformations-number">
+            {{ threeinformationsNumber1 }}</p>
+                   <p v-if="threeinformationsNumber1 <= 1" class="small-card-middle-threeinformations-text">  {{ threeinformationsText1Singular }}</p>
+             <p v-else class="small-card-middle-threeinformations-text">  {{ threeinformationsText1Plural }}</p>
+          </div>
+          <div class="three-informations">
+            <p class="small-card-middle-threeinformations-number">{{ threeinformationsNumber2 }}</p>
+            <p v-if="threeinformationsNumber2 <= 1" class="small-card-middle-threeinformations-text">  {{ threeinformationsText2Singular }}</p>
+             <p v-else class="small-card-middle-threeinformations-text">  {{ threeinformationsText2Plural }}</p>
+          </div>
+          <div v-if="threeinformationsNumber3" class="three-informations">
+            <p class="small-card-middle-threeinformations-number">{{ threeinformationsNumber3 }}</p>
+                   <p v-if="threeinformationsNumber3 <= 1" class="small-card-middle-threeinformations-text">  {{ threeinformationsText3Singular }}</p>
+             <p v-else class="small-card-middle-threeinformations-text">  {{ threeinformationsText3Plural }}</p>
           </div>
         </div>
       </router-link>
-    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -53,23 +44,24 @@ export default class SmallCard extends Vue {
   /* Communes a toutes les cartes */
   @Prop() readonly cardType!: string; // type de carte
   @Prop() readonly title!: string;
-  @Prop() readonly textShowSingular!: string
-  @Prop() readonly textShowPlural!: string | undefined;
+
   @Prop() readonly link!: string;
-  @Prop() readonly doneText!: string;
-  @Prop() readonly doneBottomText!: string | undefined
 
   /* ****************** */
   /* Milieu de la carte */
   /* ****************** */
-  /* Affichage un seul chiffre */
-  @Prop() readonly numberShow!: number | undefined
+  /* ThreeInformationsCard */
+  @Prop() readonly threeinformationsNumber1!: number | undefined
+  @Prop() readonly threeinformationsText1Singular!: string | undefined
+  @Prop() readonly threeinformationsText1Plural!: string | undefined
 
-  /* ************ */
-  /* Bottom carte */
-  /* ************ */
-  /* regular card */
-  @Prop() readonly bottomText!: string | undefined;
+  @Prop() readonly threeinformationsNumber2!: number | undefined
+  @Prop() readonly threeinformationsText2Singular!: string | undefined
+  @Prop() readonly threeinformationsText2Plural!: string | undefined
+
+  @Prop() readonly threeinformationsNumber3!: number | undefined
+  @Prop() readonly threeinformationsText3Singular!: string | undefined
+  @Prop() readonly threeinformationsText3Plural!: string | undefined
 }
 </script>
 
@@ -78,8 +70,7 @@ export default class SmallCard extends Vue {
     font-family: 'Product Sans';
     src:url("../../fonts/ProductSans-Regular.ttf");
 }
-.small-card,
-.doneMode{
+.small-card{
   font-style: 'Product Sans';
 }
 
@@ -92,9 +83,8 @@ $progress-bar-color: #6bbeb7;
 $progress-bar-color-background: #F6f7fa;
 $small-card-text-color: #FFFFFF;
 $small-card-hr-color: #293F41;
-$small-card-title-height: 36px;
-$font-size-number-duo-threeinfos: 25px;
-$small-card-done-text-color: #909090;
+ $small-card-title-height: 36px;
+ $font-size-number-duo-threeinfos: 25px;
 
 .small-card {
   background-color: $small-card-background-color;
@@ -106,9 +96,6 @@ $small-card-done-text-color: #909090;
   border-radius: 15px;
   overflow: hidden;
 }
-.doneMode{
-  background-color: $progress-bar-color-background !important;
-}
 .small-card a,
 .small-card a:visited,
 .small-card,
@@ -116,13 +103,6 @@ $small-card-done-text-color: #909090;
 .small-card-dual-card a:visited,
 .small-card-dual-card {
   color: $small-card-text-color;
-  text-decoration: none;
-}
-
-.doneMode,
-.doneMode a,
-.doneMode a:visited{
-  color: $small-card-done-text-color !important;
   text-decoration: none;
 }
 
@@ -176,34 +156,34 @@ $small-card-done-text-color: #909090;
 }
 /* milieu carte de type threeInformation */
 
-/* pied de la carte */
-.card-bottom {
-  position:absolute;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+.three-informations{
   width: $card-width;
-  min-height: 44px;
-  max-height: 44px;
-  overflow: hidden;
-  p {
-    color: $progress-bar-color;
-    margin: auto;
-    padding-top: 5px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  padding-top: 40px;
+  height: 20px;
+
+  &:first-child{
+    color: $progress-bar-color
   }
+}
+
+.small-card-middle-threeinformations-number{
+  width: 30%;
+  font-size: $font-size-number-duo-threeinfos;
+  color:  $small-card-text-color;
+  text-align: right;
+  padding-right: 10px;
+}
+.small-card-middle-threeinformations-text{
+  width: 70%;
 }
 
 .card-bottom-hr {
   margin: 0;
   background-color: $progress-bar-color;
-}
-
-/* Done */
-.card-middle-done-icon{
-  margin-top: 25px;
-  margin-bottom: 15px;
-  font-size: 35px;
 }
 
 </style>
