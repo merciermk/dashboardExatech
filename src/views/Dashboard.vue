@@ -1,5 +1,7 @@
 <template>
-  <div class="dashboard">
+  <div class="dashboard"
+  v-if="dashboardReady"
+  >
     <big-card
     v-for="(dashboardElement, index) in dashboardElements" :key="index"
       :cardIcon="dashboardElement.cardIcon"
@@ -15,14 +17,32 @@
 import { Vue, Component } from 'vue-property-decorator'
 import BigCard from '@/components/dashboardComp/DashboardCard.vue'
 import { functionsForDashboard } from '@/types/dashboard'
+import { mapGetters, mapState } from 'vuex'
 
 @Component({
+  computed: {
+    ...mapGetters('auth', ['authUser', 'can', 'cannot', 'isA', 'isNotA']),
+    ...mapState('auth', ['user', 'authUser'])
+  },
   components: {
     BigCard
   }
 })
 export default class Dashboard extends Vue {
-  dashboardElements = functionsForDashboard.dashboardFiltered(functionsForDashboard.dashboardElements)
+  dashboardElements!: string[]
+  dashboardReady = false
+
+  initMenu ():void {
+    // console.log('init du menu')
+    this.dashboardElements = functionsForDashboard.dashboardFiltered(functionsForDashboard.dashboardElements)
+    this.dashboardReady = true
+  }
+
+  mounted ():void {
+    if (this.$store.state.auth.user.abilities && this.$store.state.auth.user.abilities.length !== 0) {
+      this.initMenu()
+    }
+  }
 }
 </script>
 

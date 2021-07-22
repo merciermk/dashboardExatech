@@ -381,11 +381,13 @@ $small-card-hr-color: #293F41;
 
 .duo-card-one{
   background-color: $small-card-background-color;
-  box-shadow: 0px 0px 15px rgba(128, 128, 128, 0.445);
+    box-shadow: 0px 0px 15px rgba(128, 128, 128, 0.445);
+
 }
 .duo-card-two{
   background-color:$small-card-background-color;
-  box-shadow: 0px 0px 15px rgba(128, 128, 128, 0.445);
+    box-shadow: 0px 0px 15px rgba(128, 128, 128, 0.445);
+
 }
 
 .duo-card-middle{

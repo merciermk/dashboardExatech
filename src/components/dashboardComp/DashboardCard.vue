@@ -59,6 +59,17 @@
         :threeinformationsText3Plural="eachCard.information3TextPlural"
       >
       </small-card-three-informations>
+          <small-card-graph
+    class="small-card-dashboard"
+    :title="eachCard.title"
+        :link="eachCard.link"
+        :numberShow="parseInt(eachCard.numberShow)"
+        :textShowSingular="eachCard.textShowSingular"
+        :textShowPlural="eachCard.textShowPlural"
+        :bottomText="eachCard.bottomText"
+        :doneText="eachCard.done.doneText"
+        :doneBottomText="eachCard.done.doneBottomText"
+    ></small-card-graph>
     </div>
   </div>
 </template>
@@ -69,23 +80,25 @@ import SmallCardDuo from '@/components/dashboardComp/SmallCardDuo.vue'
 import SmallCardProgressBar from '@/components/dashboardComp/SmallCardProgressBar.vue'
 import SmallCardRegular from '@/components/dashboardComp/SmallCardRegular.vue'
 import SmallCardThreeInformations from '@/components/dashboardComp/SmallCardThreeInformations.vue'
+import SmallCardGraph from '@/components/dashboardComp/SmallCardGraph.vue'
 import {
-  threeInformationsCard,
-  progressBarCard,
-  regularCard,
-  duoCard
+  SmallCardThreeInformationsInterface,
+  SmallCardProgressBarInterface,
+  SmallCardRegularInterface,
+  SmallCardDuoCardInterface
 } from '@/types/dashboard'
 @Component({
   components: {
     SmallCardDuo,
     SmallCardProgressBar,
     SmallCardRegular,
-    SmallCardThreeInformations
+    SmallCardThreeInformations,
+    SmallCardGraph
   }
 })
 export default class BigCard extends Vue {
   @Prop() cardIcon!: string;
-  @Prop() allCards!: threeInformationsCard | progressBarCard | regularCard | duoCard;
+  @Prop() allCards!: SmallCardThreeInformationsInterface | SmallCardProgressBarInterface | SmallCardRegularInterface | SmallCardDuoCardInterface;
 }
 </script>
 

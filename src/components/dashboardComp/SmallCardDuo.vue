@@ -99,7 +99,8 @@ $small-card-done-text-color: #909090;
   width: $card-width;
   min-height: $card-height;
   max-height: $card-height;
-  box-shadow: 0px 0px 15px rgba(128, 128, 128, 0.445);
+  box-shadow: 0px 0px 15px 3px rgba(128, 128, 128, 0.445);
+
   margin: 10px 10px 10px 10px;
   border-radius: 15px;
   overflow: hidden;
@@ -164,11 +165,11 @@ $small-card-done-text-color: #909090;
 
 .duo-card-one{
   background-color: $small-card-background-color;
-  box-shadow: 0px 0px 15px rgba(128, 128, 128, 0.445);
+  box-shadow: 0px 0px 15px 3px rgba(128, 128, 128, 0.445);
 }
 .duo-card-two{
   background-color:$small-card-background-color;
-  box-shadow: 0px 0px 15px rgba(128, 128, 128, 0.445);
+  box-shadow: 0px 0px 15px 3px rgba(128, 128, 128, 0.445);
 }
 
 .duo-card-middle{

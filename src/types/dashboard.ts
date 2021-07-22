@@ -21,10 +21,10 @@ interface DashboardDoneInformations {
   type: string,
   doneText: string,
   doneTextPlural: string,
-  doneBottomText?: string, // utilisable si regularCard
+  doneBottomText?: string, // utilisable si SmallCardRegularInterface
 }
 
-interface threeInformationsCard {
+interface SmallCardThreeInformationsInterface {
   cardType: string // threeInformations
   auth: string[]
   title: string
@@ -44,7 +44,7 @@ interface threeInformationsCard {
   done: DashboardDoneInformations
 }
 
-interface progressBarCard {
+interface SmallCardProgressBarInterface {
   cardType: string // progressBar
   auth: string[]
   title: string
@@ -56,7 +56,7 @@ interface progressBarCard {
   done: DashboardDoneInformations
 }
 
-interface regularCard {
+interface SmallCardRegularInterface {
   cardType: string // regular
   auth: string[]
 
@@ -69,7 +69,7 @@ interface regularCard {
   done: DashboardDoneInformations
 }
 
-interface duoCard{
+interface SmallCardDuoCardInterface{
   cardType: string // regular
   auth: string[]
 
@@ -91,13 +91,13 @@ interface duoCard{
 interface recrutementAcademiques {
   cardIcon: string,
   auth: string[],
-  allCards: [regularCard, threeInformationsCard, progressBarCard]
+  allCards: [SmallCardRegularInterface, SmallCardThreeInformationsInterface, SmallCardProgressBarInterface]
 }
 
 interface dossiersAdministratif {
   cardIcon: string,
   auth: string[],
-  allCards: [threeInformationsCard, threeInformationsCard, duoCard]
+  allCards: [SmallCardThreeInformationsInterface, SmallCardThreeInformationsInterface, SmallCardDuoCardInterface]
 }
 
 const recrutementAcadémiques: recrutementAcademiques = {
@@ -264,7 +264,7 @@ const functionsForDashboard = {
   ],
 
   // eslint-disable-next-line
-  dashboardFilterFunction(dashboardElements: any[] | threeInformationsCard[] | progressBarCard[] | regularCard[]): any {
+  dashboardFilterFunction(dashboardElements: any[] | SmallCardThreeInformationsInterface[] | SmallCardRegularInterface[] | SmallCardRegularInterface[]): any {
     const dashboardElementsFilter = []
     for (const element of dashboardElements) {
       for (const ua of element.auth) {
@@ -294,4 +294,4 @@ const functionsForDashboard = {
   }
 }
 
-export { functionsForDashboard, regularCard, progressBarCard, threeInformationsCard, duoCard }
+export { functionsForDashboard, SmallCardRegularInterface, SmallCardProgressBarInterface, SmallCardThreeInformationsInterface, SmallCardDuoCardInterface }

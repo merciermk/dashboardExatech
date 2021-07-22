@@ -51,7 +51,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 @Component({
   components: {}
 })
-export default class SmallCardThreeInformations extends Vue {
+export default class SmallCardProgressBar extends Vue {
   /* Communes a toutes les cartes */
   @Prop() readonly cardType!: string; // type de carte
   @Prop() readonly title!: string;
