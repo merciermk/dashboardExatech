@@ -1,33 +1,55 @@
 <template>
-    <!-- Regular progress bar -->
-    <div class="small-card"
-    :class="numberShow === 0 ? 'doneMode' : ''"
-    >
-      <router-link
-        :to="link"
-        class="small-card-regular"
-      >
+  <!-- Regular progress bar -->
+  <div class="small-card" :class="numberShow === 0 ? 'doneMode' : ''">
+    <router-link :to="link" class="small-card-regular">
       <!-- title -->
-        <div class="card-title">
-          <p class="card-title-text">{{ title.toUpperCase() }}</p>
-         <hr class="card-title-line" />
-        </div>
-        <!-- Milieu de carte  -->
-        <div class="card-middle">
+      <div class="card-title">
+        <p class="card-title-text">{{ title.toUpperCase() }}</p>
+        <hr class="card-title-line" />
+      </div>
+      <!-- Milieu de carte  -->
+      <div class="card-middle graph-area">
+        <p class="theCamembertText">{{ textShowSingular }}</p>
+        <div class="camenbertArea">
+          <p class="camembert-text blue1">
+            Test
+          </p>
           <div class="theCamembert">
-              <p class="theCamembertText">{{textShowSingular}}</p>
-          <div class="svg-item">
-  <svg width="100px" height="100px" viewBox="0 0 40 40" class="donut">
-    <circle class="donut-ring" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="6px"></circle>
-    <circle class="donut-segment donut-segment-2" cx="20" cy="20" r="15.91549430918954" fill="transparent" stroke-width="5.9px" :stroke-dasharray="strokeDashCalc(300, 700)" stroke-dashoffset="25"></circle>
-  </svg>
-</div>
-
+            <div class="svg-item">
+              <svg
+                width="100px"
+                height="100px"
+                viewBox="0 0 40 40"
+                class="donut"
+              >
+                <circle
+                  class="donut-ring"
+                  cx="20"
+                  cy="20"
+                  r="15.91549430918954"
+                  fill="transparent"
+                  stroke-width="6px"
+                ></circle>
+                <circle
+                  class="donut-segment donut-segment-2"
+                  cx="20"
+                  cy="20"
+                  r="15.91549430918954"
+                  fill="transparent"
+                  stroke-width="5.9px"
+                  :stroke-dasharray="strokeDashCalc(300, 700)"
+                  stroke-dashoffset="25"
+                ></circle>
+              </svg>
+            </div>
           </div>
-
+              <p class="camembert-text blue2">
+                Test
+              </p>
         </div>
-      </router-link>
-    </div>
+      </div>
+    </router-link>
+  </div>
 </template>
 
 <script lang="ts">
@@ -40,17 +62,17 @@ export default class SmallCard extends Vue {
   /* Communes a toutes les cartes */
   @Prop() readonly cardType!: string; // type de carte
   @Prop() readonly title!: string;
-  @Prop() readonly textShowSingular!: string
+  @Prop() readonly textShowSingular!: string;
   @Prop() readonly textShowPlural!: string | undefined;
   @Prop() readonly link!: string;
   @Prop() readonly doneText!: string;
-  @Prop() readonly doneBottomText!: string | undefined
+  @Prop() readonly doneBottomText!: string | undefined;
 
   /* ****************** */
   /* Milieu de la carte */
   /* ****************** */
   /* Affichage un seul chiffre */
-  @Prop() readonly numberShow!: number | undefined
+  @Prop() readonly numberShow!: number | undefined;
 
   /* ************ */
   /* Bottom carte */
@@ -75,14 +97,14 @@ export default class SmallCard extends Vue {
 </script>
 
 <style lang="scss">
-@import './dashboardGlobalStyle.scss';
+@import "./dashboardGlobalStyle.scss";
 @font-face {
-    font-family: 'Product Sans';
-    src:url("../../fonts/ProductSans-Regular.ttf");
+  font-family: "Product Sans";
+  src: url("../../fonts/ProductSans-Regular.ttf");
 }
 .small-card,
-.doneMode{
-  font-style: 'Product Sans';
+.doneMode {
+  font-style: "Product Sans";
 }
 
 .small-card:hover,
@@ -91,76 +113,103 @@ export default class SmallCard extends Vue {
   box-shadow: 0px 0px 15px 3px rgba(128, 128, 128, 0.74);
 }
 
-.theCamembert{
-  margin-top: 25px;
-  display:flex;
+.theCamembert {
+  display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  width: 250px;
-  height: 100%;
+  width: 125px;
+  height: 125px;
 }
 
 .svg-item {
-    text-align: center;
-    width: 100px;
-    font-size: 16px;
-    animation: donutfade 1s;
+  text-align: center;
+  width: 100px;
+  font-size: 16px;
+  animation: donutfade 1s;
 }
 
 @keyframes donutfade {
   /* this applies to the whole svg item wrapper */
-    0% {
-        opacity: .2;
-    }
-    100% {
-        opacity: 1;
-    }
+  0% {
+    opacity: 0.2;
+  }
+  100% {
+    opacity: 1;
+  }
 }
 
 @media (min-width: 992px) {
-    .svg-item {
-        width: 90%;
-    }
+  .svg-item {
+    width: 90%;
+  }
 }
 
 .donut-ring {
-    stroke: #3A93BA;
+  stroke: #3a93ba;
 }
 
 .donut-segment-2 {
-    stroke: #6bbeb7;
-    animation: donut1 2s;
+  stroke: #6bbeb7;
+  animation: donut1 2s;
 }
 
-.segment-2{fill:#6bbeb7;}
+.segment-2 {
+  fill: #6bbeb7;
+}
 
 .donut-percent {
-    animation: donutfadelong 1s;
+  animation: donutfadelong 1s;
 }
 
 @keyframes donut1 {
-    0% {
-        stroke-dasharray: 0, 100;
-    }
+  0% {
+    stroke-dasharray: 0, 100;
+  }
 }
 
 .donut-percent {
-    font-size: 0.5em;
-    line-height: 1;
-    transform: translateY(0.5em);
-    font-weight: bold;
+  font-size: 0.5em;
+  line-height: 1;
+  transform: translateY(0.5em);
+  font-weight: bold;
 }
 
 .donut-data {
-    font-size: 0.12em;
-    line-height: 1;
-    transform: translateY(0.5em);
-    text-align: center;
-    text-anchor: middle;
-    color:#666;
-    fill: #666;
-    animation: donutfadelong 1s;
+  font-size: 0.12em;
+  line-height: 1;
+  transform: translateY(0.5em);
+  text-align: center;
+  text-anchor: middle;
+  color: #666;
+  fill: #666;
+  animation: donutfadelong 1s;
+}
+
+.camenbertArea {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  width: 200px;
+  justify-content: center;
+  align-items: center;
+}
+
+.camembert-text{
+  font-size: 22px;
+}
+
+.blue1{
+  color: #3a93ba
+}
+
+.blue2{
+  color: #6bbeb7
+}
+
+.graph-area{
+  margin-top: 35px;
+  line-height: 0.3rem
 }
 
 </style>
