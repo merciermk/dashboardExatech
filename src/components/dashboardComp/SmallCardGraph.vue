@@ -8,11 +8,18 @@
         <hr class="card-title-line" />
       </div>
       <!-- Milieu de carte  -->
-      <div class="card-middle graph-area">
-        <p class="theCamembertText">{{ textShowSingular }}</p>
+       <div class="card-middle" v-if="numberShow">
+          <p class="card-middle-number">{{ numberShow }}</p>
+          <p class="card-middle-text" v-if="numberShow <= 1">
+            {{ textShowSingular }}
+          </p>
+          <p class="card-middle-text" v-else>{{ textShowPlural }}</p>
+        </div>
+      <div class="card-middle graph-area" v-else>
+        <p class="theCamembertText">{{ doneText }}</p>
         <div class="camenbertArea">
-          <p class="camembert-text blue1">
-            Test
+          <p class="camembert-text camembert-text-left blue1">
+            {{ graphText1 }}
           </p>
           <div class="theCamembert">
             <div class="svg-item">
@@ -37,14 +44,14 @@
                   r="15.91549430918954"
                   fill="transparent"
                   stroke-width="5.9px"
-                  :stroke-dasharray="strokeDashCalc(300, 700)"
+                  :stroke-dasharray="strokeDashCalc(graphNumber1, graphNumber2)"
                   stroke-dashoffset="25"
                 ></circle>
               </svg>
             </div>
           </div>
-              <p class="camembert-text blue2">
-                Test
+              <p class="camembert-text camembert-text-right blue2">
+                {{ graphText2 }}
               </p>
         </div>
       </div>
@@ -58,7 +65,11 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
 @Component({
   components: {}
 })
-export default class SmallCard extends Vue {
+export default class SmallCardGraph extends Vue {
+  @Prop() readonly graphNumber1
+  @Prop() readonly graphNumber2
+  @Prop() readonly graphText1
+  @Prop() readonly graphText2
   /* Communes a toutes les cartes */
   @Prop() readonly cardType!: string; // type de carte
   @Prop() readonly title!: string;
@@ -66,7 +77,6 @@ export default class SmallCard extends Vue {
   @Prop() readonly textShowPlural!: string | undefined;
   @Prop() readonly link!: string;
   @Prop() readonly doneText!: string;
-  @Prop() readonly doneBottomText!: string | undefined;
 
   /* ****************** */
   /* Milieu de la carte */
@@ -88,8 +98,6 @@ export default class SmallCard extends Vue {
   strokeDashCalc (number1: number, number2: number): string {
     const firstNumber = this.percentageCalc(number1, number2)
     const secondNumber = 100 - firstNumber
-    console.log(number1)
-    console.log(number2)
     console.log(firstNumber + ' ' + secondNumber)
     return firstNumber + ' ' + (100 - firstNumber)
   }
@@ -190,13 +198,24 @@ export default class SmallCard extends Vue {
   display: flex;
   flex-direction: row;
   flex-wrap: nowrap;
-  width: 200px;
+  width: 250px;
   justify-content: center;
   align-items: center;
 }
 
 .camembert-text{
-  font-size: 22px;
+  text-align: center;
+  width: 75px;
+  line-height: 1.5rem;
+  font-size: 16px;
+}
+
+.camembert-text-left{
+  text-align: right;
+}
+
+.camembert-text-right{
+  text-align: left;
 }
 
 .blue1{
@@ -208,6 +227,9 @@ export default class SmallCard extends Vue {
 }
 
 .graph-area{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   margin-top: 35px;
   line-height: 0.3rem
 }

@@ -59,7 +59,8 @@
         :threeinformationsText3Plural="eachCard.information3TextPlural"
       >
       </small-card-three-informations>
-          <small-card-graph
+
+          <small-card-graph v-if="eachCard.cardType.toUpperCase() === 'GRAPHCARD'"
     class="small-card-dashboard"
     :title="eachCard.title"
         :link="eachCard.link"
@@ -67,8 +68,13 @@
         :textShowSingular="eachCard.textShowSingular"
         :textShowPlural="eachCard.textShowPlural"
         :bottomText="eachCard.bottomText"
+
         :doneText="eachCard.done.doneText"
-        :doneBottomText="eachCard.done.doneBottomText"
+        :graphNumber1="eachCard.done.graphNumber1"
+        :graphNumber2="eachCard.done.graphNumber2"
+        :graphText1="eachCard.done.graphText1"
+        :graphText2="eachCard.done.graphText2"
+
     ></small-card-graph>
     </div>
   </div>
@@ -87,6 +93,7 @@ import {
   SmallCardRegularInterface,
   SmallCardDuoCardInterface
 } from '@/types/dashboard'
+
 @Component({
   components: {
     SmallCardDuo,

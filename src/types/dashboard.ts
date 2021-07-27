@@ -88,19 +88,32 @@ interface SmallCardDuoCardInterface{
   doneSecondCard: DashboardDoneInformations
 }
 
-interface recrutementAcademiques {
-  cardIcon: string,
-  auth: string[],
-  allCards: [SmallCardRegularInterface, SmallCardThreeInformationsInterface, SmallCardProgressBarInterface]
+interface SmallCardGraphInterface{
+  cardType: string // graphCard
+  auth: string[]
+
+  title: string
+  numberShow: number
+  textShowSingular: string
+  textShowPlural: string
+  link: string
+  bottomText?: string | undefined
+  done: {
+    doneText: string
+    graphNumber1: number
+    graphNumber2: number
+    graphText1: string
+    graphText2: string
+  }
 }
 
-interface dossiersAdministratif {
+interface bigCard {
   cardIcon: string,
   auth: string[],
-  allCards: [SmallCardThreeInformationsInterface, SmallCardThreeInformationsInterface, SmallCardDuoCardInterface]
+  allCards: (SmallCardRegularInterface | SmallCardThreeInformationsInterface | SmallCardProgressBarInterface | SmallCardDuoCardInterface | SmallCardGraphInterface)[]
 }
 
-const recrutementAcadémiques: recrutementAcademiques = {
+const recrutementAcadémiques: bigCard = {
   cardIcon: 'graduation-cap',
   auth: [RH_SPS_MANAGE],
   allCards: [
@@ -108,7 +121,7 @@ const recrutementAcadémiques: recrutementAcademiques = {
       cardType: 'regular',
       auth: [RH_SPS_MANAGE],
       title: 'dossiers académiques',
-      numberShow: 0,
+      numberShow: 1,
       textShowSingular: 'Dossier Validé',
       textShowPlural: 'Dossiers Validés',
       link: '/dossiers_academiques',
@@ -156,7 +169,7 @@ const recrutementAcadémiques: recrutementAcademiques = {
   ]
 }
 
-const dossiersAdministratifs: dossiersAdministratif = {
+const dossiersAdministratifs: bigCard = {
   cardIcon: 'folder-open',
   auth: [RH_SPS_MANAGE],
   allCards: [
@@ -233,24 +246,42 @@ const dossiersAdministratifs: dossiersAdministratif = {
   ]
 }
 
-const signatureDeLaDirection = {
+const signatureDeLaDirection: bigCard = {
   cardIcon: 'pen',
   auth: [RH_SPS_MANAGE],
   allCards: [
     {
-      cardType: 'regular', // regular
+      cardType: 'graphCard', // regular
+      auth: [RH_SPS_MANAGE],
+      title: 'SIGNATURE DES DOCUMENTS',
+      numberShow: 14,
+      textShowSingular: 'Document à signer',
+      textShowPlural: 'Documents à signer',
+      link: 'coucou',
+      bottomText: 'xx' + ' Documents au total',
+      done: {
+        doneText: 'texte alternatif',
+        graphNumber1: 12,
+        graphNumber2: 24,
+        graphText1: 'chiffre 12',
+        graphText2: 'chiffre24'
+      }
+    },
+    {
+      cardType: 'graphCard', // regular
       auth: [RH_SPS_MANAGE],
       title: 'SIGNATURE DES DOCUMENTS',
       numberShow: 0,
       textShowSingular: 'Document à signer',
       textShowPlural: 'Documents à signer',
       link: 'coucou',
-      bottomText: 'xx' + 'Documents au total',
+      bottomText: 'xx' + ' Documents au total',
       done: {
-        type: 'coucou',
-        doneText: 'Tous les documents sont signés',
-        doneTextPlural: '',
-        doneBottomText: 'information a afficher'
+        doneText: 'texte alternatif',
+        graphNumber1: 12,
+        graphNumber2: 24,
+        graphText1: 'SPS',
+        graphText2: 'autre'
       }
     }
   ]
