@@ -17,11 +17,25 @@ const ADM_PAR_MANAGE = Ability.ADM_PAR_MANAGE
 // eslint-disable-next-line
 const RH_SIGNATURE = Ability.RH_SIGNATURE
 
+// Affichage quand la personne a terminé les taches
 interface DashboardDoneInformations {
   type: string,
   doneText: string,
-  doneTextPlural: string,
   doneBottomText?: string, // utilisable si SmallCardRegularInterface
+}
+
+// Interface des cartes
+interface SmallCardRegularInterface {
+  cardType: string // regular
+  auth: string[]
+
+  title: string
+  numberShow: number
+  textShowSingular: string
+  textShowPlural: string
+  link: string
+  bottomText?: string | undefined
+  done: DashboardDoneInformations
 }
 
 interface SmallCardThreeInformationsInterface {
@@ -56,21 +70,8 @@ interface SmallCardProgressBarInterface {
   done: DashboardDoneInformations
 }
 
-interface SmallCardRegularInterface {
-  cardType: string // regular
-  auth: string[]
-
-  title: string
-  numberShow: number
-  textShowSingular: string
-  textShowPlural: string
-  link: string
-  bottomText?: string | undefined
-  done: DashboardDoneInformations
-}
-
 interface SmallCardDuoCardInterface{
-  cardType: string // regular
+  cardType: string // DUOCARD
   auth: string[]
 
   titleFirstCard: string
@@ -88,8 +89,9 @@ interface SmallCardDuoCardInterface{
   doneSecondCard: DashboardDoneInformations
 }
 
-interface SmallCardGraphInterface{
-  cardType: string // graphCard
+// interface spécifique a signature des documents. Affiche un chiffre + texte en mode normal puis un graphique en mode Done
+interface SmallCardSignatureInterface{
+  cardType: string // SIGNATURECARD
   auth: string[]
 
   title: string
@@ -107,32 +109,17 @@ interface SmallCardGraphInterface{
   }
 }
 
+// Interface de chaque ligne de cartes
 interface bigCard {
   cardIcon: string,
   auth: string[],
-  allCards: (SmallCardRegularInterface | SmallCardThreeInformationsInterface | SmallCardProgressBarInterface | SmallCardDuoCardInterface | SmallCardGraphInterface)[]
+  allCards: (SmallCardRegularInterface | SmallCardThreeInformationsInterface | SmallCardProgressBarInterface | SmallCardDuoCardInterface | SmallCardSignatureInterface)[]
 }
 
 const recrutementAcadémiques: bigCard = {
   cardIcon: 'graduation-cap',
   auth: [RH_SPS_MANAGE],
   allCards: [
-    {
-      cardType: 'DOUBLECARDGRAPH',
-      auth: [RH_SPS_MANAGE],
-      title: 'dossiers académiques',
-      numberShow: 1,
-      textShowSingular: 'Dossier Validé',
-      textShowPlural: 'Dossiers Validés',
-      link: '/dossiers_academiques',
-      bottomText: 'coucou',
-      done: {
-        type: 'string',
-        doneTextPlural: 'donePlural',
-        doneText: 'doneSingular',
-        doneBottomText: 'Coucou'
-      }
-    },
     {
       cardType: 'threeinformations',
       title: 'Sélection des intervenants',
@@ -144,10 +131,9 @@ const recrutementAcadémiques: bigCard = {
       information2Number: 25,
       information2TextSingular: 'Procès verbal à signer',
       information2TextPlural: 'Procès-verbaux à signer',
-      link: 'hello',
+      link: '/selections',
       done: {
         type: 'string',
-        doneTextPlural: 'donePlural',
         doneText: 'doneSingular'
       }
     },
@@ -155,14 +141,13 @@ const recrutementAcadémiques: bigCard = {
       cardType: 'progressbar',
       auth: [RH_SPS_MANAGE],
       title: 'Affectation des intervenants',
-      fractionNumber1: 15,
+      fractionNumber1: 10,
       fractionNumber2: 15,
       textShowSingular: 'Intervenant manquant',
       textShowPlural: 'Intervenants manquants',
-      link: '/dossiers_academiques',
+      link: '/affectations',
       done: {
         type: 'string',
-        doneTextPlural: 'donePlural',
         doneText: 'Toutes les affectations sont effectuées'
       }
     }
@@ -177,7 +162,7 @@ const dossiersAdministratifs: bigCard = {
       cardType: 'threeinformations',
       title: 'dossiers académiques',
       auth: [RH_SPS_MANAGE],
-      information1Number: 0,
+      information1Number: 2,
       information1TextSingular: 'Dossier à vérifier',
       information1TextPlural: 'Dossiers à vérifier',
 
@@ -188,10 +173,9 @@ const dossiersAdministratifs: bigCard = {
       information3Number: 25,
       information3TextSingular: 'Dossiers totaux',
       information3TextPlural: 'Dossier total',
-      link: 'hello',
+      link: '/dossiers_academiques',
       done: {
         type: 'string',
-        doneTextPlural: 'donePlural',
         doneText: 'doneSingular'
       }
     },
@@ -206,10 +190,9 @@ const dossiersAdministratifs: bigCard = {
       information2Number: 25,
       information2TextSingular: 'Information à valider',
       information2TextPlural: 'Informations à valider',
-      link: 'hello',
+      link: '/dossiers_administratifs/contrats',
       done: {
         type: 'string',
-        doneTextPlural: 'donePlural',
         doneText: 'doneSingular'
       }
     },
@@ -221,26 +204,20 @@ const dossiersAdministratifs: bigCard = {
       numberShowFirstCard: 1,
       textShowSingularFirstCard: 'Remboursement à traiter',
       textShowPluralFirstCard: 'Remboursements à traiter',
-      linkFirstCard: '/coucou',
+      linkFirstCard: '/dossiers_administratifs/demandes_remboursement',
       doneFirstCard: {
-
         type: 'doneRegular',
-        doneText: 'Pas de demandes à traiter',
-        doneTextPlural: 'Done'
-
+        doneText: 'Pas de demandes à traiter'
       },
 
       titleSecondCard: 'Ordres de mission',
       numberShowSecondCard: 1,
       textShowSingularSecondCard: 'Ordre de mission à traiter',
       textShowPluralSecondCard: 'Ordres de mission à traiter',
-      linkSecondCard: '/coucou',
+      linkSecondCard: '/dossiers_administratifs/ordres_mission',
       doneSecondCard: {
-
         type: 'doneRegular',
-        doneText: 'Pas de demandes à traiter',
-        doneTextPlural: 'Done'
-
+        doneText: 'Pas de demandes à traiter'
       }
     }
   ]
@@ -251,37 +228,20 @@ const signatureDeLaDirection: bigCard = {
   auth: [RH_SPS_MANAGE],
   allCards: [
     {
-      cardType: 'graphCard', // regular
+      cardType: 'SIGNATURECARD', // SIGNATURECARD
       auth: [RH_SPS_MANAGE],
       title: 'SIGNATURE DES DOCUMENTS',
       numberShow: 14,
       textShowSingular: 'Document à signer',
       textShowPlural: 'Documents à signer',
-      link: 'coucou',
-      bottomText: 'xx' + ' Documents au total',
-      done: {
-        doneText: 'texte alternatif',
-        graphNumber1: 12,
-        graphNumber2: 24,
-        graphText1: 'chiffre 12',
-        graphText2: 'chiffre24'
-      }
-    },
-    {
-      cardType: 'graphCard', // regular
-      auth: [RH_SPS_MANAGE],
-      title: 'SIGNATURE DES DOCUMENTS',
-      numberShow: 0,
-      textShowSingular: 'Document à signer',
-      textShowPlural: 'Documents à signer',
-      link: 'coucou',
+      link: '/signature_documents',
       bottomText: 'xx' + ' Documents au total',
       done: {
         doneText: 'texte alternatif',
         graphNumber1: 12,
         graphNumber2: 24,
         graphText1: 'SPS',
-        graphText2: 'autre'
+        graphText2: 'SOL'
       }
     }
   ]
@@ -289,13 +249,14 @@ const signatureDeLaDirection: bigCard = {
 
 const functionsForDashboard = {
   dashboardElements: [
+    signatureDeLaDirection,
     recrutementAcadémiques,
-    dossiersAdministratifs,
-    signatureDeLaDirection
+    dossiersAdministratifs
   ],
 
   // eslint-disable-next-line
-  dashboardFilterFunction(dashboardElements: any[] | SmallCardThreeInformationsInterface[] | SmallCardRegularInterface[] | SmallCardRegularInterface[]): any {
+  /** Fonction qui filtre les entrées du menu en fonction des droits de l'user */
+  dashboardFilterFunction (dashboardElements: bigCard[] | SmallCardThreeInformationsInterface[] | SmallCardRegularInterface[] | SmallCardRegularInterface[]): unknown {
     const dashboardElementsFilter = []
     for (const element of dashboardElements) {
       for (const ua of element.auth) {

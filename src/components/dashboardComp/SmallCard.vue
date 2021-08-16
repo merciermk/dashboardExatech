@@ -1,5 +1,6 @@
 <template>
-  <div>
+  <router-link
+        :to="link">
     <!-- Regular progress bar -->
     <div class="small-card" v-if="
           cardType.toUpperCase() === 'REGULAR' ||
@@ -105,7 +106,7 @@
       </router-link>
     </div>
 
-  </div>
+  </router-link>
 </template>
 
 <script lang="ts">

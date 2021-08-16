@@ -3,7 +3,7 @@
     <font-awesome-icon :icon="cardIcon" class="big-card-icon" />
     <div v-for="(eachCard, index) in allCards" :key="index">
       <double-card-graph
-      v-if="eachCard.cardType.toUpperCase() === 'DOUBLECARDGRAPH'"
+        v-if="eachCard.cardType.toUpperCase() === 'DOUBLECARDGRAPH'"
         class="small-card-dashboard"
         :title="eachCard.title"
         :link="eachCard.link"
@@ -15,35 +15,41 @@
         :doneBottomText="eachCard.done.doneBottomText"
       >
       </double-card-graph>
-      <small-card-duo v-if="eachCard.cardType.toUpperCase() === 'DUOCARD'"
-       class="small-card-dashboard"
+      <small-card-duo
+        v-if="eachCard.cardType.toUpperCase() === 'DUOCARD'"
+        class="small-card-dashboard"
         :titleFirstCard="eachCard.titleFirstCard"
         :numberShowFirstCard="eachCard.numberShowFirstCard"
         :textShowSingularFirstCard="eachCard.textShowSingularFirstCard"
         :textShowPluralFirstCard="eachCard.textShowPluralFirstCard"
+        :linkFirstCard="eachCard.linkFirstCard"
         :titleSecondCard="eachCard.titleSecondCard"
         :numberShowSecondCard="eachCard.numberShowSecondCard"
         :textShowSingularSecondCard="eachCard.textShowSingularSecondCard"
         :textShowPluralSecondCard="eachCard.textShowPluralSecondCard"
         :doneFirstCard="eachCard.doneFirstCard.doneText"
         :doneSecondCard="eachCard.doneSecondCard.doneText"
+        :linkSecondCard="eachCard.linkSecondCard"
       >
       </small-card-duo>
 
-      <small-card-progress-bar v-if="eachCard.cardType.toUpperCase() === 'PROGRESSBAR'"
-       class="small-card-dashboard"
+      <small-card-progress-bar
+        v-if="eachCard.cardType.toUpperCase() === 'PROGRESSBAR'"
+        class="small-card-dashboard"
         :cardType="eachCard.cardType"
         :title="eachCard.title"
         :link="eachCard.link"
         :fractionNumber1="parseInt(eachCard.fractionNumber1)"
         :fractionNumber2="parseInt(eachCard.fractionNumber2)"
-         :textShowSingular="eachCard.textShowSingular"
+        :textShowSingular="eachCard.textShowSingular"
         :textShowPlural="eachCard.textShowPlural"
         :doneText="eachCard.done.doneText"
-      > </small-card-progress-bar>
+      >
+      </small-card-progress-bar>
 
-      <small-card-regular v-if="eachCard.cardType.toUpperCase() === 'REGULAR'"
-       class="small-card-dashboard"
+      <small-card-regular
+        v-if="eachCard.cardType.toUpperCase() === 'REGULAR'"
+        class="small-card-dashboard"
         :title="eachCard.title"
         :link="eachCard.link"
         :numberShow="parseInt(eachCard.numberShow)"
@@ -52,43 +58,42 @@
         :bottomText="eachCard.bottomText"
         :doneText="eachCard.done.doneText"
         :doneBottomText="eachCard.done.doneBottomText"
-      > </small-card-regular>
+      >
+      </small-card-regular>
 
-      <small-card-three-informations v-if="eachCard.cardType.toUpperCase() === 'THREEINFORMATIONS'"
-            class="small-card-dashboard"
+      <small-card-three-informations
+        v-if="eachCard.cardType.toUpperCase() === 'THREEINFORMATIONS'"
+        class="small-card-dashboard"
         :cardType="eachCard.cardType"
         :title="eachCard.title"
         :link="eachCard.link"
         :threeinformationsNumber1="parseInt(eachCard.information1Number)"
         :threeinformationsText1Singular="eachCard.information1TextSingular"
         :threeinformationsText1Plural="eachCard.information1TextPlural"
-
         :threeinformationsNumber2="parseInt(eachCard.information2Number)"
         :threeinformationsText2Singular="eachCard.information2TextSingular"
         :threeinformationsText2Plural="eachCard.information2TextPlural"
-
         :threeinformationsNumber3="parseInt(eachCard.information3Number)"
         :threeinformationsText3Singular="eachCard.information3TextSingular"
         :threeinformationsText3Plural="eachCard.information3TextPlural"
       >
       </small-card-three-informations>
 
-          <small-card-graph v-if="eachCard.cardType.toUpperCase() === 'GRAPHCARD'"
-    class="small-card-dashboard"
-    :title="eachCard.title"
+      <small-card-graph
+        v-if="eachCard.cardType.toUpperCase() === 'SIGNATURECARD'"
+        class="small-card-dashboard"
+        :title="eachCard.title"
         :link="eachCard.link"
         :numberShow="parseInt(eachCard.numberShow)"
         :textShowSingular="eachCard.textShowSingular"
         :textShowPlural="eachCard.textShowPlural"
         :bottomText="eachCard.bottomText"
-
         :doneText="eachCard.done.doneText"
         :graphNumber1="eachCard.done.graphNumber1"
         :graphNumber2="eachCard.done.graphNumber2"
         :graphText1="eachCard.done.graphText1"
         :graphText2="eachCard.done.graphText2"
-
-    ></small-card-graph>
+      ></small-card-graph>
     </div>
   </div>
 </template>
@@ -99,7 +104,7 @@ import SmallCardDuo from '@/components/dashboardComp/SmallCardDuo.vue'
 import SmallCardProgressBar from '@/components/dashboardComp/SmallCardProgressBar.vue'
 import SmallCardRegular from '@/components/dashboardComp/SmallCardRegular.vue'
 import SmallCardThreeInformations from '@/components/dashboardComp/SmallCardThreeInformations.vue'
-import SmallCardGraph from '@/components/dashboardComp/SmallCardGraph.vue'
+import SmallCardGraph from '@/components/dashboardComp/SmallCardSignature.vue'
 import DoubleCardGraph from '@/components/dashboardComp/DoubleCardGraph.vue'
 import {
   SmallCardThreeInformationsInterface,
@@ -120,7 +125,11 @@ import {
 })
 export default class BigCard extends Vue {
   @Prop() cardIcon!: string;
-  @Prop() allCards!: SmallCardThreeInformationsInterface | SmallCardProgressBarInterface | SmallCardRegularInterface | SmallCardDuoCardInterface;
+  @Prop() allCards!:
+    | SmallCardThreeInformationsInterface
+    | SmallCardProgressBarInterface
+    | SmallCardRegularInterface
+    | SmallCardDuoCardInterface;
 }
 </script>
 

@@ -30,6 +30,7 @@
              <p v-else class="small-card-middle-threeinformations-text">  {{ threeinformationsText3Plural }}</p>
           </div>
         </div>
+        <div class='nothing'></div>
       </router-link>
   </div>
 </template>
@@ -74,6 +75,12 @@ export default class SmallCard extends Vue {
 }
 .small-card{
   font-style: 'Product Sans';
+}
+
+// Utilisé pour rendre la fin de la card cliquable
+.nothing{
+  height: 50px;
+  width: 100%
 }
 
 /* milieu carte de type threeInformation */

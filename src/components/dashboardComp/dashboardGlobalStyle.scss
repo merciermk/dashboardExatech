@@ -80,8 +80,7 @@ $small-card-done-text-color: #909090;
 .card-title-line {
   position: absolute;
   top: $card-title-height;
-  left: 10px;
-  min-width: 90% !important;
+  min-width: 100% !important;
   min-height: 1px;
   margin: auto !important;
   background-color: $small-card-hr-color;

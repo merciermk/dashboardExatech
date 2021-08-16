@@ -15,6 +15,15 @@
           </p>
           <p class="card-middle-text" v-else>{{ textShowPlural }}</p>
         </div>
+            <div class="card-bottom" v-if="bottomText && numberShow">
+          <!-- carte avec texte en bottom -->
+          <div
+            class="card-bottom-text"
+          >
+            <hr class="card-bottom-hr" />
+            <p v-if="bottomText && numberShow">{{ bottomText }}</p>
+          </div>
+        </div>
       <div class="card-middle graph-area" v-else>
         <p class="theCamembertText">{{ doneText }}</p>
         <div class="camenbertArea">
@@ -66,10 +75,10 @@ import { Vue, Component, Prop } from 'vue-property-decorator'
   components: {}
 })
 export default class SmallCardGraph extends Vue {
-  @Prop() readonly graphNumber1
-  @Prop() readonly graphNumber2
-  @Prop() readonly graphText1
-  @Prop() readonly graphText2
+  @Prop() readonly graphNumber1!: number
+  @Prop() readonly graphNumber2!: number
+  @Prop() readonly graphText1!: string
+  @Prop() readonly graphText2!: string
   /* Communes a toutes les cartes */
   @Prop() readonly cardType!: string; // type de carte
   @Prop() readonly title!: string;

@@ -2,7 +2,7 @@
     <!-- Duo card -->
      <div class="small-card-dual-card"
     >
-    <router-link to="" class="duo-card duo-card-one"
+    <router-link :to="linkFirstCard" class="duo-card duo-card-one"
      :class="numberShowFirstCard === 0 ? 'doneMode' : ''"
     >
       <div class="card-title">
@@ -25,7 +25,7 @@
         </div>
     </router-link>
     <!-- title -->
-      <router-link to="" class="duo-card duo-card-two"
+      <router-link :to="linkSecondCard" class="duo-card duo-card-two"
       :class="numberShowSecondCard === 0 ? 'doneMode' : ''"
       >
         <div class="card-title">
@@ -61,11 +61,13 @@ export default class SmallCardDuo extends Vue {
 @Prop() readonly numberShowFirstCard! : number | undefined
 @Prop() readonly textShowSingularFirstCard!: string | undefined
 @Prop() readonly textShowPluralFirstCard!: string | undefined
+@Prop() readonly linkFirstCard! : string
 
 @Prop() readonly titleSecondCard! : string | undefined
 @Prop() readonly numberShowSecondCard! : number | undefined
 @Prop() readonly textShowSingularSecondCard!: string | undefined
 @Prop() readonly textShowPluralSecondCard!: string | undefined
+@Prop() readonly linkSecondCard! : string
 
 @Prop() readonly doneFirstCard!: string | undefined
 @Prop() readonly doneSecondCard!: string | undefined
