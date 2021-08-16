@@ -7,7 +7,7 @@ $progress-bar-color: #6bbeb7;
 $progress-bar-color-background: #F6f7fa;
 $small-card-text-color: #FFFFFF;
 $small-card-hr-color: #293F41;
-$small-card-title-height: 36px;
+$card-title-height: 36px;
 $font-size-number-duo-threeinfos: 25px;
 $small-card-done-text-color: #909090;
 
@@ -22,6 +22,24 @@ $small-card-done-text-color: #909090;
   overflow: hidden;
 }
 
+.double-card {
+  background-color: $small-card-background-color;
+  width: $card-width + $card-width + 10px + 10px;
+  min-height: $card-height;
+  max-height: $card-height;
+  box-shadow: 0px 0px 15px 3px rgba(128, 128, 128, 0.445);
+  margin: 10px 10px 10px 10px;
+  border-radius: 15px;
+  overflow: hidden;
+  text-align: center;
+  .card-title {
+    width: $card-width + $card-width + 10px + 10px;
+  };
+  .card-title-line{
+    width: $card-width + $card-width
+  }
+}
+
 .small-card a,
 .small-card a:visited,
 .small-card,
@@ -29,7 +47,12 @@ $small-card-done-text-color: #909090;
 .small-card-dual-card a:visited,
 .small-card:hover,
 .small-card a:hover,
-.small-card-dual-card {
+.small-card-dual-card,
+.double-card a,
+.double-card a:visited,
+.double-card,
+.double-card:hover,
+.double-card a:hover {
   color: $small-card-text-color;
   text-decoration: none;
 }
@@ -51,15 +74,14 @@ $small-card-done-text-color: #909090;
   width: $card-width;
   margin: 0 !important;
   line-height: 1rem;
-  min-height: $small-card-title-height;
-
+  min-height: $card-title-height;
   font-size: $font-size;
 }
 .card-title-line {
   position: absolute;
-  top: $small-card-title-height;
+  top: $card-title-height;
   left: 10px;
-  width: 230px !important;
+  min-width: 90% !important;
   min-height: 1px;
   margin: auto !important;
   background-color: $small-card-hr-color;
@@ -78,8 +100,8 @@ $small-card-done-text-color: #909090;
   align-items: center;
   justify-content: center;
   padding-top: 35px;
-  min-height: 170px +  $small-card-title-height;
-  max-height: 170px +  $small-card-title-height;
+  min-height: 170px +  $card-title-height;
+  max-height: 170px +  $card-title-height;
   overflow: hidden;
 }
 .card-middle-number {
@@ -116,6 +138,18 @@ $small-card-done-text-color: #909090;
   margin-top: 25px;
   margin-bottom: 15px;
   font-size: 35px;
+}
+
+/* Done Mode */
+.card-duo-middle-done-icon{
+  margin-bottom: 5px;
+  font-size: 30px;
+}
+.doneMode,
+.doneMode a,
+.doneMode a:visited{
+  color: $small-card-done-text-color !important;
+  text-decoration: none;
 }
 
 

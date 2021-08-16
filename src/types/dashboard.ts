@@ -118,7 +118,7 @@ const recrutementAcadémiques: bigCard = {
   auth: [RH_SPS_MANAGE],
   allCards: [
     {
-      cardType: 'regular',
+      cardType: 'DOUBLECARDGRAPH',
       auth: [RH_SPS_MANAGE],
       title: 'dossiers académiques',
       numberShow: 1,
