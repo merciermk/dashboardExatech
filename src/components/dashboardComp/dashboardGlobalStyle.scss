@@ -23,7 +23,7 @@ $small-card-done-text-color: #909090;
 }
 
 .double-card {
-  background-color: $small-card-background-color;
+  background-color: $progress-bar-color-background;
   width: $card-width + $card-width + 10px + 10px;
   min-height: $card-height;
   max-height: $card-height;
@@ -33,6 +33,7 @@ $small-card-done-text-color: #909090;
   overflow: hidden;
   text-align: center;
   .card-title {
+    color: $small-card-done-text-color !important;
     width: $card-width + $card-width + 10px + 10px;
   };
   .card-title-line{

@@ -7,12 +7,7 @@
         class="small-card-dashboard"
         :title="eachCard.title"
         :link="eachCard.link"
-        :numberShow="parseInt(eachCard.numberShow)"
-        :textShowSingular="eachCard.textShowSingular"
-        :textShowPlural="eachCard.textShowPlural"
-        :bottomText="eachCard.bottomText"
-        :doneText="eachCard.done.doneText"
-        :doneBottomText="eachCard.done.doneBottomText"
+        :chartOption="eachCard.chartOption"
       >
       </double-card-graph>
       <small-card-duo

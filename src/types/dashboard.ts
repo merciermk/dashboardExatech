@@ -116,6 +116,19 @@ interface bigCard {
   allCards: (SmallCardRegularInterface | SmallCardThreeInformationsInterface | SmallCardProgressBarInterface | SmallCardDuoCardInterface | SmallCardSignatureInterface)[]
 }
 
+interface doubleCardGraphInterface {
+  cardType: string, // 'DOUBLECARDGRAPH'
+  auth: string[]
+  title: string,
+  link: string,
+  numberShow: number,
+  textShowSingular: string,
+  textShowPlural: string,
+    bottomText: string,
+    doneText: string,
+    doneBottomText: string
+}
+
 const recrutementAcadémiques: bigCard = {
   cardIcon: 'graduation-cap',
   auth: [RH_SPS_MANAGE],
@@ -156,12 +169,12 @@ const recrutementAcadémiques: bigCard = {
 
 const dossiersAdministratifs: bigCard = {
   cardIcon: 'folder-open',
-  auth: [RH_SPS_MANAGE],
+  auth: [RH_ADM_MANAGE],
   allCards: [
     {
       cardType: 'threeinformations',
       title: 'dossiers académiques',
-      auth: [RH_SPS_MANAGE],
+      auth: [RH_ADM_MANAGE],
       information1Number: 2,
       information1TextSingular: 'Dossier à vérifier',
       information1TextPlural: 'Dossiers à vérifier',
@@ -182,7 +195,7 @@ const dossiersAdministratifs: bigCard = {
     {
       cardType: 'threeinformations',
       title: 'Contrats',
-      auth: [RH_SPS_MANAGE],
+      auth: [RH_ADM_MANAGE],
       information1Number: 888,
       information1TextSingular: 'Contrat créé',
       information1TextPlural: 'Contrats créés',
@@ -198,7 +211,7 @@ const dossiersAdministratifs: bigCard = {
     },
     {
       cardType: 'duocard',
-      auth: [RH_SPS_MANAGE],
+      auth: [RH_ADM_MANAGE],
 
       titleFirstCard: 'Demandes de remboursement',
       numberShowFirstCard: 1,
@@ -223,13 +236,13 @@ const dossiersAdministratifs: bigCard = {
   ]
 }
 
-const signatureDeLaDirection: bigCard = {
+const signatureDeLaDirection = {
   cardIcon: 'pen',
-  auth: [RH_SPS_MANAGE],
+  auth: [RH_SIGNATURE],
   allCards: [
     {
       cardType: 'SIGNATURECARD', // SIGNATURECARD
-      auth: [RH_SPS_MANAGE],
+      auth: [RH_SIGNATURE],
       title: 'SIGNATURE DES DOCUMENTS',
       numberShow: 14,
       textShowSingular: 'Document à signer',
@@ -247,16 +260,83 @@ const signatureDeLaDirection: bigCard = {
   ]
 }
 
+const test = {
+  cardIcon: 'pen',
+  auth: [RH_SIGNATURE],
+  allCards: [
+    {
+      cardType: 'DOUBLECARDGRAPH',
+      auth: [RH_SIGNATURE],
+      title: 'eachCard.title',
+      link: 'eachCard.link',
+      numberShow: 12,
+      chartOption: {
+        xAxis: {
+          type: 'category',
+          data: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [{
+          data: [150, 230, 224, 218, 135, 147, 260],
+          type: 'line'
+        }],
+        color: {
+          type: 'linear',
+          x: 0,
+          y: 0,
+          x2: 0,
+          y2: 1,
+          colorStops: [{
+            offset: 0, color: 'red' // color at 0% position
+          }],
+          global: false // false by default
+        }
+      }
+
+    },
+    {
+      cardType: 'DOUBLECARDGRAPH',
+      auth: [RH_SIGNATURE],
+      title: 'Double Card Graph',
+      link: 'eachCard.link',
+      chartOption: {
+        color: ['#6bbeb7', '#6bbeb7', '#6bbeb7'],
+        tooltip: {},
+        legend: {
+          data: ['Val1', 'Val2', 'Val3']
+        },
+        xAxis: {
+          data: ['Val1', 'Val2', 'Val3']
+        },
+        yAxis: {},
+        series: [{
+          name: 'Val1',
+          type: 'bar',
+          data: [5, 20, 36]
+        },
+        {
+          name: 'Val2',
+          type: 'bar',
+          data: [10, 30, 12]
+        }]
+      }
+    }
+  ]
+}
+
 const functionsForDashboard = {
   dashboardElements: [
     signatureDeLaDirection,
     recrutementAcadémiques,
-    dossiersAdministratifs
+    dossiersAdministratifs,
+    test
   ],
 
   // eslint-disable-next-line
   /** Fonction qui filtre les entrées du menu en fonction des droits de l'user */
-  dashboardFilterFunction (dashboardElements: bigCard[] | SmallCardThreeInformationsInterface[] | SmallCardRegularInterface[] | SmallCardRegularInterface[]): unknown {
+  dashboardFilterFunction (dashboardElements: bigCard[] | SmallCardThreeInformationsInterface[] | SmallCardRegularInterface[] | SmallCardRegularInterface[] | doubleCardGraphInterface[]): unknown {
     const dashboardElementsFilter = []
     for (const element of dashboardElements) {
       for (const ua of element.auth) {
@@ -286,4 +366,4 @@ const functionsForDashboard = {
   }
 }
 
-export { functionsForDashboard, SmallCardRegularInterface, SmallCardProgressBarInterface, SmallCardThreeInformationsInterface, SmallCardDuoCardInterface }
+export { functionsForDashboard, SmallCardRegularInterface, SmallCardProgressBarInterface, SmallCardThreeInformationsInterface, SmallCardDuoCardInterface, doubleCardGraphInterface }
