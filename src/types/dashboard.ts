@@ -320,7 +320,13 @@ const test = {
           name: 'Val2',
           type: 'bar',
           data: [10, 30, 12]
-        }]
+        },
+        {
+          name: 'Val3',
+          type: 'bar',
+          data: [10, 30, 12]
+        }
+        ]
       }
     }
   ]
