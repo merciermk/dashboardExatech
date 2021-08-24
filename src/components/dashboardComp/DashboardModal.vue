@@ -50,7 +50,9 @@ $modal-card-height: 20%;
    height: $modal-card-height;
  }
  .modal-button{
-   margin: 0 10px auto auto;
+   position: relative;
+   top: 0;
+   right: 15px;
    float: right;
  }
 
@@ -58,7 +60,7 @@ $modal-card-height: 20%;
    margin-top: 10vh;
   width: 100%;
   height: 70%;
-  text-align: center;
+  text-align: calc(center + 50px);
 }
 .slot-modal{
   margin: 15px;

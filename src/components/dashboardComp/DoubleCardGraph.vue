@@ -6,7 +6,7 @@
       <!-- title -->
       <div class="card-title" @click="showModal">
         <p class="card-title-text">{{ title.toUpperCase() }}</p>
-        <hr class="card-title-line" />
+        <hr class="card-title-line clean-line" />
       </div>
       <!-- Milieu de carte  -->
       <div class="double-card-middle">
@@ -100,22 +100,32 @@ export default class DoubleCardGraph extends Vue {
 }
 .double-card,
 .doneMode {
+  cursor: pointer;
   font-style: "Product Sans";
 }
 
-.double-card:hover,
-.duo-card-one:hover,
-.duo-card-two:hover {
+.double-card:hover
+{
   box-shadow: 0px 0px 15px 3px rgba(177, 175, 175, 0.74);
 }
 
 .double-card-middle{
+  cursor: pointer;
   margin-top: 10px;
 }
 
 .chart {
+  cursor: pointer;
   width: 100%;
   height: 220px;
+}
+
+.clean-line{
+  background-color: #dfe1e6 !important
+}
+
+canvas{
+  cursor: pointer;
 }
 
 </style>

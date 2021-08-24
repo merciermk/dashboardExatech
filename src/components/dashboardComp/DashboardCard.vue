@@ -140,7 +140,7 @@ $dashboard-margin-right: 20px;
   right: 10px;
   top: 20px;
   position: absolute;
-  font-size: 200px;
+  font-size: 130px;
   color: rgba(179, 175, 175, 0.13);
 }
 
