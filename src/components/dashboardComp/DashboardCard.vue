@@ -158,6 +158,5 @@ $dashboard-margin-right: 20px;
 }
 .small-card-dashboard {
   position: relative;
-  z-index: 9999;
 }
 </style>

@@ -1,0 +1,66 @@
+<template>
+  <div class="dashboard-modal">
+    <div class="modal-card">
+      <div class="upperModal">
+      <button type="button modal-button" @click.prevent="$emit('close')" data-bs-dismiss="modal" aria-label="Close" class="btn-close modal-button"></button>
+        <div class="slot-modal">
+          <slot name="title" class="modal-title"></slot>
+          <slot name="body"></slot>
+        </div>
+      </div>
+    </div>
+    </div>
+</template>
+
+<script lang="ts">
+import Vue from 'vue'
+import { Prop } from 'vue-property-decorator'
+
+export default class DashboardModal extends Vue {
+@Prop() titre!: string
+}
+</script>
+
+<style lang="scss">
+@import "./dashboardGlobalStyle.scss";
+$modal-card-height: 60%;
+
+ .dashboard-modal{
+   color: $small-card-done-text-color;
+   font-size: 20px;
+   z-index: 999999;
+   display: flex;
+   justify-content: center;
+   align-items:center;
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: rgba(130, 133, 133, 0.397);
+ }
+ .modal-card{
+
+   border-radius: 20px;
+   background-color: rgb(253, 253, 253);
+   width: 80%;
+   height: $modal-card-height;
+ }
+ .modal-button{
+   margin: 0 10px auto auto;
+   float: right;
+ }
+
+ .chartModal {
+   margin-top: 10%;
+  width: 100%;
+  height: $modal-card-height;
+  text-align: center;
+}
+.slot-modal{
+  margin: 15px;
+  text-align: center;
+  height: 60vh;
+}
+
+</style>
