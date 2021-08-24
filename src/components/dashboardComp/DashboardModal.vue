@@ -55,7 +55,7 @@ $modal-card-height: 20%;
  }
 
  .chartModal {
-   margin-top: 10%;
+   margin-top: 10vh;
   width: 100%;
   height: 70%;
   text-align: center;
