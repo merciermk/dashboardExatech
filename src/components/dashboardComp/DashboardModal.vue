@@ -23,7 +23,7 @@ export default class DashboardModal extends Vue {
 
 <style lang="scss">
 @import "./dashboardGlobalStyle.scss";
-$modal-card-height: 60%;
+$modal-card-height: 20%;
 
  .dashboard-modal{
    color: $small-card-done-text-color;
@@ -35,15 +35,18 @@ $modal-card-height: 60%;
    position: fixed;
    top: 0;
    left: 0;
-   width: 100%;
-   height: 100%;
+   min-width: 100%;
+   max-width: 100%;
+   min-height: 100%;
+   min-height: 100%;
    background-color: rgba(130, 133, 133, 0.397);
  }
  .modal-card{
 
    border-radius: 20px;
    background-color: rgb(253, 253, 253);
-   width: 80%;
+   min-width: 80%;
+   max-width: 80%;
    height: $modal-card-height;
  }
  .modal-button{
@@ -54,7 +57,7 @@ $modal-card-height: 60%;
  .chartModal {
    margin-top: 10%;
   width: 100%;
-  height: $modal-card-height;
+  height: 70%;
   text-align: center;
 }
 .slot-modal{

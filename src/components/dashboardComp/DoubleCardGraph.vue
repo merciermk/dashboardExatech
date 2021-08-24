@@ -17,12 +17,13 @@
     <dashboard-modal
   v-if="isModalVisible"
   @close="closeModal"
+
   >
     <template v-slot:title>
       <p>{{ modalDash.title }}</p>
     </template>
      <template v-slot:body>
-       <v-chart class="chartModal" :option="chartOption" />
+       <v-chart class="chartModal" :option="chartOption" autoresize/>
     </template>
   </dashboard-modal>
   </div>
@@ -73,17 +74,17 @@ export default class DoubleCardGraph extends Vue {
     chartOption: this.chartOption
   }
 
-  mounted () {
+  mounted (): void {
     console.log('this chartOption')
     console.log(this.chartOption)
   }
 
   isModalVisible = false
-  showModal () {
+  showModal (): void {
     this.isModalVisible = true
   }
 
-  closeModal () {
+  closeModal (): void {
     console.log('close modal')
     this.isModalVisible = false
   }

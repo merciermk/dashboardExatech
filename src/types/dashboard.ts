@@ -290,8 +290,7 @@ const test = {
           y2: 1,
           colorStops: [{
             offset: 0, color: 'red' // color at 0% position
-          }],
-          global: false // false by default
+          }]
         }
       }
 
