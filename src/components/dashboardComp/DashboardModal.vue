@@ -60,7 +60,7 @@ $modal-card-height: 20%;
    margin-top: 10vh;
   width: 100%;
   height: 70%;
-  text-align: calc(center + 50px);
+  text-align: center;
 }
 .slot-modal{
   margin: 15px;
