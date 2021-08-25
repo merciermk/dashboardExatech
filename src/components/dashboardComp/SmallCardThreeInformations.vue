@@ -24,7 +24,7 @@
             <p v-if="threeinformationsNumber2 <= 1" class="small-card-middle-threeinformations-text">  {{ threeinformationsText2Singular }}</p>
              <p v-else class="small-card-middle-threeinformations-text">  {{ threeinformationsText2Plural }}</p>
           </div>
-          <div v-if="threeinformationsNumber3" class="three-informations">
+          <div v-if="threeinformationsNumber3 || threeinformationsNumber3 === 0" class="three-informations">
             <p class="small-card-middle-threeinformations-number">{{ threeinformationsNumber3 }}</p>
                    <p v-if="threeinformationsNumber3 <= 1" class="small-card-middle-threeinformations-text">  {{ threeinformationsText3Singular }}</p>
              <p v-else class="small-card-middle-threeinformations-text">  {{ threeinformationsText3Plural }}</p>

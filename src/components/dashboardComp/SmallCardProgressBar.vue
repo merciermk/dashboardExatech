@@ -17,8 +17,8 @@
         </div>
         <!-- Milieu de carte  -->
         <!-- Milieu carte pour regular / progressBar -->
-        <div class="card-middle" v-if="fractionNumber1 && fractionNumber1 != fractionNumber2">
-          <p class="card-middle-number" v-if="fractionNumber1">{{ fractionNumber1 }}/{{ fractionNumber2 }}</p>
+        <div class="card-middle" v-if="fractionNumber1 != fractionNumber2">
+          <p class="card-middle-number">{{ fractionNumber1 }}/{{ fractionNumber2 }}</p>
           <p class="card-middle-text" v-if="fractionNumber1 <= 1">
             {{ textShowSingular }}
           </p>
