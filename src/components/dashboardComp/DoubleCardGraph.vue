@@ -121,7 +121,7 @@ export default class DoubleCardGraph extends Vue {
 }
 
 .clean-line{
-  background-color: #EEF0F4 !important
+  background-color: #c3c5c9 !important
 }
 
 canvas{
