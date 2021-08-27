@@ -4,13 +4,13 @@
       <div class="upperModal">
         <button
           type="button modal-button"
-          @click.prevent="$emit('close')"
+          @click.prevent="uploadLocalStorage"
           data-bs-dismiss="modal"
           aria-label="Close"
           class="btn-close modal-button"
         ></button>
         <div class="slot-modal">
-          <ul v-for="(eachData, index) in data" :key="'dashboardModal' + index">
+          <ul v-for="(eachData, index) in modalData" :key="'dashboardModal' + index">
             <li>
               <input type="checkbox" id="checkbox" :value="eachData.show" v-model="eachData.show" >
 <label for="checkbox">{{ eachData.auth[0] }}</label>
@@ -30,7 +30,14 @@ import { Component, Prop } from 'vue-property-decorator'
 export default class DashboardModal extends Vue {
   @Prop() data!: any;
 
-  checkedSettingArray = []
+  modalData = this.$props.data
+
+  uploadLocalStorage () {
+    console.log('uploadLocalStorage')
+    console.log(window.localStorage.setItem('dashboardElements', JSON.stringify(this.modalData)))
+    window.localStorage.setItem('dashboardElements', JSON.stringify(this.modalData))
+    this.$emit('close')
+  }
 }
 </script>
 
@@ -57,8 +64,8 @@ $modal-card-height: 20%;
 .modal-card {
   border-radius: 20px;
   background-color: rgb(253, 253, 253);
-  min-width: 80%;
-  max-width: 80%;
+  min-width: 30%;
+  max-width: 30%;
   height: $modal-card-height;
 }
 .modal-button {
@@ -77,6 +84,11 @@ $modal-card-height: 20%;
 .slot-modal {
   margin: 15px;
   text-align: center;
-  height: 60vh;
+  height: auto;
+  width: auto;
+  ul > li {
+    list-style: none;
+  }
 }
+
 </style>

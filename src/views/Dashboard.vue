@@ -12,13 +12,13 @@
     >
     </dashboard-settings-modal>
 
-    <div class="vfor-dashboard" v-for="(dashboardElement, index) in dashboardElements" :key="index"
+    <div :class="dashboardElement.show ? 'vfor-dashboard': ''" v-for="(dashboardElement, index) in dashboardElements" :key="index"
     >
-      <div v-if="dashboardElement.show" class="dashboard-element">
-      <big-card
-        :cardIcon="dashboardElement.cardIcon"
-        :allCards="dashboardElement.allCards"
-      >
+      <div v-if="dashboardElement.show" class='dashboard-element'>
+        <big-card
+          :cardIcon="dashboardElement.cardIcon"
+          :allCards="dashboardElement.allCards"
+        >
       </big-card>
       </div>
     </div>
@@ -44,15 +44,16 @@ import DashboardSettingsModal from '@/components/dashboardComp/DashboardSettings
   }
 })
 export default class Dashboard extends Vue {
-  dashboardElements!: string[]
+  dashboardElements: any
   dashboardReady = false
 
   toggleSettingModal =false
 
   settingModalFunc () : void {
-    this.dashboardElements = functionsForDashboard.dashboardFiltered(functionsForDashboard.dashboardElements)
+    this.dashboardElements = JSON.parse(window.localStorage.getItem('dashboardElements') || '{}')
+    console.log('this.dashboardElements')
+    console.log(this.dashboardElements)
     this.toggleSettingModal = !this.toggleSettingModal
-    console.log()
   }
 
   initMenu ():void {
@@ -64,6 +65,7 @@ export default class Dashboard extends Vue {
   mounted ():void {
     if (this.$store.state.auth.user.abilities && this.$store.state.auth.user.abilities.length !== 0) {
       this.initMenu()
+      window.localStorage.setItem('dashboardElements', JSON.stringify(this.dashboardElements))
     }
   }
 }
@@ -98,8 +100,13 @@ $dashboard-margin-right: 20px;
 
 .dashboard-element{
   display: flex;
+  justify-content: flex-start;
   width: 100%;
+  min-height: 0;
+  padding: 0;
+  margin: 0;
 }
+.dashboard-element-hide{}
 .vfor-dashboard:nth-child(even) .dashboard-element {
   background-color: rgba(163, 163, 163, 0.116);
 }
@@ -114,6 +121,11 @@ $dashboard-margin-right: 20px;
   display: flex;
   flex-direction: row;
   width: 100%
+}
+
+big-card{
+  align-self: center;
+  height: 100%
 }
 
 </style>
