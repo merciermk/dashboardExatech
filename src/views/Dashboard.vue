@@ -51,22 +51,29 @@ export default class Dashboard extends Vue {
 
   settingModalFunc () : void {
     this.dashboardElements = JSON.parse(window.localStorage.getItem('dashboardElements') || '{}')
-    console.log('this.dashboardElements')
-    console.log(this.dashboardElements)
     this.toggleSettingModal = !this.toggleSettingModal
   }
 
   initMenu ():void {
     // console.log('init du menu')
-    this.dashboardElements = functionsForDashboard.dashboardFiltered(functionsForDashboard.dashboardElements)
+    if (!window.localStorage.getItem('dashboardElements')) {
+      window.localStorage.setItem('dashboardElements', JSON.stringify(functionsForDashboard.dashboardFiltered(functionsForDashboard.dashboardElements)))
+    }
+    this.dashboardElements = JSON.parse(window.localStorage.getItem('dashboardElements') || '{}')
     this.dashboardReady = true
   }
 
   mounted ():void {
+    this.dashboardElements = window.localStorage.getItem('dashboardElements')
+    console.log('mounted')
     if (this.$store.state.auth.user.abilities && this.$store.state.auth.user.abilities.length !== 0) {
       this.initMenu()
-      window.localStorage.setItem('dashboardElements', JSON.stringify(this.dashboardElements))
+      if (!window.localStorage.getItem('dashboardElements')) {
+        window.localStorage.setItem('dashboardElements', JSON.stringify(this.dashboardElements))
+      }
     }
+    console.log(this.dashboardElements)
+    console.log('dashelement')
   }
 }
 </script>
