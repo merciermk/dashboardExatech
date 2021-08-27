@@ -2,13 +2,26 @@
   <div class="dashboard"
   v-if="dashboardReady"
   >
-    <big-card
-    v-for="(dashboardElement, index) in dashboardElements" :key="index"
-      :cardIcon="dashboardElement.cardIcon"
-      :allCards="dashboardElement.allCards"
-      class="dashboard-element"
+    <div @click="settingModalFunc()" class="setting-icon">
+      <p>Settings</p>
+    </div>
+    <dashboard-settings-modal
+    v-if="toggleSettingModal"
+    @close="settingModalFunc"
+    :data="dashboardElements"
     >
-    </big-card>
+    </dashboard-settings-modal>
+
+    <div class="vfor-dashboard" v-for="(dashboardElement, index) in dashboardElements" :key="index"
+    >
+      <div v-if="dashboardElement.show" class="dashboard-element">
+      <big-card
+        :cardIcon="dashboardElement.cardIcon"
+        :allCards="dashboardElement.allCards"
+      >
+      </big-card>
+      </div>
+    </div>
 
   </div>
 </template>
@@ -18,6 +31,7 @@ import { Vue, Component } from 'vue-property-decorator'
 import BigCard from '@/components/dashboardComp/DashboardCard.vue'
 import { functionsForDashboard } from '@/types/dashboard'
 import { mapGetters, mapState } from 'vuex'
+import DashboardSettingsModal from '@/components/dashboardComp/DashboardSettingsModal.vue'
 
 @Component({
   computed: {
@@ -25,12 +39,21 @@ import { mapGetters, mapState } from 'vuex'
     ...mapState('auth', ['user', 'authUser'])
   },
   components: {
-    BigCard
+    BigCard,
+    DashboardSettingsModal
   }
 })
 export default class Dashboard extends Vue {
   dashboardElements!: string[]
   dashboardReady = false
+
+  toggleSettingModal =false
+
+  settingModalFunc () : void {
+    this.dashboardElements = functionsForDashboard.dashboardFiltered(functionsForDashboard.dashboardElements)
+    this.toggleSettingModal = !this.toggleSettingModal
+    console.log()
+  }
 
   initMenu ():void {
     // console.log('init du menu')
@@ -73,7 +96,24 @@ $dashboard-margin-right: 20px;
     $dashboard-margin-left;
 }
 
-.dashboard-element:nth-child(even) {
+.dashboard-element{
+  display: flex;
+  width: 100%;
+}
+.vfor-dashboard:nth-child(even) .dashboard-element {
   background-color: rgba(163, 163, 163, 0.116);
 }
+
+.setting-icon{
+  position: relative;
+  font-size: 30px;
+  color: rgba(163, 163, 163, 0.116);
+}
+
+.vfor-dashboard{
+  display: flex;
+  flex-direction: row;
+  width: 100%
+}
+
 </style>

@@ -1,6 +1,7 @@
 <template>
   <!-- Regular progress bar -->
   <div>
+
   <div @click="showModal" class="double-card">
     <div class="double-card-regular">
       <!-- title -->

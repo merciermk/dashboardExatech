@@ -111,6 +111,7 @@ interface SmallCardSignatureInterface{
 
 // Interface de chaque ligne de cartes
 interface bigCard {
+  show: boolean
   cardIcon: string,
   auth: string[],
   allCards: (SmallCardRegularInterface | SmallCardThreeInformationsInterface | SmallCardProgressBarInterface | SmallCardDuoCardInterface | SmallCardSignatureInterface)[]
@@ -130,6 +131,7 @@ interface doubleCardGraphInterface {
 }
 
 const recrutementAcadémiques: bigCard = {
+  show: true,
   cardIcon: 'graduation-cap',
   auth: [RH_SPS_MANAGE],
   allCards: [
@@ -168,6 +170,7 @@ const recrutementAcadémiques: bigCard = {
 }
 
 const dossiersAdministratifs: bigCard = {
+  show: true,
   cardIcon: 'folder-open',
   auth: [RH_ADM_MANAGE],
   allCards: [
@@ -237,6 +240,7 @@ const dossiersAdministratifs: bigCard = {
 }
 
 const signatureDeLaDirection = {
+  show: true,
   cardIcon: 'pen',
   auth: [RH_SIGNATURE],
   allCards: [
@@ -261,6 +265,7 @@ const signatureDeLaDirection = {
 }
 
 const test = {
+  show: true,
   cardIcon: 'pen',
   auth: [RH_SIGNATURE],
   allCards: [
